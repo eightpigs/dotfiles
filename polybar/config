@@ -1,0 +1,155 @@
+[colors]
+background = #2d2d2d
+background-alt = #444
+foreground = #dfdfdf
+foreground-alt = #555
+primary = #FF0000
+alert = #bd2c40
+
+[bar/example]
+monitor = ${env:MONITOR:DP-4}
+width = 100%
+height = 50
+radius = 8.0
+fixed-center = true
+top = true
+
+;override-redirect = true
+offset-x = 17 
+offset-y = 10
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 5
+line-color = #f00
+
+;border-size = 10
+;border-color = #FFFFFF
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 3
+module-margin-right = 3
+
+font-0 = fixed:pixelsize=14;0
+
+modules-left = i3 
+modules-center = xwindow
+modules-right = eth pulseaudio temperature date 
+
+wm-restack = i3
+
+dpi-x = 100
+dpi-y = 100
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:200:...%
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; focused = Active workspace on focused monitor
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-underline = ${colors.primary}
+label-focused-padding = 4
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %index%
+label-unfocused-padding = 4
+
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 4
+
+[module/eth]
+type = internal/network
+interface = eno2
+interval = 0.5
+label-connected = %upspeed%  %downspeed%
+label-disconnected = %ifname% disconnected
+label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 1.0
+date = %H:%M
+date-alt = %A, %Y-%m-%d %H:%M:%S
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <label-volume> <bar-volume>
+label-volume = %percentage%%
+label-volume-foreground = ${root.foreground}
+
+label-muted = muted
+label-muted-foreground = #666
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 0
+bar-volume-fill = - 
+bar-volume-fill-font = 0
+bar-volume-empty = -
+bar-volume-empty-font = 0
+bar-volume-empty-foreground = ${colors.foreground-alt}
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 55 
+
+format = <label>
+format-underline = #f50a4d
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.alert}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.foreground-alt}
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5

@@ -1,0 +1,1 @@
+nohup chromium %U --proxy-server=127.0.0.1:8188 >/dev/null 2>&1 & 

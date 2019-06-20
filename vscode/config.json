@@ -1,0 +1,197 @@
+{
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Gruvbox Dark Hard",
+    "workbench.activityBar.visible": false,
+    "workbench.statusBar.feedback.visible": false,
+    "workbench.settings.editor": "json",
+    "explorer.confirmDragAndDrop": false,
+    "editor.lineNumbers": "relative",
+    "editor.formatOnSave": false,
+    "editor.fontSize": 14,
+    "editor.tabSize": 2,
+    "editor.renderWhitespace": "boundary",
+    "editor.renderControlCharacters": true,
+    "editor.tabCompletion": "on",
+    "breadcrumbs.enabled": true,
+    "window.restoreFullscreen": true,
+    "zenMode.fullScreen": false,
+    "zenMode.hideStatusBar": false,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.gradle": true,
+        "**/.idea": true,
+        "**/CVS": true,
+        "**/.DS_Store": true
+      },
+    "git.path": "/usr/local/bin/git",
+    "vim.easymotion": true,
+    "vim.history": 200,
+    "vim.hlsearch": true,
+    "vim.incsearch": true,
+    "vim.leader": "<Space>",
+    "vim.searchHighlightColor": "rgba(255, 0, 0, 0.5)",
+    "vim.useSystemClipboard": true,
+    "vim.enableNeovim": false,
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<leader>",
+                "f",
+                "l"
+            ],
+            "commands": [
+                "workbench.view.explorer",
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "p"
+            ],
+            "commands": [
+                "workbench.action.openNextRecentlyUsedEditorInGroup",
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                ":"
+            ],
+            "commands": [
+                "workbench.action.showCommands",
+            ]
+        },
+        {
+            "before": [
+                ";",
+            ],
+            "after": [
+                ":",
+            ]
+        },
+        {
+            "before": [
+                "L",
+            ],
+            "after": [
+                "$",
+            ]
+        },
+        {
+            "before": [
+                "H",
+            ],
+            "after": [
+                "^",
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "i",
+            ],
+            "commands": [
+                ":w",
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "\\",
+            ],
+            "commands": [
+                ":nohlsearch",
+            ]
+        },
+        {
+            "before": [
+                "U",
+            ],
+            "commands": [
+                "undo",
+            ]
+        }
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                ">"
+            ],
+            "commands": [
+                "editor.action.indentLines"
+            ]
+        },
+        {
+            "before": [
+                "<"
+            ],
+            "commands": [
+                "editor.action.outdentLines"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                ":"
+            ],
+            "commands": [
+                "workbench.action.showCommands",
+            ]
+        },
+        {
+            "before": [
+                ";",
+            ],
+            "after": [
+                ":",
+            ]
+        },
+        {
+            "before": [
+                "L",
+            ],
+            "after": [
+                "$",
+            ]
+        },
+        {
+            "before": [
+                "H",
+            ],
+            "after": [
+                "^",
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "i",
+            ],
+            "commands": [
+                ":w",
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "\\",
+            ],
+            "commands": [
+                ":nohlsearch",
+            ]
+        },
+        {
+            "before": [
+                "U",
+            ],
+            "commands": [
+                "undo",
+            ]
+        }
+    ],
+    "explorer.confirmDelete": false,
+    
+}
+

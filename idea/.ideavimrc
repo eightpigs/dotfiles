@@ -1,0 +1,79 @@
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set showmode
+set number
+set relativenumber
+set clipboard=unnamed
+set history=100000
+" leader
+let mapleader = " "
+
+
+
+" ------------------------------------------------------------
+" Buffer / Windows
+" ------------------------------------------------------------
+nnoremap <leader>wv :action SplitVertically<CR>
+nnoremap <leader>wh :action SplitHorizontally<CR>
+
+nnoremap <leader>wj :action VimWindowDown<CR>
+nnoremap <leader>wh :action VimWindowLeft<CR> 
+nnoremap <leader>wl :action VimWindowRight<CR>
+nnoremap <leader>wk :action VimWindowUp<CR>
+
+
+" ------------------------------------------------------------
+" Content 
+" ------------------------------------------------------------
+
+" 保存当前内容
+nnoremap <leader>i :action SaveDocument<CR>
+" 保存所有
+nnoremap <leader>I :action SaveAll<CR>
+" 格式化代码
+nnoremap <leader>ff :action ReformatCode<CR>
+" 优化包导入
+nnoremap <leader>fi :action OptimizeImports<CR>
+" switch current line to buttom
+nnoremap <leader>fj ddp
+" switch current line to top
+nnoremap <leader>fk ddkP
+" show doc
+nnoremap <leader>f' :action QuickJavaDoc<cr>
+" go to parent / implements
+nnoremap <leader>fs :action GotoSuperMethod<cr>
+" go to the definition , 
+nnoremap <leader>f[ :action GotoImplementation<cr>
+" show file structure
+nnoremap <leader>[ :action FileStructurePopup<cr>
+" go next error / warning
+nnoremap <leader>f, :action GotoNextError<cr>
+" go prev error / warning
+nnoremap <leader>f. :action GotoPreviousError<cr>
+" close 
+nnoremap <leader>q :action CloseContent<cr>
+" close all
+nnoremap <leader>Q :action CloseAllEditors<cr>
+" rename
+nnoremap <leader>fr :action RenameElement<cr>
+
+
+" ------------------------------------------------------------
+" Search
+" ------------------------------------------------------------
+nnoremap <leader>s; :action GotoClass<cr>
+nnoremap <leader>s' :action GotoFile<cr>
+
+
+" ------------------------------------------------------------
+" Debug / Run
+" ------------------------------------------------------------
+nnoremap <leader>dr :action ChooseDebugConfiguration<cr>
+nnoremap <leader>db :action ToggleLineBreakpoint<cr>
+
+noremap L $
+noremap H ^
+noremap <Leader>\ :nohlsearch
+noremap ; :

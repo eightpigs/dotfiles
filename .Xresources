@@ -1,0 +1,105 @@
+xterm*termName: xterm-256color
+
+Xft.dpi: 175
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: false
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+
+! Enable bell urgency
+XTerm.vt100.bellIsUrgent: true
+XTerm*visualbell: true
+XTerm*bellIsUrgent: true
+
+! Xterm Config
+XTerm*reverseVideo: on
+XTerm*selectToClipboard: true
+
+XTerm*fullscreen: never
+
+! Geometria
+xterm*vt100*geometry: 80x50
+
+! Fontes:
+xterm*faceName: Terminus:size=11:antialias=true
+xterm*faceSize:	11
+XTerm.vt100.faceName: Liberation Mono:style=Book:antialias=false
+XTerm.vt100.faceNameDoublesize: WenQuanYi WenQuanYi Bitmap Song
+XTerm.vt100.faceSize: 11
+
+! Font tips
+! disable bold font faces, instead make text light blue.
+XTerm.vt100.colorBDMode: true
+XTerm.vt100.colorBD: rgb:82/a4/d3
+! disable underlined text, instead make it white.
+XTerm.vt100.colorULMode: true
+XTerm.vt100.colorUL: rgb:e4/e4/e4
+! similarly use colorIT for italics
+
+! Configuração local
+XTerm*locale: true
+
+! Shell entrada por defecto...
+XTerm*loginshell: true
+
+! Scrollbar
+!XTerm.vt100.scrollBar: true
+!XTerm.vt100.scrollbar.width: 8
+XTerm* savelines: 10000
+
+! Doble click selección de URL...
+XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+
+! Transparence (Requer: transset-df)
+XTerm*transparent: true
+
+Xterm*termName: xterm-color
+Xterm*eightBitInput: false
+
+xterm*VT100.Translations: #override \
+    Shift <KeyPress>     Insert: insert-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>V:    insert-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>C:    copy-selection(CLIPBOARD) \n\
+    Ctrl <Btn1Up>:         exec-formatted("xdg-open '%t'", PRIMARY)
+
+
+! *** Colors ***
+xterm*foreground:   #d3d0c8
+xterm*background:   #2d2d2d
+xterm*cursorColor:  #d3d0c8
+XTerm*pointerColorBackground: black
+XTerm*cursorBlink: true
+
+! black
+xterm*color0:       #d3d0c8
+xterm*color8:       #747369
+
+! red
+xterm*color1:       #f2777a
+xterm*color9:       #f2777a
+
+! green
+xterm*color2:       #99cc99
+xterm*color10:      #99cc99
+
+! yellow
+xterm*color3:       #ffcc66
+xterm*color11:      #ffcc66
+
+! blue
+xterm*color4:       #6699cc
+xterm*color12:      #6699cc
+
+! magenta
+xterm*color5:       #cc99cc
+xterm*color13:      #cc99cc
+
+! cyan
+xterm*color6:       #66cccc
+xterm*color14:      #66cccc
+
+! white
+xterm*color7:       #d3d0c8
+xterm*color15:      #f2f0ec

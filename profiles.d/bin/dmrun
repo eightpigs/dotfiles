@@ -1,0 +1,13 @@
+#! /bin/sh
+prog=$(dmenu -l 3 <<EOF
+idea
+chrome
+chromium
+subl
+thunar
+firefox-developer-edition
+EOF
+)
+if [ "$prog" ]; then
+    env $prog &
+fi
