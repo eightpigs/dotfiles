@@ -16,8 +16,8 @@ let mapleader = " "
 " ------------------------------------------------------------
 " Buffer / Windows
 " ------------------------------------------------------------
-nnoremap <leader>wv :action SplitVertically<CR>
-nnoremap <leader>wh :action SplitHorizontally<CR>
+nnoremap <leader>w\ :action SplitVertically<CR>
+nnoremap <leader>w- :action SplitHorizontally<CR>
 
 nnoremap <leader>wj :action VimWindowDown<CR>
 nnoremap <leader>wh :action VimWindowLeft<CR> 
