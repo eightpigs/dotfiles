@@ -3,7 +3,7 @@
 ;; open init-config.el: <f2>
 (global-set-key (kbd "<f2>") '(lambda() (interactive) (find-file "~/.emacs.d/init.el")))
 ;; load init-config.el: C-<f2>
-(global-set-key (kbd "C-<f2>") '(lambda() (interactive) (load-file "~/.emacs.d/init.el")))
+(global-set-key (kbd "M-<f2>") '(lambda() (interactive) (load-file "~/.emacs.d/init.el")))
 
 
 

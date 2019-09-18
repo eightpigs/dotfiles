@@ -9,8 +9,13 @@
 
 (setq org-todo-keywords
 '((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d)" "CANCELLED(c)")
-(sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")
 (sequence "|" "CANCELED(c)")))
+
+(setf org-todo-keyword-faces '(("TODO" . (:weight bold))
+                                ("STARTED" . (:foreground "white" :background "#2E8B57"  :weight bold))
+                                ("DONE" . (:foreground "white" :background "#3498DB" :weight bold))
+                                ("CANCELLED" . (:foreground "white" :background "#ff4500" :weight bold))
+                                ))
 
 (setq org-log-done 'time)
 (setq org-log-done 'note)
@@ -26,6 +31,8 @@
 (define-key org-agenda-mode-map "p" 'org-agenda-capture)
 
 (setq org-tags-column 100)
+;; auto highlight
+(setq org-src-fontify-natively t)
 
 (org-agenda-files (quote ("~/Documents/TODO.org")))
 

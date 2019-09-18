@@ -92,16 +92,15 @@
 (setq-default indent-tabs-mode nil)
 (setq-default default-tab-width 2)
 (setq-default c-basic-offset 2)
+(setq-default tab-width 2)
 
 
 ;; highlight current line
 (global-hl-line-mode 0)
 
 (setq-default indent-tabs-mode nil) ; tab 改为插入空格
-(setq c-basic-offset 4)
-(setq go-offset 4)
+(setq go-offset 2)
 (setq c-default-style "linux")
-(setq default-tab-width 4)
 
 
 (provide 'init-basic)

@@ -1,1 +1,5 @@
-./profiles.d/work
+profiles.d/work
+./emacs/auto-save-list
+./emacs/elpa
+./emacs/ido.last
+./emacs/recentf

@@ -12,10 +12,11 @@
   "wj"  'evil-window-down
   "wk"  'evil-window-up
   "wl"  'evil-window-right
-  "wv"  'split-window-horizontally
-  "wh"  'split-window-vertically
+  "w\\" 'split-window-horizontally
+  "w-"  'split-window-vertically
   "bn"  'evil-window-new
-  "q"   'quit-window
+  "q"   'evil-quit
+  ";"   'fzf
   )
 
 (define-key evil-normal-state-map "H" 'beginning-of-line)

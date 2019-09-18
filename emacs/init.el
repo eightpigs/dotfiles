@@ -10,10 +10,9 @@
 ;; languages
 (require 'init-lang-go)
 
+(require 'init-company)
+
 (require 'init-keymaps)
-
-
-
 
 
 
@@ -32,7 +31,7 @@
  '(org-agenda-files (quote ("~/Documents/TODO.org")))
  '(package-selected-packages
    (quote
-    (go-mode markdown-mode evil-leader evil org-bullets which-key try use-package))))
+    (company-lsp company editorconfig ag fzf go-mode markdown-mode evil-leader evil org-bullets which-key try use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -8,6 +8,20 @@
   (local-set-key (kbd "C-c C-f") 'gofmt)))
 (add-hook 'before-save-hook 'gofmt-before-save)
 
+(add-hook 'go-mode-hook
+          (lambda ()
+            (setq indent-tabs-mode 1)
+            (setq tab-width 2)))
+
+;; Call Gofmt before saving
+ (setq gofmt-command "goimports")
+ (add-hook 'before-save-hook 'gofmt-before-save)
+
+;;autocomplete
+(set (make-local-variable 'company-backends) '(company-go))
+(company-mode)
+
+
 (defvar golang-goto-stack '())
 
 (defun golang-jump-to-definition ()
