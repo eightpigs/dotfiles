@@ -1,6 +1,6 @@
 ;; company-mode
 (require 'company)
-(require 'company-lsp)
+;; (require 'company-lsp)
 
 (add-hook 'after-init-hook 'global-company-mode)
 
@@ -8,7 +8,7 @@
  (setq company-backends
         '(company-capf company-files company-lsp company-css
                        (company-dabbrev-code company-gtags company-etags company-keywords)
-                       company-dabbrev )
+                       company-dabbrev ))
 
 
 (global-company-mode 1)

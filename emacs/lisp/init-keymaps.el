@@ -6,6 +6,4 @@
 (global-set-key (kbd "M-<f2>") '(lambda() (interactive) (load-file "~/.emacs.d/init.el")))
 
 
-
-
 (provide 'init-keymaps)
