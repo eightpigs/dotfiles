@@ -55,7 +55,6 @@ hi EndOfBuffer ctermfg=237 ctermbg=235
 hi TabLine ctermbg=235  ctermfg=245 guifg=#666666
 hi TabLineSel ctermbg=235 ctermfg=245
 hi TabLineFill ctermfg=0 ctermbg=235
-" 不显示分割线
 set fillchars=vert:\ ,stl:\ ,stlnc:\ 
 
 
@@ -85,8 +84,11 @@ set statusline+=\ %l:%c
 set statusline+=\ 
 
 
+
 set laststatus=2
 set noshowcmd
+
+
 
 
 " ALE custom color
@@ -94,7 +96,3 @@ highlight clear ALEErrorSign
 highlight clear ALEWarningSign
 highlight ALEErrorSign ctermbg=235
 highlight ALEWarningSign ctermbg=235
-
-
-highlight Normal guibg=#2d2d2d
-highlight VertSplit guibg=#2d2d2d
