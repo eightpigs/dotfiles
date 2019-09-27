@@ -7,14 +7,21 @@
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
-(setq org-todo-keywords
-'((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d)" "CANCELLED(c)")
-(sequence "|" "CANCELED(c)")))
+;; 打开 org-indent mode
+(setq org-startup-indented t)
 
-(setf org-todo-keyword-faces '(("TODO" . (:weight bold))
-                                ("STARTED" . (:foreground "white" :background "#2E8B57"  :weight bold))
-                                ("DONE" . (:foreground "white" :background "#3498DB" :weight bold))
-                                ("CANCELLED" . (:foreground "white" :background "#ff4500" :weight bold))
+;; 设置 bullet list
+(setq org-bullets-bullet-list '("☰" "☶" "☷" "◈" "◇" "●" "○"))
+
+(setq org-todo-keywords
+'((sequence "TODO(t)" "DOING(s)" "|" "DONE(d)" "ABORT(a)")
+))
+
+;; :background "#3f54ea"
+(setf org-todo-keyword-faces '(("TODO" . (:foreground "white" :background "#3977d4" :weight bold))
+                                ("DOING" . (:foreground "black" :background "yellow"  :weight bold))
+                                ("DONE" . (:foreground "white" :background "#2c8e4a" :weight bold))
+                                ("ABORT" . (:foreground "white" :background "#808586" :weight bold))
                                 ))
 
 (setq org-log-done 'time)
@@ -30,10 +37,10 @@
 (define-key org-agenda-mode-map "n" 'org-agenda-goto-date)
 (define-key org-agenda-mode-map "p" 'org-agenda-capture)
 
-(setq org-tags-column 100)
+(setq org-tags-column 2)
 ;; auto highlight
 (setq org-src-fontify-natively t)
 
-(org-agenda-files (quote ("~/Documents/TODO.org")))
+(org-agenda-files (quote ("~/OneDrive/docs/org-mode/agenda.org")))
 
 (provide 'init-org-mode)

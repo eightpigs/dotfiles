@@ -15,6 +15,9 @@
 (require 'init-keymaps)
 
 
+(require 'init-rss)
+
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
