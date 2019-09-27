@@ -195,11 +195,9 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_complete_start_length = 1
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#enable_refresh_always = 1
-" imap <expr><TAB> pumvisible() ? "\<C-n>" : (neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>")
-imap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+imap <expr><TAB> pumvisible() ? "\<C-n>" : (neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>")
 imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-" imap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>\<Plug>AutoPairsReturn"
-imap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
+imap <expr><CR> pumvisible() ? deoplete#close_popup() : "\<CR>"
 "---------------------------------------------------------------
 
 " deoplete-go
@@ -227,16 +225,7 @@ let g:go_doc_max_height = 20
 " let g:go_fmt_command = "goimports"
 let g:go_fmt_command = "gofmt"
 let g:go_auto_type_info = 1
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 " let g:go_gocode_propose_source = 1
 "---------------------------------------------------------------
-
-
-
-" let g:LanguageClient_devel = 1
-" let g:LanguageClient_serverCommands = {
-"     \ 'go': ['tcp://127.0.0.1:4444'],
-"     \ }
-
-" let g:LanguageClient_loggingLevel = 'INFO'
-" let g:LanguageClient_loggingFile = expand('~/Downloads/LanguageClient.log')
-" let g:LanguageClient_serverStderr = expand('~/Downloads/LanguageServer.log')
