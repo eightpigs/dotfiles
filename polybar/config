@@ -1,16 +1,13 @@
-[colors]
-background = #2d2d2d
-background-alt = #444
-foreground = #dfdfdf
-foreground-alt = #555
-primary = #FF0000
-alert = #bd2c40
+;; include-file = /home/eightpigs/.config/polybar/colors/white
+include-file = /home/eightpigs/.config/polybar/colors/white_odd
+;; include-file = /home/eightpigs/.config/polybar/colors/black
+
 
 [bar/example]
 monitor = ${env:MONITOR:DP-4}
 width = 100%
 height = 50
-radius = 8.0
+radius = 0.0
 fixed-center = true
 top = true
 
@@ -28,15 +25,16 @@ line-color = #f00
 ;border-color = #FFFFFF
 
 padding-left = 0
-padding-right = 2
+padding-right = 0
 
-module-margin-left = 1
-module-margin-right = 2
+module-margin-left = 0
+module-margin-right = 0
 
 ;; fc-cache -f -v 
 ;; gucharmap
 ;; font-0 = Roboto:size=16;2
-font-0 = Monaco:size=16;2
+;; font-0 = Monaco:size=16;2
+font-0 = Source Han Sans CN,思源黑体 CN,Source Han Sans CN Normal,思源黑体 CN Normal:style=Normal,Regula:size=16;2
 font-1 = FontAwesome5Free:style=Solid:pixelsize=16:antialias=false;2
 font-2 = FontAwesome5Brands:style=Solid:pixelsize=10:antialias=false;2
 font-3 = FontAwesome5Free:style=Solid:pixelsize=18:antialias=false;4
@@ -59,6 +57,7 @@ cursor-scroll = ns-resize
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:200:...%
+label-foreground = #333333
 
 [module/i3]
 type = internal/i3
@@ -83,13 +82,14 @@ ws-icon-9 = 10;%{T4}
 
 ; focused = Active workspace on focused monitor
 label-focused = %icon%
-label-focused-background = ${colors.background-alt}
+label-focused-background = ${colors.primary-bg}
 label-focused-underline = ${colors.primary}
 label-focused-padding = 4
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %icon%
 label-unfocused-padding = 4
+label-unfocused-foreground = ${colors.foreground-alt}
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %index%. %icon%
@@ -99,7 +99,7 @@ label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %index%. %icon%
-label-urgent-background = ${colors.alert}
+label-urgent-background = ${colors.primary}
 label-urgent-padding = 4
 
 [module/eth]
@@ -107,24 +107,36 @@ type = internal/network
 interface = eno2
 interval = 0.5
 label-connected = %{T2}%{T-} %upspeed% %downspeed%
+label-connected-foreground = ${colors.fg-04}
+label-connected-background = ${colors.bg-04}
+label-connected-padding = 4
+
 label-disconnected = %ifname% disconnected
-label-disconnected-foreground = ${colors.foreground-alt}
+label-disconnected-foreground = ${colors.fg-04}
+label-disconnected-background = ${colors.bg-04}
 
 [module/date]
 type = internal/date
 interval = 1.0
-date = %{T2}%{T-} %d,%H:%M
-date-alt = %{T2}%{T-} %A,%d %B %Y
+date = %{T2} %{T-} %d,%H:%M
+date-alt = %{T2} %{T-} %A,%d %B %Y
+format-foreground = ${colors.fg-01}
+format-background = ${colors.bg-01}
+format-padding = 4
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
 format-volume = <label-volume> <bar-volume>
 label-volume = %{T2} %{T-}%percentage%%
-label-volume-foreground = ${root.foreground}
+label-volume-foreground = ${colors.fg-03}
+format-volume-background = ${colors.bg-03}
+format-volume-padding = 4
 
 label-muted = %{T4} %{T-}
 label-muted-foreground = #666
+format-muted-background = #D4D4D4
+format-muted-padding = 4
 
 bar-volume-width = 1
 bar-volume-foreground-0 = #55aa55
@@ -142,7 +154,7 @@ bar-volume-fill = 
 bar-volume-fill-font = 4
 bar-volume-empty = 
 bar-volume-empty-font = 4
-bar-volume-empty-foreground = ${colors.foreground-alt}
+bar-volume-empty-foreground = #555555
 
 [module/temperature]
 type = internal/temperature
@@ -150,13 +162,20 @@ thermal-zone = 0
 warn-temperature = 40
 
 format = <label>
-format-underline = #2d2d2d
+format-underline = ${colors.bg-02}
 format-warn = <label-warn>
-format-warn-underline = ${colors.alert}
+format-warn-underline = ${colors.primary}
 
 label = %{T2} %{T-}%temperature-c%
 label-warn = %{T2} %{T-}%temperature-c%
-label-warn-foreground = ${colors.alert}
+label-warn-foreground = ${colors.primary}
+label-warn-background = ${colors.bg-02}
+label-warn-padding = 4
+
+label-foreground= ${colors.fg-02}
+label-background = ${colors.bg-02}
+label-padding = 4
+
 
 [settings]
 screenchange-reload = true
