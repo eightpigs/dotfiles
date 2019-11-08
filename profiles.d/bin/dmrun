@@ -1,11 +1,14 @@
 #! /bin/sh
 prog=$(dmenu -l 3 <<EOF
+android-studio
 idea
 chrome
 chromium
 subl
 thunar
 firefox-developer-edition
+color-wallpaper
+netease-music
 EOF
 )
 if [ "$prog" ]; then

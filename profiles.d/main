@@ -1,5 +1,5 @@
 source ~/.config/profiles.d/init
-source ~/.config/profiles.d/term
-source ~/.config/profiles.d/alias
-source ~/.config/profiles.d/zsh
 source ~/.config/profiles.d/env
+source ~/.config/profiles.d/alias
+source ~/.config/profiles.d/term
+source ~/.config/profiles.d/zsh

@@ -8,6 +8,8 @@ Xft.autohint: false
 Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 
+XTerm.vt100.locale: true
+
 ! Enable bell urgency
 XTerm.vt100.bellIsUrgent: true
 XTerm*visualbell: true

@@ -37,6 +37,6 @@ FLUTTER_HOME=/usr/local/flutter
 PATH=$PATH:$FLUTTER_HOME/bin
 export FLUTTER_HOME PATH
 
-ANDROID_HOME=~/workspace/android/sdk/
-PATH=$PATH:$ANDROID_HOME/bin:$ANDROID_HOME/platform-tools
+ANDROID_HOME=~/workspace/libs/android-sdk
+PATH=$PATH:$ANDROID_HOME/bin
 export ANDROID_HOME PATH
