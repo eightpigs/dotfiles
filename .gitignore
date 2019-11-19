@@ -1,5 +1,12 @@
+.DS_Store
 profiles.d/work
-./emacs/auto-save-list
-./emacs/elpa
-./emacs/ido.last
-./emacs/recentf
+emacs/auto-save-list
+emacs/elpa
+emacs/ido.last
+emacs/recentf
+.idea
+dlv
+configstore
+neofetch
+htop
+karabiner/automatic_backups
