@@ -12,14 +12,16 @@ endif
 if has('nvim')
   call plug#begin('~/.local/share/nvim/plugged')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else 
+else
   call plug#begin('~/.vim/plugged')
-
   Plug 'Shougo/deoplete.nvim'
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
+let g:deoplete#enable_at_startup = 1
 
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
 
 
 " -----------------------------
@@ -118,12 +120,11 @@ Plug 'zchee/deoplete-go', { 'do': 'make', 'for': ['go']}
 Plug 'epilande/vim-es2015-snippets', { 'for': ['vue', 'javascript', 'typescript'] }
 " emmet
 Plug 'mattn/emmet-vim', { 'for': ['html','vue', 'css'], 'on': 'EmmetInstall' }
-Plug 'jceb/emmet.snippets'
+Plug 'jceb/emmet.snippets', { 'for': ['html','vue', 'css'] }
 " js 语法支持
 Plug 'othree/yajs.vim', { 'for': ['html', 'javascript', 'vue'] }
 " Js 补全
 Plug 'ternjs/tern_for_vim', { 'for': ['html','vue', 'javascript'] }
-" Plug 'heavenshell/vim-jsdoc', { 'for': ['javascript'], 'on': ['JsDoc', '<Plug>(jsdoc)'] }
 " typescript
 Plug 'mhartington/nvim-typescript', { 'do': './install.sh', 'for': ['typescript']  }
 Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript'] }
@@ -143,6 +144,15 @@ Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript'] }
 Plug 'junegunn/limelight.vim', { 'for': ['markdown'] }
 Plug 'lvht/tagbar-markdown', { 'for': 'markdown' }
 Plug 'iamcco/markdown-preview.vim', { 'for': 'markdown' }
+
+
+
+" -----------------------------
+" Dart / Flutter
+" -----------------------------
+Plug 'dart-lang/dart-vim-plugin', { 'for': ['dart'] }
+Plug 'thosakwe/vim-flutter', { 'for': ['dart'] }
+
 
 
 

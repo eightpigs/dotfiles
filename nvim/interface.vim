@@ -26,10 +26,10 @@ endif
 " colorscheme one
 " colorscheme dracula
 colorscheme gruvbox
-let g:gruvbox_contrast_dark="hard"
-" let g:gruvbox_contrast_light="hard"
-" let g:gruvbox_sign_column="bg0"
 set background=dark
+let g:gruvbox_contrast_dark="hard"
+" let g:gruvbox_contrast_light="soft"
+" let g:gruvbox_sign_column="bg0"
 " 禁止光标闪k烁
 set gcr=a:block-blinkon0
 
