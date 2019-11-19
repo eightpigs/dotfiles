@@ -4,30 +4,26 @@
 (setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
                          ("melpa" . "http://elpa.emacs-china.org/melpa/")))
 
-(package-initialize)
+(when (version< emacs-version "27.0")(package-initialize))
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 
-
-
-
-
 (use-package try
-  :ensure t)
-
+  :ensure t
+  :defer 5
+  )
 
 ;; which-key
 (use-package which-key
   :ensure t
+  :defer 5
   :config (which-key-mode))
-
 
 ;; Theme
 (use-package doom-themes
   :ensure t)
-
 
 ;; markdown-mode
 (use-package markdown-mode
