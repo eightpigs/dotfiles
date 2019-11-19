@@ -26,8 +26,8 @@ endif
 " colorscheme one
 " colorscheme dracula
 colorscheme gruvbox
-set background=dark
 let g:gruvbox_contrast_dark="hard"
+set background=dark
 " let g:gruvbox_contrast_light="soft"
 " let g:gruvbox_sign_column="bg0"
 " 禁止光标闪k烁
