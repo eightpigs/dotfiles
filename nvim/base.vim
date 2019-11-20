@@ -89,7 +89,7 @@ set fileencodings=utf-8
 set number
 
 " 相对行号
-" set relativenumber
+set relativenumber
 
 " 保留撤销历史
 set undofile

@@ -174,6 +174,8 @@ nnoremap <leader>s; :Ag<space>
 
 " search cursor word in all files
 nnoremap <leader>s' :call SearchCursor()<cr>
+nnoremap <leader>] :Files<cr>
+nnoremap <leader>sb :Buffers<cr>
 
 
 

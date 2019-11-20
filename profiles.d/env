@@ -1,3 +1,6 @@
+export LC_ALL=en_US.UTF-8  
+export LANG=en_US.UTF-8
+
 export XDG_CONFIG_HOME="$HOME/.config"
 export NO_PROXY='127.0.0.1,localhost'
 export GO111MODULE=on
@@ -19,7 +22,7 @@ M2_HOME=/usr/local/maven
 PATH=$PATH:$M2_HOME/bin
 export M2_HOME PATH 
 
-JAVA_HOME=/usr/local/java
+JAVA_HOME=/usr/local/java/8
 JRE_HOME=$JAVA_HOME/jre
 PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib
@@ -37,6 +40,10 @@ FLUTTER_HOME=/usr/local/flutter
 PATH=$PATH:$FLUTTER_HOME/bin
 export FLUTTER_HOME PATH
 
-ANDROID_HOME=~/workspace/libs/android-sdk
-PATH=$PATH:$ANDROID_HOME/bin
+ANDROID_HOME=~/workspace/libs/android-sdk/
+PATH=$PATH:$ANDROID_HOME/bin:$ANDROID_HOME/platform-tools
 export ANDROID_HOME PATH
+
+NODE_JS_HOME=/usr/local/node
+PATH=$PATH:$NODE_JS_HOME/bin
+export NODE_JS_HOME PATH
