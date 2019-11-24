@@ -2,12 +2,12 @@ alias vim=nvim
 alias vi=nvim
 alias v=nvim
 alias ll="ls -alsH"
-alias cat=ccat
+# alias cat=ccat
 alias top=htop
 alias ag='ag --path-to-ignore ~/.ignore'
 alias fzfp="fzf --inline-info --preview 'ccat {}'"
 
-alias proxy-on='export http_proxy=127.0.0.1:8001;export https_proxy=$http_proxy'
+alias proxy-on='export http_proxy=127.0.0.1:8188;export https_proxy=$http_proxy'
 alias proxy-off='unset http_proxy;unset https_proxy'
 alias remoteAdbDebug='adb shell setprop service.adb.tcp.port 5555'
 
