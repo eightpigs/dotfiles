@@ -27,17 +27,16 @@ endif
 " colorscheme dracula
 colorscheme gruvbox
 let g:gruvbox_contrast_dark="hard"
-set background=dark
-" let g:gruvbox_contrast_light="soft"
-" let g:gruvbox_sign_column="bg0"
 " 禁止光标闪k烁
 set gcr=a:block-blinkon0
 
 
 " 自定义配色
-hi vertsplit ctermfg=238 ctermbg=235
+highlight Normal ctermbg=NONE guibg=#2d2d2d
+highlight nonText ctermbg=NONE guibg=#2d2d2d
 hi LineNr ctermfg=237
 hi Default ctermfg=1
+hi clear vertsplit
 hi clear StatusLine
 hi clear StatusLineNC
 hi clear SignColumn
