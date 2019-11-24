@@ -1,5 +1,3 @@
-xterm*termName: xterm-256color
-
 Xft.dpi: 175
 Xft.antialias: true
 Xft.hinting: true
@@ -8,6 +6,7 @@ Xft.autohint: false
 Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 
+xterm*termName: xterm-256color
 XTerm.vt100.locale: true
 
 ! Enable bell urgency

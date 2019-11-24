@@ -1,4 +1,4 @@
-source ~/.config/profiles.d/init
+source ~/.config/profiles.d/os/`uname -s`
 source ~/.config/profiles.d/env
 source ~/.config/profiles.d/alias
 source ~/.config/profiles.d/term

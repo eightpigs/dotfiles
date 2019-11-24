@@ -150,8 +150,8 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # windows spacing
-gaps inner 4
-gaps outer 0
+# gaps inner 4
+# gaps outer 0
 # smart_gaps on
 
 
