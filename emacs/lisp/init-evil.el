@@ -21,5 +21,7 @@
 
 (define-key evil-normal-state-map "H" 'beginning-of-line)
 (define-key evil-normal-state-map "L" 'end-of-line)
+(define-key evil-visual-state-map "H" 'beginning-of-line)
+(define-key evil-visual-state-map "L" 'end-of-line)
 
 (provide 'init-evil)
