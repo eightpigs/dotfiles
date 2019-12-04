@@ -25,15 +25,24 @@
 (use-package doom-themes
   :ensure t)
 
+
+(use-package go-mode
+  :ensure t
+  :defer 5
+  )
+
 ;; markdown-mode
 (use-package markdown-mode
-  :mode ("\\.md\\'" "\\.markdown\\'")
+  :ensure t
+  :mode (("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :defer 5
   :custom
   (markdown-enable-math t)
   (markdown-command "pandoc --mathml --quiet")
-;;  (markdown-css-paths '("http://jiaxi.sdf.org/static/md.css"))
-  (markdown-xhtml-header-content "\n<meta name=\"viewport\" content=\"width=device-width\">"))
-
+  ;; (markdown-css-paths '("http://jiaxi.sdf.org/static/md.css"))
+  (markdown-xhtml-header-content "\n<meta name=\"viewport\" content=\"width=device-width\">")
+  :init (setq markdown-command "multimarkdown"))
 
 (provide 'init-elpa)
 

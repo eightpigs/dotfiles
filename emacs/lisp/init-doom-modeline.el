@@ -8,5 +8,8 @@
 (setq doom-modeline-icon nil)
 (setq doom-modeline-major-mode-icon nil)
 (setq doom-modeline-major-mode-color-icon nil)
+(setq doom-modeline-enable-word-count t)
+(setq doom-modeline-indent-info t)
+(setq doom-modeline-vcs-max-length 25)
 
 (provide 'init-doom-modeline)

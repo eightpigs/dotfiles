@@ -12,18 +12,20 @@
 ;; Emacs配置文件内容写到下面.
 ;; Emacs配置文件内容写到下面.
 
-(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+  (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+  
+  (require 'init-basic)
+  (require 'init-elpa)
+  (require 'init-org-mode)
+  (require 'init-evil)
+  (require 'init-doom-theme)
+  (require 'init-doom-modeline)
+  (require 'init-lang-go)
+  (require 'init-company)
+  (require 'init-keymaps)
+  (require 'init-rss)
 
-(require 'init-basic)
-(require 'init-elpa)
-(require 'init-org-mode)
-(require 'init-evil)
-(require 'init-doom-theme)
-(require 'init-doom-modeline)
-;; (require 'init-lang-go)
-(require 'init-company)
-(require 'init-keymaps)
-(require 'init-rss)
+)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -31,21 +33,18 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   (quote
-    ("2d392972cbe692ee4ac61dc79907af65051450caf690a8c4d36eb40c1857ba7d" default)))
- '(markdown-command "pandoc --mathml --quiet" t)
- '(markdown-enable-math t t)
+   '("2d392972cbe692ee4ac61dc79907af65051450caf690a8c4d36eb40c1857ba7d" default))
+ '(markdown-command "pandoc --mathml --quiet")
+ '(markdown-enable-math t)
  '(markdown-xhtml-header-content "
-<meta name=\"viewport\" content=\"width=device-width\">" t)
+<meta name=\"viewport\" content=\"width=device-width\">")
+ '(org-agenda-files
+   '("~/OneDrive/docs/org-mode/GTD.org" "~/OneDrive/docs/org-mode/Schedules.org"))
  '(package-selected-packages
-   (quote
-    (benchmark-init esup which-key use-package try org-bullets go-mode evil-leader doom-themes doom-modeline company))))
+   '(benchmark-init which-key use-package try org-bullets evil-leader doom-themes doom-modeline company)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
-
-
-)
+ '(org-level-1 ((t (:background nil)))))
