@@ -159,6 +159,11 @@ nnoremap <leader>f/ :ALEDetail<cr>
 " preview current documents(eg: MarkdownPreview)
 nnoremap <leader>fp :echo "请根据语言自己配置: 预览"<cr>
 
+" Git
+" ---------
+nnoremap <leader>gp <Plug>(GitGutterPreviewHunk)<cr>
+
+
 
 " ------------------------------------------------------------
 " Search

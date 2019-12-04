@@ -1,6 +1,10 @@
-source ~/.config/profiles.d/init
+source ~/.config/profiles.d/os/`uname -s`
 source ~/.config/profiles.d/env
 source ~/.config/profiles.d/alias
 source ~/.config/profiles.d/term
 source ~/.config/profiles.d/zsh
-source ~/.config/profiles.d/work
+
+work_profile="~/.config/profiles.d/work"
+if [ -f "$work_profile" ]; then
+  source $work_profile
+fi
