@@ -4,7 +4,7 @@ source ~/.config/profiles.d/alias
 source ~/.config/profiles.d/term
 source ~/.config/profiles.d/zsh
 
-work_profile="~/.config/profiles.d/work"
+work_profile=$HOME"/.config/profiles.d/work"
 if [ -f "$work_profile" ]; then
   source $work_profile
 fi
