@@ -39,6 +39,9 @@
 
 
 ;; defaults write org.gnu.Emacs TransparentTitleBar LIGHT / DARK
+;; defaults write org.gnu.Emacs Emacs.ToolBar -string no
+;; defaults write org.gnu.Emacs Emacs.ScrollBar -string no
+;; defaults write org.gnu.Emacs Emacs.MenuBar -string no
 (when (memq window-system '(mac ns))
   (add-to-list 'default-frame-alist '(ns-appearance . light)) ;; {light, dark}
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)))
