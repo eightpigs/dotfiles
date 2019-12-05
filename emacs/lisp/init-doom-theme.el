@@ -6,8 +6,8 @@
 
 ;; Load the theme (doom-one, doom-molokai, etc); keep in mind that each theme
 ;; may have their own settings.
-;; (load-theme 'doom-vibrant t)
-(load-theme 'doom-one-light t)
+(load-theme 'doom-vibrant t)
+;; (load-theme 'doom-one-light t)
 ;; (load-theme 'doom-one t)
 ;; (load-theme 'doom-spacegrey t)
 ;; (load-theme 'doom-peacock t)
