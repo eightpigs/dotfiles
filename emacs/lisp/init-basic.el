@@ -81,8 +81,8 @@
 (recentf-mode 1)
 (setq recentf-max-menu-item 10)
 
-
-
+;; 显示匹配的括号
+(show-paren-mode 1)
 
 
 
@@ -121,7 +121,13 @@
                                   (k-time (garbage-collect))))))
 
 
-
+;; 高亮括号
+(define-advice show-paren-function (:around (fn) fix-show-paren-function)
+  "Highlight enclosing parens."
+  (cond ((looking-at-p "\\s(") (funcall fn))
+	(t (save-excursion
+	     (ignore-errors (backward-up-list))
+	     (funcall fn)))))
 
 
 (provide 'init-basic)

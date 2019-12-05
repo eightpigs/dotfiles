@@ -16,15 +16,15 @@
 (setq org-bullets-bullet-list '( "●" "○"))
 
 (setq org-tag-alist '(
-                      ("@career" . ?w)
-                      ("@health" . ?h)
-                      ("@family" . ?f)
-                      ("@dollar" . ?d)
-                      ("@scoial" . ?s)
-                      ("@learn" . ?l)
-                      ("@relax" . ?r)
-                      ("@mind" . ?i)
-                      ))
+  ("@career" . ?c)
+  ("@health" . ?h)
+  ("@family" . ?f)
+  ("@dollar" . ?d)
+  ("@scoial" . ?s)
+  ("@learn" . ?l)
+  ("@relax" . ?r)
+  ("@mind" . ?m)
+))
 
 (setq org-ellipsis " ▼")
 
@@ -34,15 +34,17 @@
 (setq org-cycle-separator-lines 1)
 
 (setq org-todo-keywords
-'((sequence "TODO(t!)" "DOING(s@/!)" "|" "DONE(d@/!)" "ABORT(a@/!)")
+'((sequence "PLAN(p!)" "TODO(t!)" "|" "DOING(s@/!)" "|" "DONE(d@/!)" "ABORT(a@/!)" "DELAYED(-@/!)")
 ))
 
 ;; :background "#3f54ea"
-(setf org-todo-keyword-faces '(("TODO" . (:foreground "white" :background "#3977d4" :weight bold))
-                                ("DOING" . (:foreground "black" :background "yellow"  :weight bold))
-                                ("DONE" . (:foreground "white" :background "#2c8e4a" :weight bold))
-                                ("ABORT" . (:foreground "white" :background "#808586" :weight bold))
-                                ))
+(setf org-todo-keyword-faces '(
+  ("TODO" . (:foreground "white" :background "#3977d4" :weight bold))
+  ("DOING" . (:foreground "black" :background "yellow"  :weight bold))
+  ("DONE" . (:foreground "white" :background "#2c8e4a" :weight bold))
+  ("ABORT" . (:foreground "white" :background "#808586" :weight bold))
+  ("DELAYED" . (:foreground "white" :background "#FF0000" :weight bold))
+))
 
 (setq org-log-done 'time)
 (setq org-log-done 'note)
@@ -53,7 +55,6 @@
 ;; auto highlight
 (setq org-src-fontify-natively t)
 
-
 ;; org-mode 粗体问题
 (dolist (face '(org-level-1
                 org-level-2 org-level-3
@@ -62,10 +63,9 @@
                 org-level-8))
   (set-face-attribute face nil :weight 'normal))
 
+
 (custom-theme-set-faces 'user
                         `(org-level-1 ((t (:background nil)))))
-
-
 
 ;; ------------------------------------------
 ;; agenda

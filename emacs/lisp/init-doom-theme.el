@@ -6,6 +6,8 @@
 
 ;; Load the theme (doom-one, doom-molokai, etc); keep in mind that each theme
 ;; may have their own settings.
+;; (load-theme 'doom-vibrant t)
+(load-theme 'doom-one-light t)
 ;; (load-theme 'doom-one t)
 ;; (load-theme 'doom-spacegrey t)
 ;; (load-theme 'doom-peacock t)
@@ -19,7 +21,7 @@
 ;; (load-theme 'doom-acario-light t)
 ;; (load-theme 'doom-city-lights t)
 ;; (load-theme 'doom-dracula t)
-(load-theme 'doom-gruvbox t)
+;; (load-theme 'doom-gruvbox t)
 ;; (load-theme 'doom-Iosvkem t)
 ;; (load-theme 'doom-nord t)
 ;; (load-theme 'doom-nova t)
@@ -36,8 +38,10 @@
 ;; (load-theme 'doom-wilmersdorf t)
 
 
-
-
+;; defaults write org.gnu.Emacs TransparentTitleBar LIGHT / DARK
+(when (memq window-system '(mac ns))
+  (add-to-list 'default-frame-alist '(ns-appearance . light)) ;; {light, dark}
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)))
 
 ;; Corrects (and improves) org-mode's native fontification.
 ;; (doom-themes-org-config)

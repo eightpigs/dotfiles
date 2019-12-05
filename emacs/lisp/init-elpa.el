@@ -1,4 +1,5 @@
 (require 'package)
+
 (setq package-enable-at-startup nil)
 
 (setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
@@ -9,6 +10,18 @@
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+
+(use-package evil
+  :ensure t
+  )
+
+(use-package evil-leader
+  :ensure t
+  )
+
+(use-package company
+  :ensure t
+  )
 
 (use-package try
   :ensure t
@@ -24,12 +37,6 @@
 ;; Theme
 (use-package doom-themes
   :ensure t)
-
-
-(use-package go-mode
-  :ensure t
-  :defer 5
-  )
 
 ;; markdown-mode
 (use-package markdown-mode

@@ -4,9 +4,9 @@
       (file-name-handler-alist nil))
 
 ;; M-x benchmark-init/show-durations-tree
- (require 'benchmark-init-modes)
-   (require 'benchmark-init)
-   (benchmark-init/activate)
+;; (require 'benchmark-init-modes)
+;;   (require 'benchmark-init)
+;;   (benchmark-init/activate)
 
 ;; Emacs配置文件内容写到下面.
 ;; Emacs配置文件内容写到下面.
@@ -20,7 +20,6 @@
   (require 'init-evil)
   (require 'init-doom-theme)
   (require 'init-doom-modeline)
-  (require 'init-lang-go)
   (require 'init-company)
   (require 'init-keymaps)
   (require 'init-rss)
@@ -33,15 +32,16 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("2d392972cbe692ee4ac61dc79907af65051450caf690a8c4d36eb40c1857ba7d" default))
- '(markdown-command "pandoc --mathml --quiet")
- '(markdown-enable-math t)
+   (quote
+    ("2d392972cbe692ee4ac61dc79907af65051450caf690a8c4d36eb40c1857ba7d" default)))
+ '(markdown-command "pandoc --mathml --quiet" t)
+ '(markdown-enable-math t t)
  '(markdown-xhtml-header-content "
-<meta name=\"viewport\" content=\"width=device-width\">")
- '(org-agenda-files
-   '("~/OneDrive/docs/org-mode/GTD.org" "~/OneDrive/docs/org-mode/Schedules.org"))
+<meta name=\"viewport\" content=\"width=device-width\">" t)
+ '(org-agenda-files (quote ("~/OneDrive/docs/org-mode/schedule.org")))
  '(package-selected-packages
-   '(benchmark-init which-key use-package try org-bullets evil-leader doom-themes doom-modeline company)))
+   (quote
+    (org-agenda benchmark-init which-key use-package try org-bullets evil evil-leader doom-themes doom-modeline company))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
