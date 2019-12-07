@@ -50,7 +50,7 @@ font-4 = Unifont:style=Medium:pixelsize=40:antialias=false;4
 
 modules-left = i3 
 modules-center = xwindow
-modules-right = memory cpu eth date 
+modules-right = memory cpu eth eth1 date 
 
 wm-restack = i3
 
@@ -122,6 +122,21 @@ label-connected-padding = 4
 label-disconnected = %ifname% disconnected
 label-disconnected-foreground = ${colors.fg-04}
 label-disconnected-background = ${colors.bg-04}
+
+[module/eth1]
+type = internal/network
+interface = eno2
+interval = 0.5
+label-connected = %{T2}%{T-} %upspeed% %downspeed%
+label-connected-foreground = ${colors.fg-04}
+label-connected-background = ${colors.bg-04}
+label-connected-padding = 4
+
+label-disconnected = %ifname% disconnected
+label-disconnected-foreground = ${colors.fg-04}
+label-disconnected-background = ${colors.bg-04}
+
+
 
 [module/date]
 type = internal/date
