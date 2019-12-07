@@ -32,6 +32,7 @@
               :size 13.5)))
 
 
-(set-frame-parameter nil 'undecorated t)
+;; 会隐藏标题栏
+;;(set-frame-parameter nil 'undecorated t)
 
 (provide 'init-basic-interface)

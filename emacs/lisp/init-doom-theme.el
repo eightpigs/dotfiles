@@ -43,6 +43,7 @@
 ;; defaults write org.gnu.Emacs Emacs.ScrollBar -string no
 ;; defaults write org.gnu.Emacs Emacs.MenuBar -string no
 (when (memq window-system '(mac ns))
+  (load-theme 'doom-one-light t)
   (add-to-list 'default-frame-alist '(ns-appearance . light)) ;; {light, dark}
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)))
 

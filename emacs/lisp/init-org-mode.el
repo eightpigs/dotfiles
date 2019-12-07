@@ -78,32 +78,54 @@
 (define-key org-agenda-mode-map "n" 'org-agenda-goto-date)
 (define-key org-agenda-mode-map "p" 'org-agenda-capture)
 
+(setq org-agenda-align-tags-to-column -80)
+
+
 ;; agenda 里面时间块彩色显示
 ;; From: https://emacs-china.org/t/org-agenda/8679/3
-(defun ljg/org-agenda-time-grid-spacing ()
-  "Set different line spacing w.r.t. time duration."
-  (save-excursion
-    (let* ((background (alist-get 'background-mode (frame-parameters)))
-           (background-dark-p (string= background "dark"))
-           (colors (list "#1ABC9C" "#2ECC71" "#3498DB" "#9966ff"))
-           pos
-           duration)
-      (nconc colors colors)
-      (goto-char (point-min))
-      (while (setq pos (next-single-property-change (point) 'duration))
-        (goto-char pos)
-        (when (and (not (equal pos (point-at-eol)))
-                   (setq duration (org-get-at-bol 'duration)))
-          (let ((line-height (if (< duration 30) 1.0 (+ 0.5 (/ duration 60))))
-                (ov (make-overlay (point-at-bol) (1+ (point-at-eol)))))
-            (overlay-put ov 'face `(:background ,(car colors)
-                                                :foreground
-                                                ,(if background-dark-p "black" "white")))
-            (setq colors (cdr colors))
-            (overlay-put ov 'line-height line-height)
-            (overlay-put ov 'line-spacing (1- line-height))))))))
+;; (defun ljg/org-agenda-time-grid-spacing ()
+;;   "Set different line spacing w.r.t. time duration."
+;;   (save-excursion
+;;     (let* ((background (alist-get 'background-mode (frame-parameters)))
+;;            (background-dark-p (string= background "dark"))
+;;            (colors (list "#1ABC9C" "#2ECC71" "#3498DB" "#9966ff"))
+;;            pos
+;;            duration)
+;;       (nconc colors colors)
+;;       (goto-char (point-min))
+;;       (while (setq pos (next-single-property-change (point) 'duration))
+;;         (goto-char pos)
+;;         (when (and (not (equal pos (point-at-eol)))
+;;                    (setq duration (org-get-at-bol 'duration)))
+;;           (let ((line-height (if (< duration 30) 1.0 (+ 0.5 (/ duration 60))))
+;;                 (ov (make-overlay (point-at-bol) (1+ (point-at-eol)))))
+;;             (overlay-put ov 'face `(:background ,(car colors)
+;;                                                 :foreground
+;;                                                 ,(if background-dark-p "black" "white")))
+;;             (setq colors (cdr colors))
+;;             (overlay-put ov 'line-height line-height)
+;;             (overlay-put ov 'line-spacing (1- line-height))))))))
+;; 
+;; (add-hook 'org-agenda-finalize-hook #'ljg/org-agenda-time-grid-spacing)
 
-(add-hook 'org-agenda-finalize-hook #'ljg/org-agenda-time-grid-spacing)
+(setq org-agenda-custom-commands
+      '(("h" "Agenda and Home-related tasks"
+         ((agenda "")
+          (tags-todo "home")
+          (tags "garden")))
+        ("o" "Agenda and Office-related tasks"
+         ((agenda "")
+          (tags-todo "@career")))))
+
+
+(setq org-agenda-custom-commands
+      '(("d" "Upcoming deadlines" agenda "" 
+                ((org-agenda-time-grid nil)
+                 (org-deadline-warning-days 365)        ;; [1]
+                 (org-agenda-entry-types '(:deadline))  ;; [2]
+                 ))
+      ;; other commands go here
+       ))
 
 (org-agenda-files (quote ("~/OneDrive/docs/org-mode/")))
 
