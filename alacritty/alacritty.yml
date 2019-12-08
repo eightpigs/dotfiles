@@ -3,11 +3,21 @@ window:
   padding:
     x: 10
     y: 10
-  decorations: full
+  # Window decorations
+  #
+  # Values for `decorations`:
+  #     - full: Borders and title bar
+  #     - none: Neither borders nor title bar
+  #
+  # Values for `decorations` (macOS only):
+  #     - transparent: Title bar, transparent background and title bar buttons
+  #     - buttonless: Title bar, transparent background, but no title bar buttons
+  decorations: buttonless 
   # Window class (Linux only):
   class:
     instance: Alacritty
     general: Alacritty
+  dynamic_padding: false
 
 scrolling:
   history: 10000 
@@ -23,14 +33,17 @@ selection:
 dynamic_title: true
 
 
+font:
+  size: 12
+  use_thin_strokes: true
+
+draw_bold_text_with_bright_colors: true
 
 
-
-
-
-
-
-
+visual_bell:
+  animation: EaseOutExpo
+  duration: 0
+  color: '0xffffff'
 
 
 # Colors (Gruvbox dark)
