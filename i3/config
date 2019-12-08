@@ -57,7 +57,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle resize set 1800 1300, move position center
+bindsym $mod+Shift+space floating toggle resize set 2200 1300, move position center
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -151,9 +151,9 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # windows spacing
-# gaps inner 4
-# gaps outer 0
-# smart_gaps on
+gaps inner 4
+gaps outer 0
+smart_gaps on
 
 
 # styles
@@ -193,7 +193,7 @@ client.focused_inactive #121212 #2d2d2d #FFFFFF #FFFFFF
 client.unfocused        #121212 #2d2d2d #FFFFFF #FFFFFF
 
 floating_minimum_size 100 x 100
-floating_maximum_size 1600 x 1300
+# floating_maximum_size 1600 x 1300
 
 assign [class="UXTerm"] 1
 assign [class="Chromium"] 2
