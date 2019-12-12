@@ -156,5 +156,11 @@ Plug 'thosakwe/vim-flutter', { 'for': ['dart'] }
 
 
 
+" -----------------------------
+" Rust
+" -----------------------------
+Plug 'rust-lang/rust.vim', { 'for': ['rs'] }
+
+
 call plug#end()
 

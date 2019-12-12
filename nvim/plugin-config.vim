@@ -227,7 +227,8 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_complete_start_length = 1
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#enable_refresh_always = 1
-imap <expr><TAB> "\<C-n>"
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" imap <expr><TAB> \"\<C-n>"
 imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 imap <expr><CR> pumvisible() ? deoplete#close_popup() : "\<CR>"
 "---------------------------------------------------------------
