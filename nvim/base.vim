@@ -22,8 +22,8 @@ set fillchars+=vert:│
 
 " 使用系统的剪切板
 " set clipboard=unnamed
-" :check clipboard , install clipboard-tools
-set clipboard+=unnamedplus
+" :check clipboard , install clipboard-tools (xsel )
+set clipboard=unnamedplus
 
 " Split to right and below by default
 set splitright

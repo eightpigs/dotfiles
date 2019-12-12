@@ -144,6 +144,7 @@ Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript'] }
 Plug 'junegunn/limelight.vim', { 'for': ['markdown'] }
 Plug 'lvht/tagbar-markdown', { 'for': 'markdown' }
 Plug 'iamcco/markdown-preview.vim', { 'for': 'markdown' }
+Plug 'junegunn/goyo.vim'
 
 
 
