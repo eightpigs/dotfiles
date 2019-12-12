@@ -27,28 +27,4 @@
   (require 'init-company)
   (require 'init-keymaps)
   (require 'init-rss)
-
 )
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("2d392972cbe692ee4ac61dc79907af65051450caf690a8c4d36eb40c1857ba7d" default)))
- '(markdown-command "pandoc --mathml --quiet" t)
- '(markdown-enable-math t t)
- '(markdown-xhtml-header-content "
-<meta name=\"viewport\" content=\"width=device-width\">" t)
- '(org-agenda-files (quote ("~/OneDrive/docs/org-mode/schedule.org")))
- '(package-selected-packages
-   (quote
-    (org-agenda benchmark-init which-key use-package try org-bullets evil evil-leader doom-themes doom-modeline company))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(org-level-1 ((t (:background nil)))))

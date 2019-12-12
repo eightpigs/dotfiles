@@ -33,6 +33,9 @@
 ;; 单个空行在折叠时也显示
 (setq org-cycle-separator-lines 1)
 
+;; 强制依赖子任务状态
+(setq org-enforce-todo-dependencies t)
+
 (setq org-todo-keywords
 '((sequence "PLAN(p!)" "TODO(t!)" "|" "DOING(s@/!)" "|" "DONE(d@/!)" "ABORT(a@/!)" "DELAYED(-@/!)")
 ))
@@ -127,6 +130,6 @@
       ;; other commands go here
        ))
 
-(org-agenda-files (quote ("~/OneDrive/docs/org-mode/")))
+(setq org-agenda-files '("~/OneDrive/docs/org-mode/"))
 
 (provide 'init-org-mode)
