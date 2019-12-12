@@ -56,6 +56,10 @@ hi TabLineSel ctermbg=235 ctermfg=245
 hi TabLineFill ctermfg=0 ctermbg=235
 set fillchars=vert:\ ,stl:\ ,stlnc:\ 
 
+hi Pmenu      ctermfg=223 ctermbg=235 guifg=#ebdbb2 guibg=#3d4448
+hi PmenuSel   cterm=bold ctermfg=235 ctermbg=109 gui=bold guifg=#504945 guibg=#f1f1f1
+hi PmenuSbar  ctermbg=235 guibg=#2a2a2a
+hi PmenuThumb ctermbg=2 guibg=#2a2a2a
 
 " 自定义颜色 User1 使用时：%1*
 hi User1 ctermfg=white guifg=#666666
