@@ -269,3 +269,12 @@ let g:flutter_hot_reload_on_save = 1
 let g:flutter_hot_restart_on_save = 0
 autocmd BufWritePre *.dart DartFmt
 "---------------------------------------------------------------
+
+
+" Goyo
+"---------------------------------------------------------------
+function! s:goyo_leave()
+  source ~/.config/nvim/interface.vim
+endfunction
+
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
