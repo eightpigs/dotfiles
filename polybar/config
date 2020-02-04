@@ -1,7 +1,4 @@
-;; include-file = /home/eightpigs/.config/polybar/colors/white
-include-file = /home/eightpigs/.config/polybar/colors/white_odd
-;; include-file = /home/eightpigs/.config/polybar/colors/black
-
+include-file = /home/eightpigs/.config/polybar/colors/gray
 
 [bar/top]
 # monitor = ${env:MONITOR:DP-1}
@@ -12,7 +9,7 @@ fixed-center = true
 top = true
 
 ;override-redirect = true
-offset-x = 17 
+offset-x = 17
 offset-y = 10
 
 background = ${colors.background}
@@ -21,8 +18,8 @@ foreground = ${colors.foreground}
 line-size = 5
 line-color = #f00
 
-;border-size = 10
-;border-color = #FFFFFF
+;; border-size = 2
+;; border-color = ${colors.primary}
 
 padding-left = 0
 padding-right = 0
@@ -42,15 +39,15 @@ module-margin-right = 0
 ;; gucharmap
 ;; font-0 = Roboto:size=16;2
 ;; font-0 = Monaco:size=16;2
-font-0 = Source Han Sans CN,思源黑体 CN,Source Han Sans CN Normal,思源黑体 CN Normal:style=Normal,Regula:size=16;2
+font-0 = Source Han Sans CN,思源黑体 CN,Source Han Sans CN Normal,思源黑体 CN Normal:style=Normal,Regula:size=15;2
 font-1 = FontAwesome5Free:style=Solid:pixelsize=16:antialias=false;2
 font-2 = FontAwesome5Brands:style=Solid:pixelsize=10:antialias=false;2
 font-3 = FontAwesome5Free:style=Solid:pixelsize=18:antialias=false;4
-font-4 = Unifont:style=Medium:pixelsize=40:antialias=false;4
+font-4 = Unifont:style=Medium:pixelsize=20:antialias=false;4
 
 modules-left = i3 
 modules-center = xwindow
-modules-right = memory cpu eth eth1 date 
+modules-right = eth eth1 memory cpu pulseaudio date 
 
 wm-restack = i3
 
@@ -72,6 +69,7 @@ type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
+enable-scroll = false
 
 label-mode-padding = 2
 label-mode-foreground = #000
@@ -114,46 +112,44 @@ label-urgent-padding = 4
 type = internal/network
 interface = ens18
 interval = 0.5
-label-connected = %{T2}%{T-} %upspeed% %downspeed%
-label-connected-foreground = ${colors.fg-04}
-label-connected-background = ${colors.bg-04}
-label-connected-padding = 4
+label-connected = %{T2} %{T-} %upspeed% %downspeed%
+label-connected-foreground = ${colors.fg-01}
+label-connected-background = ${colors.bg-01}
+label-connected-padding = 4 
 
 label-disconnected = %ifname% disconnected
-label-disconnected-foreground = ${colors.fg-04}
-label-disconnected-background = ${colors.bg-04}
+label-disconnected-foreground = ${colors.fg-01}
+label-disconnected-background = ${colors.bg-01}
 
 [module/eth1]
 type = internal/network
 interface = eno2
 interval = 0.5
-label-connected = %{T2}%{T-} %upspeed% %downspeed%
-label-connected-foreground = ${colors.fg-04}
-label-connected-background = ${colors.bg-04}
+label-connected = %{T2} %{T-} %upspeed% %downspeed%
+label-connected-foreground = ${colors.fg-01}
+label-connected-background = ${colors.bg-01}
 label-connected-padding = 4
 
 label-disconnected = %ifname% disconnected
-label-disconnected-foreground = ${colors.fg-04}
-label-disconnected-background = ${colors.bg-04}
-
-
+label-disconnected-foreground = ${colors.fg-01}
+label-disconnected-background = ${colors.bg-01}
 
 [module/date]
 type = internal/date
 interval = 1.0
 date = %{T2} %{T-} %d,%H:%M
 date-alt = %{T2} %{T-} %A,%d %B %Y
-format-foreground = ${colors.fg-01}
-format-background = ${colors.bg-01}
+format-foreground = ${colors.fg-05}
+format-background = ${colors.bg-05}
 format-padding = 4
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
 format-volume = <label-volume> <bar-volume>
-label-volume = %{T2} %{T-}%percentage%%
-label-volume-foreground = ${colors.fg-03}
-format-volume-background = ${colors.bg-03}
+label-volume = %{T2} %{T-} %percentage%%
+label-volume-foreground = ${colors.fg-04}
+format-volume-background = ${colors.bg-04}
 format-volume-padding = 4
 
 label-muted = %{T4} %{T-}
@@ -178,26 +174,6 @@ bar-volume-fill-font = 4
 bar-volume-empty = 
 bar-volume-empty-font = 4
 bar-volume-empty-foreground = #555555
-
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 40
-
-format = <label>
-format-underline = ${colors.bg-02}
-format-warn = <label-warn>
-format-warn-underline = ${colors.primary}
-
-label = %{T2} %{T-}%temperature-c%
-label-warn = %{T2} %{T-}%temperature-c%
-label-warn-foreground = ${colors.primary}
-label-warn-background = ${colors.bg-02}
-label-warn-padding = 4
-
-label-foreground= ${colors.fg-02}
-label-background = ${colors.bg-02}
-label-padding = 4
 
 [module/cpu]
 type = internal/cpu
