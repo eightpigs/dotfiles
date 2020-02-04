@@ -12,7 +12,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
-  decorations: buttonless 
+  decorations: none
   # Window class (Linux only):
   class:
     instance: Alacritty
@@ -33,11 +33,13 @@ selection:
 dynamic_title: true
 
 font:
-  size: 12
+  normal:
+    family: Monaco
+  size: 11
   use_thin_strokes: true
   offset:
     x: 0
-    y: 8
+    y: 6
 
 draw_bold_text_with_bright_colors: true
 
