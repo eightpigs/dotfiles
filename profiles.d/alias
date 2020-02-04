@@ -14,6 +14,11 @@ alias remoteAdbDebug='adb shell setprop service.adb.tcp.port 5555'
 # http_proxy=127.0.0.1:8188;export https_proxy=$http_proxy $*
 
 
+# Dir alias
+
+alias ggr="cd ~/workspace/go/src/ && ls -als"
+alias gws="cd ~/workspace && ls -als"
+
 
 
 

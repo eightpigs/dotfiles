@@ -1,9 +1,15 @@
+SOFTWARE_PATH=~/.local
+
 export LC_ALL=en_US.UTF-8  
 export LANG=en_US.UTF-8
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export NO_PROXY='127.0.0.1,localhost'
 export GO111MODULE=on
+
+BIN_HOME=~/.local/bin
+PATH=$PATH:$BIN_HOME
+export BIN_HOME PATYH
 
 # ibus / ibus-rime
 export GTK_IM_MODULE=ibus
@@ -14,15 +20,15 @@ MY_BIN_HOME=~/.config/profiles.d/bin
 PATH=$PATH:$MY_BIN_HOME
 export MY_BIN PATH
 
-GRADLE_HOME=/usr/local/gradle
+GRADLE_HOME=$SOFTWARE_PATH/gradle
 PATH=$PATH:$GRADLE_HOME/bin
 export GRADLE_HOME PATH 
 
-M2_HOME=/usr/local/maven
+M2_HOME=$SOFTWARE_PATH/maven
 PATH=$PATH:$M2_HOME/bin
 export M2_HOME PATH 
 
-JAVA_HOME=/usr/local/java/8
+JAVA_HOME=$SOFTWARE_PATH/java/13
 JRE_HOME=$JAVA_HOME/jre
 PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib
@@ -36,7 +42,7 @@ GOROOT=/usr/local/go
 PATH=$PATH:$GOROOT/bin
 export GOROOT PATH
 
-FLUTTER_HOME=/usr/local/flutter
+FLUTTER_HOME=~/.local/flutter
 PATH=$PATH:$FLUTTER_HOME/bin
 export FLUTTER_HOME PATH
 

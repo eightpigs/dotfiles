@@ -1,8 +1,8 @@
-source ~/.config/profiles.d/os/`uname -s`
 source ~/.config/profiles.d/env
 source ~/.config/profiles.d/alias
 source ~/.config/profiles.d/term
 source ~/.config/profiles.d/zsh
+source ~/.config/profiles.d/os/`uname -s`
 
 work_profile=$HOME"/.config/profiles.d/work"
 if [ -f "$work_profile" ]; then

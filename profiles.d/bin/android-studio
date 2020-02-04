@@ -1,1 +1,1 @@
-nohup /bin/sh /usr/local/android-studio/bin/studio.sh >/dev/null 2>&1 & 
+nohup /bin/sh ~/.local/android-studio/bin/studio.sh >/dev/null 2>&1 & 
