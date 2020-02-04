@@ -19,10 +19,10 @@ let mapleader = " "
 nnoremap <leader>w\ :action SplitVertically<CR>
 nnoremap <leader>w- :action SplitHorizontally<CR>
 
-nnoremap <leader>wj :action VimWindowDown<CR>
-nnoremap <leader>wh :action VimWindowLeft<CR> 
-nnoremap <leader>wl :action VimWindowRight<CR>
-nnoremap <leader>wk :action VimWindowUp<CR>
+nnoremap <leader>wj <C-W>j
+nnoremap <leader>wh <C-W>h
+nnoremap <leader>wl <C-W>l
+nnoremap <leader>wk <C-W>k
 
 nnoremap <leader>n; :action Back<CR>
 nnoremap <leader>n' :action Forward<CR>
