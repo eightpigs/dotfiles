@@ -1,3 +1,5 @@
+set $border 3
+
 set $mod Mod4
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -161,8 +163,8 @@ smart_gaps on
 # default_border none
 # default_floating_border none
 
-default_border pixel 0
-default_floating_border pixel 1
+default_border pixel $border
+default_floating_border pixel $border
 
 # force_display_urgency_hint 500 ms
 
@@ -179,13 +181,15 @@ default_floating_border pixel 1
 
 bindsym --whole-window $mod+button6 move left 28 px
 bindsym --whole-window $mod+button7 move right 28 px
+bindsym --whole-window $mod+button8 workspace next_on_output
+bindsym --whole-window $mod+button9 workspace prev_on_output
 
 bindsym $mod+t border normal
-bindsym $mod+y border pixel 1
+bindsym $mod+y border pixel $border
 bindsym $mod+u border none
 
 # window rules, you can find the window class using xprop
-for_window [class=".*"] border pixel 0
+for_window [class=".*"] border pixel $border
 
 # Window and Color
 client.focused	        #121212 #FFFFFF #FFFFFF #FFFFFF
@@ -196,12 +200,13 @@ floating_minimum_size 100 x 100
 # floating_maximum_size 1600 x 1300
 
 assign [class="UXTerm"] 1
+assign [class="Alacritty"] 1
 assign [class="Chromium"] 2
 assign [class="jetbrains-idea"] 3
 assign [class="Firefox Developer Edition"] 2
 assign [class="jetbrains-studio"] 4
 
-for_window [title="Android Emulator.*"] floating enable border normal
+for_window [title="Android Emulator.*"] floating enable border 1 pixel
 for_window [class=".*"] move position center
 
 # tools
