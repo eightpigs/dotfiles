@@ -18,7 +18,8 @@ set vb
 set completeopt-=preview
 
 " 设置分割线
-set fillchars+=vert:│
+" set fillchars+=vert:│
+set fillchars=vert:\ ,stl:\ ,stlnc:\ 
 
 " 使用系统的剪切板
 " set clipboard=unnamed
@@ -53,6 +54,8 @@ set wildmenu
 
 " 总是显示状态栏
 set laststatus=2
+
+set noshowcmd
 
 " 显示光标当前位置
 set ruler

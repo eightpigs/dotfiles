@@ -46,3 +46,12 @@ au FileType markdown nnoremap <leader>fp :MarkdownPreview<cr>
 " ------------------------------------------------------------
 autocmd BufRead,BufNewFile *.vue setlocal filetype=html
 
+
+" ------------------------------------------------------------
+" Dart
+" ------------------------------------------------------------
+au FileType dart nnoremap <leader>dr :FlutterVisualDebug<cr>
+au FileType dart nnoremap <leader>du :FlutterHotReload<cr>
+au FileType dart nnoremap <leader>dR :FlutterHotRestart<cr>
+" format code
+au FileType dart nnoremap <leader>ff :DartFmt -l 120<cr>

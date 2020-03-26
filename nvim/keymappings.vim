@@ -37,25 +37,19 @@ nnoremap <silent> <leader>' :call NERDTreeToggleInCurDir()<cr>
 nnoremap <silent> <leader>[ :TagbarToggle<cr>
 
 " search all files(fzf)
-nnoremap <silent> <leader>; :call fzf#run({'right': '30%', 'sink': ' e' })<cr>
+nnoremap <silent> <leader>; :call fzf#run({'right': '45%', 'sink': ' e' })<cr>
 
 " clean all highlight(:nohlsearch)
 nnoremap <silent> <leader>\ :nohlsearch<cr>
 
-" restore
 noremap <silent> U <C-r>
 noremap <silent> H ^
 noremap <silent> L $
-
 
 nmap / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 nmap n <Plug>(easymotion-next)
 nmap N <Plug>(easymotion-prev)
-
-" 跳转到前一次修改或后一次修改时，居中
-nnoremap <silent> g; g;zz
-nnoremap <silent> g. g,zz
 
 " w!! to write a file as sudo
 " stolen from skwp/dotfiles
@@ -75,8 +69,13 @@ nmap <silent> <leader>jh <Plug>(easymotion-linebackward)
 nmap <silent> <leader>jl <Plug>(easymotion-lineforward)
 " to top 
 nmap <silent> <leader>jk <Plug>(easymotion-k)
-" to top
+" to bottom
 nmap <silent> <leader>jj <Plug>(easymotion-j)
+
+" 跳转到前一次修改或后一次修改时，居中
+nnoremap <silent> <leader>, g;zz
+nnoremap <silent> <leader>. g,zz
+
 " search all line & jump to(fzf :Lines)
 nnoremap <silent> <leader>jf :Lines<cr>
 
@@ -99,6 +98,7 @@ nnoremap <silent> <leader>bn :vnew<cr>
 nnoremap <silent> <leader>bo :only<cr>
 " search all buffers(fzf :Buffers)
 nnoremap <silent> <leader>bb :Buffers<cr>
+
 " switch to next buffer(:bn)
 nnoremap <silent> <tab> :bn<cr>
 " switch to prev buffer(:bp)
@@ -150,6 +150,7 @@ nnoremap <leader>fb :echo "请根据语言自己配置: 编译"<cr>
 nnoremap <leader>f; :echo "请根据语言自己配置: 显示所有的定义"<cr>
 " rename
 nnoremap <leader>fr :echo "请根据语言自己配置: 重命名"<cr>
+
 " next error / warning
 nnoremap <leader>f, :ALENextWrap<cr>zz
 " prev error / warning
@@ -180,7 +181,6 @@ nnoremap <leader>s; :Ag<space>
 " search cursor word in all files
 nnoremap <leader>s' :call SearchCursor()<cr>
 nnoremap <leader>] :Files<cr>
-nnoremap <leader>sb :Buffers<cr>
 
 
 
@@ -204,5 +204,11 @@ vmap <silent> <leader>/ <Plug>NERDCommenterToggle
 " debug run
 nnoremap <leader>dr :echo "请根据语言自己配置: 调试"<cr>
 
+" debug restart
+nnoremap <leader>dR :echo "请根据语言自己配置: 重启"<cr>
+
 " toggle debug breakpoint
 nnoremap <leader>db :echo "请根据语言自己配置: 添加/删除断点"<cr>
+
+" debug hot load
+nnoremap <leader>du :echo "请根据语言自己配置: 热加载"<cr>
