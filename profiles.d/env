@@ -42,7 +42,7 @@ GOROOT=/usr/local/go
 PATH=$PATH:$GOROOT/bin
 export GOROOT PATH
 
-FLUTTER_HOME=~/.local/flutter
+FLUTTER_HOME=$SOFTWARE_PATH/flutter
 PATH=$PATH:$FLUTTER_HOME/bin
 export FLUTTER_HOME PATH
 
@@ -53,3 +53,7 @@ export ANDROID_HOME PATH
 NODE_JS_HOME=/usr/local/node
 PATH=$PATH:$NODE_JS_HOME/bin
 export NODE_JS_HOME PATH
+
+RUST_HOME=~/.cargo
+PATH=$PATH:$RUST_HOME/bin
+export PATH RUST_HOME
