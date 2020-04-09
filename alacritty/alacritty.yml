@@ -12,6 +12,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
+  # decorations: buttonless
   decorations: none
   # Window class (Linux only):
   class:
@@ -21,9 +22,6 @@ window:
 
 scrolling:
   history: 10000 
-  auto_scroll: true
-
-tabspaces: 2
 
 background_opacity: 1.0
 
@@ -34,8 +32,9 @@ dynamic_title: true
 
 font:
   normal:
-    family: Monaco
-  size: 11
+    # family: Monaco
+    family: Jetbrains Mono
+  size: 12
   use_thin_strokes: true
   offset:
     x: 0
@@ -44,13 +43,12 @@ font:
 draw_bold_text_with_bright_colors: true
 
 debug:
-  log_level: Debug
+  log_level: Info
 
 visual_bell:
   animation: EaseOutExpo
   duration: 0
   color: '0xffffff'
-
 
 # Colors (Gruvbox dark)
 colors:

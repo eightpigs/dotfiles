@@ -1,4 +1,4 @@
 # start keychain
-eval $(keychain --eval --agents ssh -Q --quiet ~/.ssh/id_rsa ~/.ssh/github_rsa) 
+# eval $(keychain --eval --agents ssh -Q --quiet ~/.ssh/id_rsa ~/.ssh/github_rsa) 
 
-unset GOROOT
+# unset GOROOT

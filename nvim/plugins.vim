@@ -12,16 +12,21 @@ endif
 if has('nvim')
   call plug#begin('~/.local/share/nvim/plugged')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+  Plug 'Shougo/neosnippet.vim'
+  Plug 'Shougo/neosnippet-snippets'
 else
   call plug#begin('~/.vim/plugged')
   Plug 'Shougo/deoplete.nvim'
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
 
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
+  " 代码片段
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
+endif
+
+let g:deoplete#enable_at_startup = 1
 
 
 " -----------------------------
@@ -36,7 +41,7 @@ Plug 'morhetz/gruvbox'
 " -----------------------------
 
 " 代码缩进显示
-" Plug 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'
 
 " 侧边栏文档
 Plug 'scrooloose/nerdtree'
@@ -48,14 +53,10 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 
 " 代码标签
-Plug 'majutsushi/tagbar', { 'for': ['javascript', 'go', 'python', 'ruby', 'java', 'markdown'] }
+Plug 'majutsushi/tagbar', { 'for': ['javascript', 'go', 'python', 'ruby', 'java', 'markdown', 'dart'] }
 
 " 语法检测
-Plug 'w0rp/ale', { 'for': ['javascript','vue', 'go', 'python', 'ruby', 'java', 'typescript'] }
-
-" 代码片段
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+Plug 'w0rp/ale', { 'for': ['javascript','vue', 'go', 'python', 'ruby', 'java', 'typescript', 'dart'] }
 
 " 注释插件
 Plug 'scrooloose/nerdcommenter', { 'on':  '<Plug>NERDCommenterToggle' }

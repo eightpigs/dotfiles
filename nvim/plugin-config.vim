@@ -49,7 +49,7 @@ let NERDTreeMinimalUI=1
 " 删除文件时自动删除文件对应 buffer
 let NERDTreeAutoDeleteBuffer=1
 
-let NERDTreeStatusline=-1
+let g:NERDTreeStatusline = '%#NonText#'
 
 let NERDTreeCascadeOpenSingleChildDir=1
 
@@ -130,9 +130,9 @@ let g:NERDCreateDefaultMappings = 1
 "---------------------------------------------------------------
 let $FZF_DEFAULT_OPTS = '--layout=reverse'
 let g:fzf_layout = { 'window': 'call OpenFloatingWin()' }
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noshowmode noruler nonumber norelativenumber
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler number relativenumber
+autocmd! filetype fzf
+autocmd  filetype fzf set laststatus=0 noshowmode noruler nonumber norelativenumber
+  \| autocmd bufleave <buffer> set laststatus=2 showmode ruler number relativenumber
 
 let $FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
