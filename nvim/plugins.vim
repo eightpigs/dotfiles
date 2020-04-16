@@ -26,8 +26,6 @@ else
   Plug 'honza/vim-snippets'
 endif
 
-let g:deoplete#enable_at_startup = 1
-
 
 " -----------------------------
 " Colorscheme 
@@ -76,15 +74,15 @@ Plug 'mileszs/ack.vim'
 Plug 'easymotion/vim-easymotion', { 'on': '<Plug>(easymotion' }
 
 " 快速匹配并选中代码区域
-Plug 'terryma/vim-expand-region', { 'on': '<Plug>(expand_region' }
+" Plug 'terryma/vim-expand-region', { 'on': '<Plug>(expand_region' }
 
 " 引号/括号增强
 " Plug 'tpope/vim-surround'
 
-Plug 'dkprice/vim-easygrep', { 'on': ['<plug>EgMap', 'Grep', 'Replace'] }
+" Plug 'dkprice/vim-easygrep', { 'on': ['<plug>EgMap', 'Grep', 'Replace'] }
 
 " 交换参数位置
-Plug 'AndrewRadev/sideways.vim', { 'on': ['SidewaysLeft', 'SidewaysRight'] }
+" Plug 'AndrewRadev/sideways.vim', { 'on': ['SidewaysLeft', 'SidewaysRight'] }
 
 " 自动切换工作目录(.git ... )
 Plug 'airblade/vim-rooter'
@@ -106,7 +104,6 @@ Plug 'avakhov/vim-yaml', { 'for': ['yaml'] }
 Plug 'fatih/vim-go', { 'for': ['go'], 'do': ':GoUpdateBinaries' }
 " Debug, need install https://github.com/derekparker/delve
 Plug 'sebdah/vim-delve', { 'for': ['go'] }
-Plug 'zchee/deoplete-go', { 'do': 'make', 'for': ['go']}
 
 
 

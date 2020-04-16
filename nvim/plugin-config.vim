@@ -4,17 +4,23 @@
 
 " 代码缩进 ： indent-guides
 " --------------------------------------------------------------
+let g:indentLine_color_term = 239
 let g:indentLine_color_gui = '#333333'
 let g:indentLine_char = '│'
+let g:indentLine_color_tty_light = 7 " (default: 4)
+let g:indentLine_color_dark = 1 " (default: 2)
 " --------------------------------------------------------------
 
-"  代码折叠
+
+"  TagBar
 " --------------------------------------------------------------
-" 基于缩进或语法进行代码折叠
-set foldmethod=indent
-set foldmethod=syntax
-" 启动 vim 时关闭折叠代码
-set nofoldenable
+let g:tagbar_left = 1
+let g:tagbar_width = 45
+let g:tagbar_indent = 2
+let g:tagbar_show_balloon = 0
+
+
+
 " --------------------------------------------------------------
 
 "  nerdtree 和 nerdtree-git-plugin 侧边栏文档 
@@ -34,11 +40,13 @@ function! NERDTreeToggleInCurDir()
     endif
 endfunction
 
+let NERDTreeIgnore = ['\.pyc$', '__pycache__', 'node_modules']
+
 " 设置NERDTree子窗口宽度
 let NERDTreeWinSize=35
 
 " 设置NERDTree子窗口位置
-let NERDTreeWinPos="left"
+let NERDTreeWinPos="right"
 
 " 显示隐藏文件
 let NERDTreeShowHidden=1
@@ -73,6 +81,14 @@ let g:NERDTreeIndicatorMapCustom = {
 " vim-gitgutter 文件显示git更改状态
 " --------------------------------------------------------------
 set updatetime=250
+let g:gitgutter_max_signs = 500
+let g:gitgutter_map_keys = 0
+
+" for interface.vim: statusline
+function! GitStatus()
+  let [a,m,r] = GitGutterGetHunkSummary()
+  return printf('+%d ~%d -%d', a, m, r)
+endfunction
 " --------------------------------------------------------------
 
 
@@ -88,7 +104,7 @@ let g:ale_sign_warning = '!'
 
 
 let g:ale_linters = {
-\ 'go': ['gofmt', 'go vet', 'golint', 'go build'],
+\ 'go': ['gopls'],
 \ }
 
 " 修复语法
@@ -103,6 +119,10 @@ let g:ale_typescript_tslint_use_global = 1
 let g:ale_typescript_tslint_executable = 'tslint'
 let g:ale_typescript_tslint_config_path = 'tslint.json'
 
+" Write this in your vimrc file
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_enter = 0
 
 " 保存时修复
 let g:ale_fix_on_save = 1
@@ -129,12 +149,10 @@ let g:NERDCreateDefaultMappings = 1
 " fzf
 "---------------------------------------------------------------
 let $FZF_DEFAULT_OPTS = '--layout=reverse'
-let g:fzf_layout = { 'window': 'call OpenFloatingWin()' }
+let g:fzf_layout = { 'window': 'call OpenFloatingWin()'}
 autocmd! filetype fzf
 autocmd  filetype fzf set laststatus=0 noshowmode noruler nonumber norelativenumber
   \| autocmd bufleave <buffer> set laststatus=2 showmode ruler number relativenumber
-
-let $FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
 function! OpenFloatingWin()
   let height = &lines - 3
@@ -163,6 +181,7 @@ function! OpenFloatingWin()
         \ nonumber
         \ norelativenumber
         \ signcolumn=no
+        \ laststatus=2
 endfunction
 
 "---------------------------------------------------------------
@@ -224,7 +243,7 @@ let g:mkdp_refresh_slow = 1
 " deoplete
 "---------------------------------------------------------------
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_start_length = 1
+let g:deoplete#auto_complete_start_length = 2
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#enable_refresh_always = 1
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -232,16 +251,8 @@ imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 imap <expr><CR> pumvisible() ? deoplete#close_popup() : "\<CR>"
 "---------------------------------------------------------------
 
-" deoplete-go
-"---------------------------------------------------------------
-let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
-" let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
-" let g:deoplete#sources#go#source_importer = 1
-"---------------------------------------------------------------
-
 " vim-go
 "---------------------------------------------------------------
-let g:go_def_mode = 'godef'
 let g:go_highlight_build_constraints = 0
 let g:go_highlight_extra_types = 0
 let g:go_highlight_fields = 0
@@ -257,8 +268,9 @@ let g:go_doc_max_height = 20
 " let g:go_fmt_command = "goimports"
 let g:go_fmt_command = "gofmt"
 let g:go_auto_type_info = 1
-let g:go_def_mode='gopls'
-let g:go_info_mode='gopls'
+let g:go_def_mode = 'gopls'
+let g:go_info_mode = 'gopls'
+let g:go_fmt_fail_silently = 1
 " let g:go_gocode_propose_source = 1
 "---------------------------------------------------------------
 
@@ -273,8 +285,16 @@ autocmd BufWritePre *.dart DartFmt
 
 " Goyo
 "---------------------------------------------------------------
+
+let g:goyo_width=120
+
 function! s:goyo_leave()
   source ~/.config/nvim/interface.vim
+endfunction
+
+function! s:goyo_enter()
+  NERDTreeClose
+  TagbarClose
 endfunction
 
 autocmd! User GoyoLeave nested call <SID>goyo_leave()

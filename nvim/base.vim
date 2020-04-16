@@ -9,17 +9,25 @@ set nocompatible
 
 set re=1
 set ttyfast
+"
 " will buffer screens instead of updating
 set lazyredraw
-" turn off beep sound
-set vb 
 
+" turn off beep sound
+set noeb
+set novb
+set t_vb=
+
+" Configure backspace so it acts as it should act
+set backspace=eol,start,indent
+
+set completeopt=longest,menuone
 " Disable scratch pad
 set completeopt-=preview
 
 " 设置分割线
 " set fillchars+=vert:│
-set fillchars=vert:\ ,stl:\ ,stlnc:\ 
+set fillchars=vert:│,stl:\ ,stlnc:\ 
 
 " 使用系统的剪切板
 " set clipboard=unnamed
@@ -55,8 +63,6 @@ set wildmenu
 " 总是显示状态栏
 set laststatus=2
 
-set noshowcmd
-
 " 显示光标当前位置
 set ruler
 
@@ -74,6 +80,9 @@ set tabstop=2
 
 " 设置格式化时制表符占用空格数
 set shiftwidth=2
+
+" Round indent to multiple of 'shiftwidth' for > and < commands
+set shiftround
 
 " 编辑时可以将tab替换为空格(et)
 set expandtab
@@ -94,6 +103,14 @@ set number
 " 相对行号
 set relativenumber
 
+" 基于缩进或语法进行代码折叠
+set foldmethod=indent
+set foldmethod=syntax
+" 启动 vim 时关闭折叠代码
+set nofoldenable
+set foldcolumn=0
+set signcolumn=auto
+
 " 保留撤销历史
 set undofile
 
@@ -110,7 +127,7 @@ set showcmd
 set nobackup
 set noswapfile
 
-set wildignore+=*.un~,*.pyc,*.zip,*.rar,*.dll,*.dmg
+set wildignore+=*.un~,*.pyc,*.zip,*.rar,*.dll,*.dmg,*.o,*~,*.pyc
 set wildignore+=*.jpg,*.png,*.jpeg,*.gif,*.svg,*.ico
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*,*/bower_components/*
 

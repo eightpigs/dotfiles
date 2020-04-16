@@ -37,7 +37,7 @@ nnoremap <silent> <leader>' :call NERDTreeToggleInCurDir()<cr>
 nnoremap <silent> <leader>[ :TagbarToggle<cr>
 
 " search all files(fzf)
-nnoremap <silent> <leader>; :call fzf#run({'right': '45%', 'sink': ' e' })<cr>
+nnoremap <silent> <leader>; :Files<cr>
 
 " clean all highlight(:nohlsearch)
 nnoremap <silent> <leader>\ :nohlsearch<cr>
