@@ -2,10 +2,9 @@ alias vim=nvim
 alias vi=nvim
 alias v=nvim
 alias ll="ls -alsH"
-# alias cat=ccat
+alias cat=ccat
 alias top=htop
-alias ag='ag --path-to-ignore ~/.ignore'
-alias fzfp="fzf --inline-info --preview 'ccat {}'"
+alias ag='ag --hidden --color --skip-vcs-ignores --path-to-ignore ~/.ignore'
 
 alias proxy-on='export http_proxy=127.0.0.1:8188;export https_proxy=$http_proxy'
 alias proxy-off='unset http_proxy;unset https_proxy'
@@ -13,78 +12,8 @@ alias remoteAdbDebug='adb shell setprop service.adb.tcp.port 5555'
 
 # http_proxy=127.0.0.1:8188;export https_proxy=$http_proxy $*
 
-
 # Dir alias
 
 alias ggr="cd ~/workspace/go/src/ && ls -als"
 alias gws="cd ~/workspace && ls -als"
 
-
-
-
-
-
-
-# fglog- git commit browser
-fglog() {
-  git log --graph --color=always \
-      --format="%C(auto)%h %aE %d %s %C(black)%C(bold)%cr %an" "$@" |
-  fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
-      --bind "ctrl-m:execute:
-                (grep -o '[a-f0-9]\{7\}' | head -1 |
-                xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
-                {}
-FZF-EOF"
-}
-
-
-# fkill - kill process
-fkill() {
-  local pid
-  pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
-
-  if [ "x$pid" != "x" ]
-  then
-    echo $pid | xargs kill -${1:-9}
-  fi
-}
-
-# fbr - checkout git branch (including remote branches)
-fbr() {
-  local branches branch
-  branches=$(git branch --all | grep -v HEAD) &&
-  branch=$(echo "$branches" |
-           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
-}
-
-# fco - checkout git branch/tag
-fco() {
-  local tags branches target
-  tags=$(
-    git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}') || return
-  branches=$(
-    git branch --all | grep -v HEAD             |
-    sed "s/.* //"    | sed "s#remotes/[^/]*/##" |
-    sort -u          | awk '{print "\x1b[34;1mbranch\x1b[m\t" $1}') || return
-  target=$(
-    (echo "$tags"; echo "$branches") |
-    fzf-tmux -l50 -- --no-hscroll --ansi +m -d "\t" -n 2) || return
-  git checkout $(echo "$target" | awk '{print $2}')
-}
-
-# fco_preview - checkout git branch/tag, with a preview showing the commits between the tag/branch and HEAD
-fcop() {
-  local tags branches target
-  tags=$(
-git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}') || return
-  branches=$(
-git branch --all | grep -v HEAD |
-sed "s/.* //" | sed "s#remotes/[^/]*/##" |
-sort -u | awk '{print "\x1b[34;1mbranch\x1b[m\t" $1}') || return
-  target=$(
-(echo "$tags"; echo "$branches") |
-    fzf --no-hscroll --no-multi --delimiter="\t" -n 2 \
-        --ansi --preview="git log -200 --color=always --pretty=format:%s $(echo {+2..} |  sed 's/$/../' )" ) || return
-  git checkout $(echo "$target" | awk '{print $2}')
-}

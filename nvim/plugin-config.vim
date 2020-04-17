@@ -150,8 +150,11 @@ let g:NERDCreateDefaultMappings = 1
 "---------------------------------------------------------------
 let $FZF_DEFAULT_OPTS = '--layout=reverse'
 let g:fzf_layout = { 'window': 'call OpenFloatingWin()'}
+let g:fzf_preview_window = 'right:50%'
+let g:fzf_commits_log_options = '--graph --color=always --format="$FZF_COMMITS_LOG_FORMAT"'
+
 autocmd! filetype fzf
-autocmd  filetype fzf set laststatus=0 noshowmode noruler nonumber norelativenumber
+autocmd  filetype fzf set laststatus=2 noshowmode noruler nonumber norelativenumber
   \| autocmd bufleave <buffer> set laststatus=2 showmode ruler number relativenumber
 
 function! OpenFloatingWin()
@@ -162,10 +165,10 @@ function! OpenFloatingWin()
   " 这里的大小配置可能不是那么的 flexible 有继续改进的空间
   let opts = {
         \ 'relative': 'editor',
-        \ 'row': height * 0.4,
-        \ 'col': col + 0,
+        \ 'row': height * 0.3,
+        \ 'col': col,
         \ 'width': width * 2 / 2,
-        \ 'height': height / 2,
+        \ 'height': height / 2 + 5,
         \ }
 
   let buf = nvim_create_buf(v:false, v:true)

@@ -1,0 +1,76 @@
+export FZF_DEFAULT_OPTS=' --layout=reverse --preview-window="right:60%" '
+export FZF_COMMITS_LOG_FORMAT='%C(auto)%h%d %s %C(#4d739e)%C(bold)%cr %an'
+
+# fglog- git commit browser
+fglog() {
+  git log --graph --color=always \
+      --format="$FZF_COMMITS_LOG_FORMAT" "$@" |
+  fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
+      --bind "ctrl-m:execute:
+                (grep -o '[a-f0-9]\{7\}' | head -1 |
+                xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
+                {}
+FZF-EOF"
+}
+
+
+# fkill - kill process
+fkill() {
+  local pid
+  pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+
+  if [ "x$pid" != "x" ]
+  then
+    echo $pid | xargs kill -${1:-9}
+  fi
+}
+
+
+
+# fbr - checkout git branch (including remote branches)
+fbr() {
+  local branches branch
+  branches=$(git branch --all | grep -v HEAD) &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+
+
+# fco - checkout git branch/tag
+fco() {
+  local tags branches target
+  tags=$(
+    git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}') || return
+  branches=$(
+    git branch --all | grep -v HEAD             |
+    sed "s/.* //"    | sed "s#remotes/[^/]*/##" |
+    sort -u          | awk '{print "\x1b[34;1mbranch\x1b[m\t" $1}') || return
+  target=$(
+    (echo "$tags"; echo "$branches") |
+    fzf-tmux -l50 -- --no-hscroll --ansi +m -d "\t" -n 2) || return
+  git checkout $(echo "$target" | awk '{print $2}')
+}
+
+
+# fco_preview - checkout git branch/tag, with a preview showing the commits between the tag/branch and HEAD
+fcop() {
+  local tags branches target
+  tags=$(
+git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}') || return
+  branches=$(
+git branch --all | grep -v HEAD |
+sed "s/.* //" | sed "s#remotes/[^/]*/##" |
+sort -u | awk '{print "\x1b[34;1mbranch\x1b[m\t" $1}') || return
+  target=$(
+(echo "$tags"; echo "$branches") |
+    fzf --no-hscroll --no-multi --delimiter="\t" -n 2 \
+        --ansi --preview="git log -200 --color=always --pretty=format:%s $(echo {+2..} |  sed 's/$/../' )" ) || return
+  git checkout $(echo "$target" | awk '{print $2}')
+}
+
+fe() (
+IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0 --color=dark --ansi --preview="cat {}"))
+  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+)

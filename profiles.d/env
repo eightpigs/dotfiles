@@ -3,10 +3,12 @@ WORKSPACE_PATH=/workspace
 
 export LC_ALL=en_US.UTF-8  
 export LANG=en_US.UTF-8
+export EDITOR=nvim
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export NO_PROXY='127.0.0.1,localhost'
 export GO111MODULE=on
+export GOPROXY=https://goproxy.cn
 
 BIN_HOME=~/.local/bin
 PATH=$PATH:$BIN_HOME

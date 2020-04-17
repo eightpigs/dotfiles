@@ -50,6 +50,9 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " git diff
 Plug 'airblade/vim-gitgutter'
 
+" git
+Plug 'tpope/vim-fugitive'
+
 " 代码标签
 Plug 'majutsushi/tagbar', { 'for': ['javascript', 'go', 'python', 'ruby', 'java', 'markdown', 'dart'] }
 

@@ -1,4 +1,5 @@
-# start keychain
-# eval $(keychain --eval --agents ssh -Q --quiet ~/.ssh/id_rsa ~/.ssh/github_rsa) 
-
-# unset GOROOT
+debian=`uname -v | grep Debian`
+if [[ "$debian" != "" ]]; then
+  # export FZF_DEFAULT_COMMAND="fdfind --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
+  export FZF_DEFAULT_COMMAND='ag -g ""'
+fi
