@@ -246,9 +246,12 @@ let g:mkdp_refresh_slow = 1
 " deoplete
 "---------------------------------------------------------------
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_start_length = 2
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#enable_refresh_always = 1
+call deoplete#custom#option({
+    \ 'auto_complete_delay': 200,
+    \ 'smart_case': v:true,
+    \ 'refresh_always': v:true,
+    \ 'min_pattern_length': 2,
+    \ })
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 imap <expr><CR> pumvisible() ? deoplete#close_popup() : "\<CR>"
