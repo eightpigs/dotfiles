@@ -122,5 +122,4 @@
 	     (ignore-errors (backward-up-list))
 	     (funcall fn)))))
 
-
 (provide 'init-basic)

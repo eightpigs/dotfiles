@@ -1,5 +1,10 @@
 ;; company-mode
-(require 'company)
+
+(use-package company
+  :ensure t
+  )
+
+
 ;; (require 'company-lsp)
 
 (add-hook 'after-init-hook 'global-company-mode)

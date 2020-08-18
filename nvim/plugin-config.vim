@@ -62,7 +62,7 @@ let g:NERDTreeStatusline = '%#NonText#'
 let NERDTreeCascadeOpenSingleChildDir=1
 
 " 使用不同符号标识文件状态
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
     \ "Untracked" : "✭",

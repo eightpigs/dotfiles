@@ -1,5 +1,13 @@
 ;; evil
-(require 'evil)
+
+(use-package evil
+  :ensure t
+  )
+
+(use-package evil-leader
+  :ensure t
+  )
+
 (evil-mode 1)
 (setq evil-leader/in-all-states 1)
 (global-evil-leader-mode)

@@ -1,10 +1,13 @@
-(require 'go-mode)
+(use-package go-mode
+  :ensure t
+  )
+
 
 ;; auto complete
-(add-hook 'go-mode-hook
-      (lambda ()
-        (set (make-local-variable 'company-backends) '(company-go))
-        (company-mode)))
+;; (add-hook 'go-mode-hook
+;;       (lambda ()
+;;         (set (make-local-variable 'company-backends) '(company-go))
+;;         (company-mode)))
 
 ;; Call Gofmt before saving
 (setq gofmt-command "goimports")

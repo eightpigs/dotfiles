@@ -4,10 +4,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(horizontal-scroll-bar-mode nil)
- '(markdown-command "pandoc --mathml --quiet")
- '(markdown-enable-math t)
- '(markdown-xhtml-header-content "
-<meta name=\"viewport\" content=\"width=device-width\">")
+ '(package-selected-packages
+   '(magit mgit git-gutter which-key use-package try rustic org-bullets go-mode evil-leader doom-themes doom-modeline company benchmark-init))
  '(scroll-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
