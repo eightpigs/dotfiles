@@ -304,3 +304,21 @@ function! s:goyo_enter()
 endfunction
 
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+
+" Pear-Tree
+"---------------------------------------------------------------
+" Default rules for matching:
+let g:pear_tree_pairs = {
+            \ '(': {'closer': ')'},
+            \ '[': {'closer': ']'},
+            \ '{': {'closer': '}'},
+            \ "'": {'closer': "'"},
+            \ '"': {'closer': '"'},
+            \ '<': {'closer': '>'}
+            \ }
+
+let g:pear_tree_smart_openers = 1
+let g:pear_tree_smart_closers = 1
+let g:pear_tree_smart_backspace = 1
+let g:pear_tree_timeout = 60

@@ -70,9 +70,6 @@ Plug 'mileszs/ack.vim'
 " 多光标操作
 " Plug 'terryma/vim-multiple-cursors'
 
-" 自动括号
-" Plug 'jiangmiao/auto-pairs'
-
 " 快速移动光标
 Plug 'easymotion/vim-easymotion', { 'on': '<Plug>(easymotion' }
 
@@ -90,6 +87,7 @@ Plug 'easymotion/vim-easymotion', { 'on': '<Plug>(easymotion' }
 " 自动切换工作目录(.git ... )
 Plug 'airblade/vim-rooter'
 
+Plug 'tmsvg/pear-tree'
 
 
 
