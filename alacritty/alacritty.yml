@@ -19,6 +19,7 @@ window:
     instance: Alacritty
     general: Alacritty
   dynamic_padding: false
+  dynamic_title: true
 
 scrolling:
   history: 10000 
@@ -28,24 +29,23 @@ background_opacity: 1.0
 selection:
   save_to_clipboard: true
 
-dynamic_title: true
-
 font:
   normal:
     # family: Monaco
     family: Jetbrains Mono
-  size: 12
+    # family: Jetbrains Mono Medium
+  size: 10
   use_thin_strokes: true
   offset:
     x: 0
-    y: 6
+    y: 4
 
 draw_bold_text_with_bright_colors: true
 
 debug:
   log_level: Info
 
-visual_bell:
+bell:
   animation: EaseOutExpo
   duration: 0
   color: '0xffffff'
