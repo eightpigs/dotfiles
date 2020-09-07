@@ -1,0 +1,20 @@
+{
+    "workbench.colorTheme": "Gruvbox Dark Hard",
+    "breadcrumbs.enabled": false,
+    "window.menuBarVisibility": "hidden",
+    "workbench.activityBar.visible": false,
+    "editor.fontSize": 15,
+    "editor.fontFamily": "'JetBrains Mono','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [
+            80
+        ],
+        "editor.selectionHighlight": false,
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "editor.suggestSelection": "first",
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": false
+    }
+}

@@ -11,3 +11,7 @@ neofetch
 htop
 karabiner/automatic_backups
 rclone
+**/sublime-text-3/**
+!**/sublime-text-3/Packages/User/Preferences.sublime-settings
+**/Code\ -\ OSS/**
+!**/Code\ -\ OSS/User/settings.json
