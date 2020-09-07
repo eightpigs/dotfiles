@@ -1,13 +1,17 @@
-set $border 3
+set $border 2
 
 set $mod Mod4
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+font pango:JetBrains Mono 11
+
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal -b 20
-bindsym $mod+Return exec alacritty 
+# bindsym $mod+Return exec alacritty -e "/bin/sh ~/.config/i3/terminal.sh"
+bindsym $mod+Return exec alacritty
+# bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -59,7 +63,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle resize set 2200 1300, move position center
+bindsym $mod+Shift+space floating toggle resize set 2600 1600, move position center
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -162,7 +166,7 @@ smart_gaps on
 
 # default_border none
 # default_floating_border none
-
+hide_edge_borders smart
 default_border pixel $border
 default_floating_border pixel $border
 
@@ -188,11 +192,8 @@ bindsym $mod+t border normal
 bindsym $mod+y border pixel $border
 bindsym $mod+u border none
 
-# window rules, you can find the window class using xprop
-for_window [class=".*"] border pixel $border
-
 # Window and Color
-client.focused	        #121212 #FFFFFF #FFFFFF #FFFFFF
+client.focused	        #121212 #ffffff #FFFFFF #FFFFFF
 client.focused_inactive #121212 #2d2d2d #FFFFFF #FFFFFF
 client.unfocused        #121212 #2d2d2d #FFFFFF #FFFFFF
 
@@ -205,12 +206,13 @@ assign [class="Chromium"] 2
 assign [class="jetbrains-idea"] 3
 assign [class="Firefox Developer Edition"] 2
 assign [class="jetbrains-studio"] 4
+assign [class="Claws-mail"] 9
+assign [class="netease-cloud-music"] 6
 
 for_window [title="Android Emulator.*"] floating enable border 1 pixel
-for_window [class=".*"] move position center
+for_window [class=".*"] border pixel $border move position center title_format "<span font='JetBrains Mono 11'> %title</span>"
+for_window [class="netease-cloud-music"] border none 
 
-# tools
-bindsym $mod+Print exec scrot
 
 # key repeat
 exec_always xset r rate 320 30
@@ -221,3 +223,8 @@ exec_always ibus-daemon -r -x -d
 # polybar
 exec_always $HOME/.config/polybar/launch.sh
 exec_always feh –r -z --bg-fill ~/.config/wallpapers
+
+
+# tools
+bindsym $mod+Print exec scrot
+exec_always --no-startup-id claws-mail
