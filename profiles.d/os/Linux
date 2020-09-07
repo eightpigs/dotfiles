@@ -1,5 +1,4 @@
-debian=`uname -v | grep Debian`
-if [[ "$debian" != "" ]]; then
-  # export FZF_DEFAULT_COMMAND="fdfind --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
-  export FZF_DEFAULT_COMMAND='ag -g ""'
+isLinux=`uname -o`
+if [[ "$isLinux" = "GNU/Linux" ]]; then
+  export FZF_DEFAULT_COMMAND='ag -p ~/.config/.ignore -g ""'
 fi

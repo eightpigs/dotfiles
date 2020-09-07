@@ -6,8 +6,12 @@ alias cat=ccat
 alias top=htop
 alias ag='ag --hidden --color --skip-vcs-ignores --path-to-ignore ~/.ignore'
 
-alias proxy-on='export http_proxy=127.0.0.1:8188;export https_proxy=$http_proxy'
+# alias proxy-on='export http_proxy=127.0.0.1:8188;export https_proxy=$http_proxy'
+# alias proxy-off='unset http_proxy;unset https_proxy'
+
+alias proxy-on='export http_proxy=192.168.1.3:8890;export https_proxy=$http_proxy'
 alias proxy-off='unset http_proxy;unset https_proxy'
+
 alias remoteAdbDebug='adb shell setprop service.adb.tcp.port 5555'
 
 # http_proxy=127.0.0.1:8188;export https_proxy=$http_proxy $*
