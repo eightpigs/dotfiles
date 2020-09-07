@@ -53,7 +53,7 @@ hi  EndOfBuffer   ctermfg=237     ctermbg=235
 hi  TabLine       ctermbg=235     ctermfg=245       guifg=#666666
 hi  TabLineSel    ctermbg=235     ctermfg=245
 hi  TabLineFill   ctermfg=0       ctermbg=235
-hi  Pmenu         ctermfg=223     ctermbg=237       guifg=#ebdbb2   guibg=#262626
+hi  Pmenu         ctermfg=223     ctermbg=237       guifg=#ebdbb2   guibg=#121212
 hi  PmenuSel      cterm=bold      ctermfg=235       ctermbg=109     gui=bold    guifg=#504945     guibg=#f1f1f1
 hi  PmenuSbar     ctermbg=235     guibg=#2a2a2a
 hi  PmenuThumb    ctermbg=2       guibg=#2a2a2a

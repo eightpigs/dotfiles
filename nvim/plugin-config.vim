@@ -148,9 +148,9 @@ let g:NERDCreateDefaultMappings = 1
 
 " fzf
 "---------------------------------------------------------------
-let $FZF_DEFAULT_OPTS = '--layout=reverse'
+let $FZF_DEFAULT_OPTS = '--exact --layout=reverse --border=rounded --ansi --color=16'
 let g:fzf_layout = { 'window': 'call OpenFloatingWin()'}
-let g:fzf_preview_window = 'right:50%'
+let g:fzf_preview_window = 'right:0%'
 let g:fzf_commits_log_options = '--graph --color=always --format="$FZF_COMMITS_LOG_FORMAT"'
 
 autocmd! filetype fzf

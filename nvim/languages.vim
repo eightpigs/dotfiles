@@ -55,3 +55,10 @@ au FileType dart nnoremap <leader>du :FlutterHotReload<cr>
 au FileType dart nnoremap <leader>dR :FlutterHotRestart<cr>
 " format code
 au FileType dart nnoremap <leader>ff :DartFmt -l 120<cr>
+
+
+" ------------------------------------------------------------
+" VIM Script
+" ------------------------------------------------------------
+" execute current line
+au FileType vim nnoremap <silent> <f5> :execute getline(".")<cr>
