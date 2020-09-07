@@ -1,10 +1,24 @@
 ;; --------------- Basic Config ----------------
 
-;; set unicode encoding
-(prefer-coding-system 'utf-8-unix)
-(set-default-coding-systems 'utf-8-unix)
-(set-terminal-coding-system 'utf-8-unix)
-(set-keyboard-coding-system 'utf-8-unix)
+;; Encoding
+;; UTF-8 as the default coding system
+(when (fboundp 'set-charset-priority)
+  (set-charset-priority 'unicode))
+
+;; Explicitly set the prefered coding systems to avoid annoying prompt
+;; from emacs (especially on Microsoft Windows)
+(prefer-coding-system 'utf-8)
+(setq locale-coding-system 'utf-8)
+
+(set-language-environment 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-buffer-file-coding-system 'utf-8)
+(set-clipboard-coding-system 'utf-8)
+(set-file-name-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(modify-coding-system-alist 'process "*" 'utf-8)
 
 ;; clean window
 (scroll-bar-mode -1)
@@ -98,8 +112,13 @@
 
 
 
-
 ;; ------------------- Misc ---------------------
+
+(fset 'yes-or-no-p 'y-or-n-p)
+(setq-default major-mode 'text-mode
+              fill-column 80
+              tab-width 4
+              indent-tabs-mode nil)
 
 (defmacro k-time (&rest body)
   "Measure and return the time it takes evaluating BODY."

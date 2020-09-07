@@ -4,9 +4,9 @@
       (file-name-handler-alist nil))
 
 ;; M-x benchmark-init/show-durations-tree
-(require 'benchmark-init-modes)
-  (require 'benchmark-init)
-  (benchmark-init/activate)
+;; (require 'benchmark-init-modes)
+;;   (require 'benchmark-init)
+;;   (benchmark-init/activate)
 
 ;; Emacs配置文件内容写到下面.
 ;; Emacs配置文件内容写到下面.
@@ -27,6 +27,8 @@
   (require 'init-company)
   (require 'init-git)
   (require 'init-keymaps)
+
   (require 'init-lang-rust)
   (require 'init-lang-go)
+  (require 'init-lang-dart)
 )

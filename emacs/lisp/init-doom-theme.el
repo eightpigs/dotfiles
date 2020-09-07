@@ -46,10 +46,16 @@
 ;; defaults write org.gnu.Emacs Emacs.ToolBar -string no
 ;; defaults write org.gnu.Emacs Emacs.ScrollBar -string no
 ;; defaults write org.gnu.Emacs Emacs.MenuBar -string no
-(when (memq window-system '(mac ns))
-  (load-theme 'doom-tomorrow-day t)
-  (add-to-list 'default-frame-alist '(ns-appearance . light)) ;; {light, dark}
-  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)))
+(cond ((eq system-type 'darwin)
+     (load-theme 'doom-tomorrow-day t)
+     (add-to-list 'default-frame-alist '(ns-appearance . light)) ;; {light, dark}
+     (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+     )
+
+     ((eq system-type 'gnu/linux)
+     (load-theme 'doom-peacock t)
+     )
+)
 
 ;; Corrects (and improves) org-mode's native fontification.
 ;; (doom-themes-org-config)
