@@ -1,9 +1,14 @@
-include-file = /home/eightpigs/.config/polybar/colors/gray
+;; include-file = /home/eightpigs/.config/polybar/colors/blue_grey
+;; include-file = /home/eightpigs/.config/polybar/colors/black
+include-file = /home/eightpigs/.config/polybar/colors/black_pure
+;; include-file = /home/eightpigs/.config/polybar/colors/gray
 
 [bar/top]
-# monitor = ${env:MONITOR:DP-1}
+;; xrandr --query | grep " connected"
+;; monitor = ${env:MONITOR:DP-4}
+monitor = ${env:MONITOR:HDMI-0}
 width = 100%
-height = 45
+height = 40
 radius = 0.0
 fixed-center = true
 top = true
@@ -37,13 +42,17 @@ module-margin-right = 0
 
 ;; fc-cache -f -v 
 ;; gucharmap
-;; font-0 = Roboto:size=16;2
+font-0 = Roboto:size=16;2
+;; font-0 = JetBrains Mono:style=Regular:size=16;2
 ;; font-0 = Monaco:size=16;2
-font-0 = Source Han Sans CN,思源黑体 CN,Source Han Sans CN Normal,思源黑体 CN Normal:style=Normal,Regula:size=15;2
-font-1 = FontAwesome5Free:style=Solid:pixelsize=16:antialias=false;2
+font-1 = FontAwesome5Free:style=Solid:pixelsize=14:antialias=false;2
 font-2 = FontAwesome5Brands:style=Solid:pixelsize=10:antialias=false;2
-font-3 = FontAwesome5Free:style=Solid:pixelsize=18:antialias=false;4
-font-4 = Unifont:style=Medium:pixelsize=20:antialias=false;4
+font-3 = FontAwesome5Free:style=Solid:pixelsize=14:antialias=false;4
+font-4 = Unifont:style=Medium:pixelsize=16:antialias=false;4
+font-5 = Source Han Sans CN,思源黑体 CN,Source Han Sans CN Normal,思源黑体 CN Normal:style=Normal,Regula:size=16;2
+font-6 = JetBrains Mono:style=Regular:size=16;2
+font-7 = JetBrains Mono:style=Regular:size=16;2
+
 
 modules-left = i3 
 modules-center = xwindow
@@ -61,12 +70,14 @@ cursor-scroll = ns-resize
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:200:...%
-label-foreground = #333333
+label = %{T7} %title:0:200:...%
+# label-foreground = #333333
+# label-foreground = ${colors.foreground}
 
 [module/i3]
 type = internal/i3
 format = <label-state> <label-mode>
+
 index-sort = true
 wrapping-scroll = false
 enable-scroll = false
@@ -95,7 +106,7 @@ label-focused-padding = 4
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %icon%
 label-unfocused-padding = 4
-label-unfocused-foreground = ${colors.foreground-alt}
+label-unfocused-foreground = ${colors.foreground}
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %index%. %icon%
@@ -112,7 +123,7 @@ label-urgent-padding = 4
 type = internal/network
 interface = ens18
 interval = 0.5
-label-connected = %{T2} %{T-} %upspeed% %downspeed%
+label-connected = %{T7} ↑:%upspeed% %downspeed%
 label-connected-foreground = ${colors.fg-01}
 label-connected-background = ${colors.bg-01}
 label-connected-padding = 4 
@@ -125,7 +136,7 @@ label-disconnected-background = ${colors.bg-01}
 type = internal/network
 interface = eno2
 interval = 0.5
-label-connected = %{T2} %{T-} %upspeed% %downspeed%
+label-connected =%{T8} ↑: %upspeed%  ↓: %downspeed%
 label-connected-foreground = ${colors.fg-01}
 label-connected-background = ${colors.bg-01}
 label-connected-padding = 4
@@ -177,9 +188,7 @@ bar-volume-empty-foreground = #555555
 
 [module/cpu]
 type = internal/cpu
-; Seconds to sleep between updates
-; Default: 1
-interval = 0.9
+interval = 1
 label-foreground= ${colors.fg-03}
 label-background = ${colors.bg-03}
 label-padding = 5
