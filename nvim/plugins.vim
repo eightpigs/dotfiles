@@ -11,10 +11,13 @@ endif
 
 if has('nvim')
   call plug#begin('~/.local/share/nvim/plugged')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
-  Plug 'Shougo/neosnippet.vim'
-  Plug 'Shougo/neosnippet-snippets'
+  Plug 'neovim/nvim-lspconfig'
+
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'Shougo/deoplete-lsp'
+  " Plug 'Shougo/neosnippet.vim'
+  " Plug 'Shougo/neosnippet-snippets'
 else
   call plug#begin('~/.vim/plugged')
   Plug 'Shougo/deoplete.nvim'
@@ -92,75 +95,12 @@ Plug 'tmsvg/pear-tree'
 
 
 " -----------------------------
-" Yaml
-" -----------------------------
-Plug 'avakhov/vim-yaml', { 'for': ['yaml'] }
-
-
-
-
-" -----------------------------
-" Golang
-" -----------------------------
-Plug 'fatih/vim-go', { 'for': ['go'], 'do': ':GoUpdateBinaries' }
-" Debug, need install https://github.com/derekparker/delve
-Plug 'sebdah/vim-delve', { 'for': ['go'] }
-
-
-
-
-
-
-
-" -----------------------------
-" Web
-" -----------------------------
-" ES2015 code snippets
-Plug 'epilande/vim-es2015-snippets', { 'for': ['vue', 'javascript', 'typescript'] }
-" emmet
-Plug 'mattn/emmet-vim', { 'for': ['html','vue', 'css'], 'on': 'EmmetInstall' }
-Plug 'jceb/emmet.snippets', { 'for': ['html','vue', 'css'] }
-" js 语法支持
-Plug 'othree/yajs.vim', { 'for': ['html', 'javascript', 'vue'] }
-" Js 补全
-Plug 'ternjs/tern_for_vim', { 'for': ['html','vue', 'javascript'] }
-" typescript
-Plug 'mhartington/nvim-typescript', { 'do': './install.sh', 'for': ['typescript']  }
-Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript'] }
-" 自动关闭HTML/XML标签
-Plug 'docunext/closetag.vim', { 'for': ['html','vue', 'xml'] }
-" 自动高亮HTML/XML标签
-" Plug 'Valloric/MatchTagAlways', { 'for': ['html', 'xhtml', 'xml', 'vue'] } 
-Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript'] }
-
-
-
-
-
-" -----------------------------
 " Markdown
 " -----------------------------
 Plug 'junegunn/limelight.vim', { 'for': ['markdown'] }
 Plug 'lvht/tagbar-markdown', { 'for': 'markdown' }
 Plug 'iamcco/markdown-preview.vim', { 'for': 'markdown' }
 Plug 'junegunn/goyo.vim'
-
-
-
-" -----------------------------
-" Dart / Flutter
-" -----------------------------
-Plug 'dart-lang/dart-vim-plugin', { 'for': ['dart'] }
-Plug 'thosakwe/vim-flutter', { 'for': ['dart'] }
-
-
-
-
-" -----------------------------
-" Rust
-" -----------------------------
-Plug 'rust-lang/rust.vim', { 'for': ['rs'] }
-
 
 call plug#end()
 

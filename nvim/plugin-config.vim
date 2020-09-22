@@ -1,7 +1,3 @@
-" ------------------------------------------------------------
-
-
-
 " 代码缩进 ： indent-guides
 " --------------------------------------------------------------
 let g:indentLine_color_term = 239
@@ -128,15 +124,6 @@ let g:ale_lint_on_enter = 0
 let g:ale_fix_on_save = 1
 " --------------------------------------------------------------
 
-" Emmet 
-" --------------------------------------------------------------
-"  just enable in Normal mode
-let g:user_emmet_mode='in'
-
-" Enable just for html/css
-let g:user_emmet_install_global = 0
-autocmd FileType html,css,vue,htm,eruby EmmetInstall
-" --------------------------------------------------------------
 
 " nerdcommenter
 "---------------------------------------------------------------
@@ -197,21 +184,6 @@ if executable('ag')
 endif
 "---------------------------------------------------------------
 
-" vue-vim
-"---------------------------------------------------------------
-let g:vue_disable_pre_processors=1
-autocmd FileType vue syntax sync fromstart
-"---------------------------------------------------------------
-
-" typescript-vim
-"---------------------------------------------------------------
-autocmd FileType typescript :set makeprg=tsc
-"---------------------------------------------------------------
-
-" javascript-libraries-syntax.vim
-"---------------------------------------------------------------
-let g:used_javascript_libs = 'jquery,requirejs,underscore,angularjs,react,flux'
-"---------------------------------------------------------------
 
 " UltiSnips
 "---------------------------------------------------------------
@@ -255,37 +227,6 @@ call deoplete#custom#option({
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 imap <expr><CR> pumvisible() ? deoplete#close_popup() : "\<CR>"
-"---------------------------------------------------------------
-
-" vim-go
-"---------------------------------------------------------------
-let g:go_highlight_build_constraints = 0
-let g:go_highlight_extra_types = 0
-let g:go_highlight_fields = 0
-let g:go_highlight_functions = 0
-let g:go_highlight_function_calls = 0
-let g:go_highlight_methods = 0
-let g:go_highlight_operators = 0
-let g:go_highlight_structs = 0
-let g:go_highlight_types = 0
-" let g:go_auto_sameids = 1
-let g:go_updatetime = 300
-let g:go_doc_max_height = 20
-" let g:go_fmt_command = "goimports"
-let g:go_fmt_command = "gofmt"
-let g:go_auto_type_info = 1
-let g:go_def_mode = 'gopls'
-let g:go_info_mode = 'gopls'
-let g:go_fmt_fail_silently = 1
-" let g:go_gocode_propose_source = 1
-"---------------------------------------------------------------
-
-
-" dart / flutter
-"---------------------------------------------------------------
-let g:flutter_hot_reload_on_save = 1
-let g:flutter_hot_restart_on_save = 0
-autocmd BufWritePre *.dart DartFmt
 "---------------------------------------------------------------
 
 

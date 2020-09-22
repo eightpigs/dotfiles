@@ -137,19 +137,19 @@ nnoremap <silent> <leader>fj ddp
 " switch current line to top
 nnoremap <silent> <leader>fk ddkP
 " format code
-nnoremap <leader>ff :echo "请根据语言自己配置: 代码格式化"<cr>
+nnoremap <leader>ff :lua vim.lsp.buf.formatting_sync(nil, 1000)<cr>
 " go to the definition
-nnoremap <leader>f[ :echo "请根据语言自己配置: 前往定义处"<cr>
+nnoremap <leader>f[ :lua vim.lsp.buf.definition()<cr>
 " displays the docs of the current under mouse variable / obj
-nnoremap <leader>f' :echo "请根据语言自己配置: 显示文档"<cr>
+" nnoremap <leader>f' :echo "请根据语言自己配置: 显示文档"<cr>
 " go to parent / implements
-nnoremap <leader>fs :echo "请根据语言自己配置: 前往父级/接口"<cr>
+nnoremap <leader>fs :lua vim.lsp.buf.implementation()<cr>
 " build
-nnoremap <leader>fb :echo "请根据语言自己配置: 编译"<cr>
+" nnoremap <leader>fb :echo "请根据语言自己配置: 编译"<cr>
 " show all declares
-nnoremap <leader>f; :echo "请根据语言自己配置: 显示所有的定义"<cr>
+nnoremap <leader>f; :lua vim.lsp.buf.declaration(<cr>
 " rename
-nnoremap <leader>fr :echo "请根据语言自己配置: 重命名"<cr>
+nnoremap <leader>fr :lua vim.lsp.buf.rename()<cr>
 
 " next error / warning
 nnoremap <leader>f, :ALENextWrap<cr>zz
