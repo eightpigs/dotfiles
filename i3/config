@@ -226,5 +226,6 @@ exec_always feh –r -z --bg-fill ~/.config/wallpapers
 
 
 # tools
-bindsym $mod+Print exec scrot
+
+bindsym $mod+Print exec scrot '%Y-%m-%d_%H:%M:%S_$wx$h_scrot.png' -e 'mv $f ~/Images/Screenshots/'
 exec_always --no-startup-id claws-mail
