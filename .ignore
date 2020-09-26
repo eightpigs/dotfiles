@@ -1,0 +1,17 @@
+.git
+.idea
+.vscode
+.sass-cache
+node_modules
+build
+out
+
+~/.cache/
+~/.AndroidStudio/
+~/.dart/
+~/.dartServer/
+~/.gem/
+~/.android/
+~/.vscode-oss/
+
+.config/
