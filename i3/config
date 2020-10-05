@@ -210,9 +210,10 @@ assign [class="Claws-mail"] 9
 assign [class="netease-cloud-music"] 6
 
 for_window [title="Android Emulator.*"] floating enable border 1 pixel
-for_window [class=".*"] border pixel $border move position center title_format "<span font='JetBrains Mono 11'> %title</span>"
+for_window [class=".*"] border pixel $border move position center title_format "<span font='JetBrains Mono 10' color='black'> %title</span>"
 for_window [class="netease-cloud-music"] border none 
 
+title_align center
 
 # key repeat
 exec_always xset r rate 320 30

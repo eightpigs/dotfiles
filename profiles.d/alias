@@ -1,7 +1,8 @@
+alias cls=clear
 alias vim=nvim
 alias vi=nvim
 alias v=nvim
-alias ll="ls -alsH"
+alias ll="ls -alsHh"
 alias cat=ccat
 alias top=htop
 alias ag='ag --hidden --color --skip-vcs-ignores --path-to-ignore ~/.ignore'

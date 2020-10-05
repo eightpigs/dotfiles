@@ -21,4 +21,5 @@ configuration {
   drun-icon-theme: "Paper-Mono-Dark";
 }
 
-@import "/usr/share/rofi/themes/gruvbox-dark.rasi"
+/* @import "/usr/share/rofi/themes/gruvbox-dark.rasi" */
+@import "./themes/default.rasi"
