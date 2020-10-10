@@ -12,8 +12,8 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
-  # decorations: buttonless
-  decorations: none
+  decorations: buttonless
+  # decorations: none
   # Window class (Linux only):
   class:
     instance: Alacritty
@@ -34,11 +34,17 @@ font:
     # family: Monaco
     family: Jetbrains Mono
     # family: Jetbrains Mono Medium
-  size: 10
+    # family: Hack Regular
+  size: 13
   use_thin_strokes: true
   offset:
     x: 0
-    y: 4
+    y: 6
+  # glyph_offset的值需要是offset的1/2，才能使字体居中
+  # 修改glyph_offset需要重启
+  glyph_offset: 
+    x: 0
+    y: 3
 
 draw_bold_text_with_bright_colors: true
 
@@ -50,9 +56,11 @@ bell:
   duration: 0
   color: '0xffffff'
 
+
+# --------------------------------
 # Colors (Gruvbox dark)
+# --------------------------------
 colors:
-  # Default colors
   primary:
     # hard contrast: background = '0x1d2021'
     # background: '0x282828'
