@@ -91,6 +91,7 @@ Plug 'easymotion/vim-easymotion', { 'on': '<Plug>(easymotion' }
 Plug 'airblade/vim-rooter'
 
 Plug 'tmsvg/pear-tree'
+Plug 'editorconfig/editorconfig-vim'
 
 
 
@@ -101,6 +102,12 @@ Plug 'junegunn/limelight.vim', { 'for': ['markdown'] }
 Plug 'lvht/tagbar-markdown', { 'for': 'markdown' }
 Plug 'iamcco/markdown-preview.vim', { 'for': 'markdown' }
 Plug 'junegunn/goyo.vim'
+
+
+" -----------------------------
+" Web
+" -----------------------------
+Plug 'mattn/emmet-vim'
 
 call plug#end()
 

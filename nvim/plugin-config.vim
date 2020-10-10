@@ -140,38 +140,44 @@ let g:fzf_layout = { 'window': 'call OpenFloatingWin()'}
 let g:fzf_preview_window = 'right:0%'
 let g:fzf_commits_log_options = '--graph --color=always --format="$FZF_COMMITS_LOG_FORMAT"'
 
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'User9'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] } 
+
 autocmd! filetype fzf
 autocmd  filetype fzf set laststatus=2 noshowmode noruler nonumber norelativenumber
   \| autocmd bufleave <buffer> set laststatus=2 showmode ruler number relativenumber
 
 function! OpenFloatingWin()
-  let height = &lines - 3
-  let width = float2nr(&columns - (&columns * 2 / 10))
+  let lineCount = &lines 
+  let width = float2nr(&columns * 0.7)
+  let height = float2nr(lineCount / 2)
   let col = float2nr((&columns - width) / 2)
-  " 设置浮动窗口打开的位置，大小等。
-  " 这里的大小配置可能不是那么的 flexible 有继续改进的空间
+  let row = (lineCount - height) / 2
+
   let opts = {
         \ 'relative': 'editor',
-        \ 'row': height * 0.3,
+        \ 'row': row,
         \ 'col': col,
-        \ 'width': width * 2 / 2,
-        \ 'height': height / 2 + 5,
+        \ 'width': width,
+        \ 'height': height,
         \ }
 
   let buf = nvim_create_buf(v:false, v:true)
   let win = nvim_open_win(buf, v:true, opts)
 
-  " 设置浮动窗口高亮
   call setwinvar(win, '&winhl', 'Normal:Pmenu')
-
-  setlocal
-        \ buftype=nofile
-        \ nobuflisted
-        \ bufhidden=hide
-        \ nonumber
-        \ norelativenumber
-        \ signcolumn=no
-        \ laststatus=2
 endfunction
 
 "---------------------------------------------------------------
@@ -195,7 +201,7 @@ let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
 
 " vim-rooter
 "---------------------------------------------------------------
-let g:rooter_patterns = ['package.json', '.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/', '.idea/']
+let g:rooter_patterns = ['.git', '.svn/', '.idea/', 'package.json', '_darcs/', '.hg/', '.bzr/']
 let g:rooter_change_directory_for_non_project_files = ''
 let g:rooter_silent_chdir = 1
 "---------------------------------------------------------------
@@ -263,3 +269,18 @@ let g:pear_tree_smart_openers = 1
 let g:pear_tree_smart_closers = 1
 let g:pear_tree_smart_backspace = 1
 let g:pear_tree_timeout = 60
+
+
+
+
+" editorconfig-vim
+"---------------------------------------------------------------
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+
+" emment-vim
+"---------------------------------------------------------------
+let g:user_emmet_mode='i'
+let g:user_emmet_install_global = 0
+autocmd FileType html,css,vue EmmetInstall
+let g:user_emmet_leader_key='<leader>t'

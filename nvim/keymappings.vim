@@ -201,14 +201,17 @@ vmap <silent> <leader>/ <Plug>NERDCommenterToggle
 " Debug / Run
 " ------------------------------------------------------------
 
-" debug run
-nnoremap <leader>dr :echo "请根据语言自己配置: 调试"<cr>
+" build & run
+nnoremap <leader>br :echo "请根据语言自己配置: Run"<cr>
+
+" build & debug run
+nnoremap <leader>bd :echo "请根据语言自己配置: Debug Run"<cr>
 
 " debug restart
-nnoremap <leader>dR :echo "请根据语言自己配置: 重启"<cr>
+nnoremap <leader>bd :echo "请根据语言自己配置: 重启"<cr>
 
 " toggle debug breakpoint
-nnoremap <leader>db :echo "请根据语言自己配置: 添加/删除断点"<cr>
+nnoremap <leader>bt :echo "请根据语言自己配置: 添加/删除断点"<cr>
 
 " debug hot load
-nnoremap <leader>du :echo "请根据语言自己配置: 热加载"<cr>
+nnoremap <leader>bu :echo "请根据语言自己配置: 热加载"<cr>

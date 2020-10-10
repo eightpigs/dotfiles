@@ -39,18 +39,6 @@ require'nvim_lsp'.sumneko_lua.setup{}
 -- yaml
 require'nvim_lsp'.yamlls.setup{}
 
--- rust
-require'nvim_lsp'.rust_analyzer.setup{
-  root_dir = nvim_lsp.util.root_pattern('Cargo.toml', 'rust-project.json', '.git');
-  settings = {
-    ["rust-analyzer"] = {}
-  }
-}
-
--------------------------------------------------------------------------------
----------- WEB
--------------------------------------------------------------------------------
-
 local web_root_dir = nvim_lsp.util.root_pattern('.git', 'package.json');
 
 -- vue
@@ -68,24 +56,33 @@ require'nvim_lsp'.html.setup{
   root_dir = web_root_dir;
 }
 
-
-
-
--------------------------------------------------------------------------------
----------- Backend
--------------------------------------------------------------------------------
+-- gopls
 require'nvim_lsp'.gopls.setup{
   root_dir = nvim_lsp.util.root_pattern("go.mod", ".git");
 }
 
+-- python
 require'nvim_lsp'.pyls.setup{}
 
 
+-- rust
+require'nvim_lsp'.rust_analyzer.setup{
+  root_dir = nvim_lsp.util.root_pattern('Cargo.toml', 'rust-project.json', '.git');
+  settings = {
+    ["rust-analyzer"] = {}
+  }
+}
 
--------------------------------------------------------------------------------
----------- APP
--------------------------------------------------------------------------------
+-- java
+require'nvim_lsp'.jdtls.setup{
+  root_dir = nvim_lsp.util.root_pattern("pom.xml", "settings.gradle", "gradle.properties", "build.gradle", ".git");
+  init_options = {
+    jvm_args = {},
+    workspace = "~/workspace/java"
+  }
+}
 
+-- dart
 require'nvim_lsp'.dartls.setup{
   root_dir = nvim_lsp.util.root_pattern('.git', '.pubspec.yaml');
   init_options = {
@@ -101,5 +98,3 @@ require'nvim_lsp'.dartls.setup{
     lineLength = "120",
   }
 }
-
-
