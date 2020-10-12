@@ -83,7 +83,10 @@ let g:gitgutter_map_keys = 0
 " for interface.vim: statusline
 function! GitStatus()
   let [a,m,r] = GitGutterGetHunkSummary()
-  return printf('+%d ~%d -%d', a, m, r)
+  if (a > 0 || m > 0 || r > 0)
+    return printf('[+%d ~%d -%d]', a, m, r)
+  endif
+  return ''
 endfunction
 " --------------------------------------------------------------
 
@@ -148,7 +151,7 @@ let g:fzf_colors =
   \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
   \ 'hl+':     ['fg', 'Statement'],
   \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'User9'],
+  \ 'border':  ['fg', 'PreProc'],
   \ 'prompt':  ['fg', 'Conditional'],
   \ 'pointer': ['fg', 'Exception'],
   \ 'marker':  ['fg', 'Keyword'],
