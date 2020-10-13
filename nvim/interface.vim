@@ -8,7 +8,8 @@ if (has("termguicolors"))
 endif
 
 if has('gui_running')
-  set guifont=Monaco:h18
+  " set guifont=Monaco:h18
+  set guifont=JetBrains_Mono:10.5
   " 禁止显示滚动条
   set guioptions-=l
   set guioptions-=L
@@ -21,11 +22,14 @@ if has('gui_running')
   set t_Co=256
 endif
 
-colorscheme gruvbox
-let g:gruvbox_contrast_dark="hard"
 " 禁止光标闪k烁
 set gcr=a:block-blinkon0
 
+" let base16colorspace=256
+" colorscheme base16-default-dark
+" colorscheme base16-tomorrow-night
+colorscheme gruvbox
+let g:gruvbox_contrast_dark="hard"
 
 " 自定义配色
 hi clear vertsplit

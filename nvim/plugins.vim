@@ -34,6 +34,7 @@ endif
 " Colorscheme 
 " -----------------------------
 Plug 'morhetz/gruvbox'
+" Plug 'chriskempson/base16-vim'
 
 
 
@@ -80,7 +81,7 @@ Plug 'easymotion/vim-easymotion', { 'on': '<Plug>(easymotion' }
 " Plug 'terryma/vim-expand-region', { 'on': '<Plug>(expand_region' }
 
 " 引号/括号增强
-" Plug 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 
 " Plug 'dkprice/vim-easygrep', { 'on': ['<plug>EgMap', 'Grep', 'Replace'] }
 
@@ -90,7 +91,6 @@ Plug 'easymotion/vim-easymotion', { 'on': '<Plug>(easymotion' }
 " 自动切换工作目录(.git ... )
 Plug 'airblade/vim-rooter'
 
-Plug 'tmsvg/pear-tree'
 Plug 'editorconfig/editorconfig-vim'
 
 
