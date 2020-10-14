@@ -111,6 +111,8 @@ set nofoldenable
 set foldcolumn=0
 set signcolumn=auto
 
+set colorcolumn=80,120
+
 " 保留撤销历史
 set undofile
 

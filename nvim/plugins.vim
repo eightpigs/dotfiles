@@ -61,7 +61,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'majutsushi/tagbar', { 'for': ['javascript', 'go', 'python', 'ruby', 'java', 'markdown', 'dart'] }
 
 " 语法检测
-Plug 'w0rp/ale', { 'for': ['javascript','vue', 'go', 'python', 'ruby', 'java', 'typescript', 'dart'] }
+" Plug 'w0rp/ale', { 'for': ['javascript','vue', 'go', 'python', 'ruby', 'java', 'typescript', 'dart'] }
 
 " 注释插件
 Plug 'scrooloose/nerdcommenter', { 'on':  '<Plug>NERDCommenterToggle' }
@@ -92,8 +92,6 @@ Plug 'tpope/vim-surround'
 Plug 'airblade/vim-rooter'
 
 Plug 'editorconfig/editorconfig-vim'
-
-
 
 " -----------------------------
 " Markdown

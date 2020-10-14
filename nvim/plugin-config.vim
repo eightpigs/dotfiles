@@ -17,8 +17,6 @@ let g:tagbar_show_balloon = 0
 
 
 
-" --------------------------------------------------------------
-
 "  nerdtree 和 nerdtree-git-plugin 侧边栏文档 
 " --------------------------------------------------------------
 " 显示侧边栏，并定位到当前编辑文件
@@ -94,37 +92,37 @@ endfunction
 " 异步语法检测 
 " --------------------------------------------------------------
 "始终开启标志列
-let g:ale_sign_column_always = 1
-let g:ale_set_highlights = 0
-
-"自定义error和warning图标
-let g:ale_sign_error = 'x'
-let g:ale_sign_warning = '!'
-
-
-let g:ale_linters = {
-\ 'go': ['gopls'],
-\ }
-
-" 修复语法
-let g:ale_fixers = {
-\   'javascript': ['eslint'],
-\   'typescript': ['tslint'],
-\   'vue': ['eslint'],
-\   'html': ['eslint'],
-\}
-
-let g:ale_typescript_tslint_use_global = 1
-let g:ale_typescript_tslint_executable = 'tslint'
-let g:ale_typescript_tslint_config_path = 'tslint.json'
-
-" Write this in your vimrc file
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_insert_leave = 0
-let g:ale_lint_on_enter = 0
-
-" 保存时修复
-let g:ale_fix_on_save = 1
+" let g:ale_sign_column_always = 1
+" let g:ale_set_highlights = 0
+" 
+" "自定义error和warning图标
+" let g:ale_sign_error = 'x'
+" let g:ale_sign_warning = '!'
+" 
+" 
+" let g:ale_linters = {
+" \ 'go': ['gopls'],
+" \ }
+" 
+" " 修复语法
+" let g:ale_fixers = {
+" \   'javascript': ['eslint'],
+" \   'typescript': ['tslint'],
+" \   'vue': ['eslint'],
+" \   'html': ['eslint'],
+" \}
+" 
+" let g:ale_typescript_tslint_use_global = 1
+" let g:ale_typescript_tslint_executable = 'tslint'
+" let g:ale_typescript_tslint_config_path = 'tslint.json'
+" 
+" " Write this in your vimrc file
+" let g:ale_lint_on_text_changed = 'never'
+" let g:ale_lint_on_insert_leave = 0
+" let g:ale_lint_on_enter = 0
+" 
+" " 保存时修复
+" let g:ale_fix_on_save = 1
 " --------------------------------------------------------------
 
 
@@ -244,6 +242,7 @@ let g:goyo_width=120
 
 function! s:goyo_leave()
   source ~/.config/nvim/interface.vim
+  source ~/.config/nvim/statusline.vim
 endfunction
 
 function! s:goyo_enter()
@@ -251,7 +250,6 @@ function! s:goyo_enter()
   TagbarClose
 endfunction
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
 
 " editorconfig-vim
 "---------------------------------------------------------------

@@ -55,6 +55,7 @@ hi  PmenuThumb    ctermbg=2       guibg=#2a2a2a
 hi  FoldColumn    ctermfg=245     ctermbg=237       guifg=#928374   guibg=#3c3836
 hi  Folded        ctermfg=245     ctermbg=237       guifg=#928374   guibg=#3c3836
 hi  vertsplit     ctermfg=245     ctermbg=NONE      guifg=#292929   guibg=NONE
+hi  ColorColumn   ctermbg=237     guibg=#2c2c2c
 
 hi GitGutterAdd ctermbg=235 ctermfg=245
 hi GitGutterChange ctermbg=235 ctermfg=245
