@@ -1,6 +1,6 @@
-" ------------------------------------------------------------
+"-------------------------------------------------------------------------------
 "  Plugins
-" ------------------------------------------------------------
+"-------------------------------------------------------------------------------
 
 " vim-plug autoconfig if not already installed
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
@@ -9,33 +9,12 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | nested source $MYVIMRC
 endif
 
-if has('nvim')
-  call plug#begin('~/.local/share/nvim/plugged')
-
-  Plug 'neovim/nvim-lspconfig'
-
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'Shougo/deoplete-lsp'
-  " Plug 'Shougo/neosnippet.vim'
-  " Plug 'Shougo/neosnippet-snippets'
-else
-  call plug#begin('~/.vim/plugged')
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-
-  " 代码片段
-  Plug 'SirVer/ultisnips'
-  Plug 'honza/vim-snippets'
-endif
-
+call plug#begin('~/.local/share/nvim/plugged')
 
 " -----------------------------
 " Colorscheme 
 " -----------------------------
-Plug 'morhetz/gruvbox'
-" Plug 'chriskempson/base16-vim'
-
+Plug 'chriskempson/base16-vim'
 
 
 " -----------------------------
@@ -54,14 +33,8 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " git diff
 Plug 'airblade/vim-gitgutter'
 
-" git
-Plug 'tpope/vim-fugitive'
-
 " 代码标签
-Plug 'majutsushi/tagbar', { 'for': ['javascript', 'go', 'python', 'ruby', 'java', 'markdown', 'dart'] }
-
-" 语法检测
-" Plug 'w0rp/ale', { 'for': ['javascript','vue', 'go', 'python', 'ruby', 'java', 'typescript', 'dart'] }
+" Plug 'majutsushi/tagbar', { 'for': ['javascript', 'go', 'python', 'ruby', 'java', 'markdown', 'dart', 'lua'] }
 
 " 注释插件
 Plug 'scrooloose/nerdcommenter', { 'on':  '<Plug>NERDCommenterToggle' }
@@ -69,43 +42,39 @@ Plug 'scrooloose/nerdcommenter', { 'on':  '<Plug>NERDCommenterToggle' }
 " 搜索
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } 
 Plug 'junegunn/fzf.vim' 
-Plug 'mileszs/ack.vim'
-
-" 多光标操作
-" Plug 'terryma/vim-multiple-cursors'
-
-" 快速移动光标
-Plug 'easymotion/vim-easymotion', { 'on': '<Plug>(easymotion' }
-
-" 快速匹配并选中代码区域
-" Plug 'terryma/vim-expand-region', { 'on': '<Plug>(expand_region' }
 
 " 引号/括号增强
 Plug 'tpope/vim-surround'
 
-" Plug 'dkprice/vim-easygrep', { 'on': ['<plug>EgMap', 'Grep', 'Replace'] }
-
-" 交换参数位置
-" Plug 'AndrewRadev/sideways.vim', { 'on': ['SidewaysLeft', 'SidewaysRight'] }
-
 " 自动切换工作目录(.git ... )
 Plug 'airblade/vim-rooter'
 
+" 支持editorconfig
 Plug 'editorconfig/editorconfig-vim'
+
 
 " -----------------------------
 " Markdown
 " -----------------------------
 Plug 'junegunn/limelight.vim', { 'for': ['markdown'] }
-Plug 'lvht/tagbar-markdown', { 'for': 'markdown' }
-Plug 'iamcco/markdown-preview.vim', { 'for': 'markdown' }
-Plug 'junegunn/goyo.vim'
+" Plug 'lvht/tagbar-markdown', { 'for': 'markdown' }
+Plug 'npxbr/glow.nvim', {'do': ':GlowInstall'}
 
 
 " -----------------------------
 " Web
 " -----------------------------
-Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim', { 'for': 'javascript' }
+
+
+" -----------------------------
+" LSP支持 & 补全
+" -----------------------------
+Plug 'neovim/nvim-lspconfig'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete-lsp'
+" Plug 'Shougo/neosnippet.vim'
+" Plug 'Shougo/neosnippet-snippets'
+
 
 call plug#end()
-

@@ -24,10 +24,10 @@ func! FullStatusline() abort
   set statusline+=%1*
   set statusline+=%{&readonly?'\ [R]':''}
   set statusline+=%{&modified?'\ [+]':''}
-  set statusline+=\ \ 
-  set statusline+=%{FugitiveHead()}
-  set statusline+=\ \ 
-  set statusline+=%{GitStatus()}
+  "set statusline+=\ \ 
+  " set statusline+=%{FugitiveHead()}
+  " set statusline+=\ \ 
+  "set statusline+=%{GitStatus()}
 
   set statusline+=%=
   set statusline+=%1*
@@ -60,10 +60,10 @@ fun! ResizeStatusline() abort
   endif
 endfun
 
-augroup cleanline
-  autocmd!
-  autocmd WinEnter * call ResizeStatusline()
-augroup end
+" augroup cleanline
+"   autocmd!
+"   autocmd WinEnter * call ResizeStatusline()
+" augroup end
 
 
 call FullStatusline()

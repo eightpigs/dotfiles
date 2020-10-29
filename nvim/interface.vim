@@ -3,12 +3,11 @@
 "--------------------------------------------------------------------------
 
 " 配色方案
-if (has("termguicolors"))
+if has("termguicolors")
  set termguicolors
 endif
 
 if has('gui_running')
-  " set guifont=Monaco:h18
   set guifont=JetBrains_Mono:10.5
   " 禁止显示滚动条
   set guioptions-=l
@@ -18,52 +17,83 @@ if has('gui_running')
   " 禁止显示菜单和工具条
   set guioptions-=m
   set guioptions-=T
-  " 支持 256 色
-  set t_Co=256
 endif
 
 " 禁止光标闪k烁
 set gcr=a:block-blinkon0
 
-" let base16colorspace=256
-" colorscheme base16-default-dark
-" colorscheme base16-tomorrow-night
-colorscheme gruvbox
-let g:gruvbox_contrast_dark="hard"
+fun! GetHighlightTerm(group, term)
+  let output = execute('hi ' . a:group)
+  return matchstr(output, a:term.'=\zs\S*')
+endfun
 
-" 自定义配色
-hi clear vertsplit
-hi clear SignColumn
-hi clear TabLine
-hi clear TabLineSel
-hi clear TabLineFill
-hi clear FoldColumn
+fun! ReHighlight() abort
+  hi clear VertSplit
+  hi clear SignColumn
+  hi clear FoldColumn
+  hi clear nonText
+  hi clear EndOfBuffer
 
-hi  Normal        ctermbg=NONE    guibg=#2d2d2d
-hi  nonText       ctermbg=NONE    guibg=#2d2d2d
-hi  LineNr        ctermfg=237     guibg=#2d2d2d
-hi  Default       ctermfg=1
-hi  SignColumn    ctermbg=235
-hi  EndOfBuffer   ctermfg=237     ctermbg=235
-hi  TabLine       ctermbg=235     ctermfg=245       guifg=#666666
-hi  TabLineSel    ctermbg=235     ctermfg=245
-hi  TabLineFill   ctermfg=0       ctermbg=235
-hi  Pmenu         ctermfg=223     ctermbg=237       guifg=#ebdbb2   guibg=#414344
-hi  PmenuSel      cterm=bold      ctermfg=235       ctermbg=109     gui=bold    guifg=#504945     guibg=#f1f1f1
-hi  PmenuSbar     ctermbg=235     guibg=#212121
-hi  PmenuThumb    ctermbg=2       guibg=#2a2a2a
-hi  FoldColumn    ctermfg=245     ctermbg=237       guifg=#928374   guibg=#3c3836
-hi  Folded        ctermfg=245     ctermbg=237       guifg=#928374   guibg=#3c3836
-hi  vertsplit     ctermfg=245     ctermbg=NONE      guifg=#292929   guibg=NONE
-hi  ColorColumn   ctermbg=237     guibg=#2c2c2c
+  let l:normal_guibg = GetHighlightTerm("Normal", "guibg")
+  let l:visual_guibg = GetHighlightTerm("Visual", "guibg")
 
-hi GitGutterAdd ctermbg=235 ctermfg=245
-hi GitGutterChange ctermbg=235 ctermfg=245
-hi GitGutterDelete ctermbg=235 ctermfg=245
-hi GitGutterChangeDelete ctermbg=235 ctermfg=245
+  execute 'hi LspReferenceText cterm=bold gui=bold,undercurl ctermfg=1 guibg='l:visual_guibg
+  execute 'hi LspReferenceRead cterm=bold gui=bold,undercurl ctermfg=1 guibg='l:visual_guibg
+  execute 'hi LspReferenceWrite cterm=bold gui=bold,undercurl ctermfg=1 guibg='l:visual_guibg
+  
+  execute 'hi LineNr guibg='.l:normal_guibg
+  execute 'hi SignColumn guibg='.l:normal_guibg
+  execute 'hi nonText guibg='.l:normal_guibg
+  execute 'hi EndOfBuffer guibg='.l:normal_guibg
+  execute 'hi VertSplit guibg='.l:normal_guibg
 
-" ALE custom color
-hi  clear ALEErrorSign
-hi  clear ALEWarningSign
-hi  ALEErrorSign    ctermbg=235 
-hi  ALEWarningSign  ctermbg=235
+  if hlexists('GitGutterAdd')
+    execute 'hi gitGutterAdd guibg='.l:normal_guibg
+    execute 'hi gitGutterAddIntraLine guibg='.l:normal_guibg
+    execute 'hi gitGutterAddInvisible guibg='.l:normal_guibg
+    execute 'hi gitGutterChange guibg='.l:normal_guibg
+    execute 'hi gitGutterChangeDelete guibg='.l:normal_guibg
+    execute 'hi gitGutterChangeInvisible guibg='.l:normal_guibg 
+    execute 'hi gitGutterDelete guibg='.l:normal_guibg 
+    execute 'hi gitGutterDeleteIntraLine guibg='.l:normal_guibg 
+    execute 'hi gitGutterDeleteInvisible guibg='.l:normal_guibg 
+  endif
+
+  if hlexists('ALEErrorSign')
+    execute 'hi ALEErrorSign guibg='.l:normal_guibg
+    execute 'hi ALEWarningSign guibg='.l:normal_guibg
+  endif
+
+endfun
+
+fun! LightTheme() abort
+  let base16colorspace=256
+  set background=light
+  colorscheme base16-mexico-light
+  call ReHighlight()
+endfun
+
+fun! DarkTheme() abort
+  let base16colorspace=256
+  set background=dark
+  colorscheme base16-default-dark
+  call ReHighlight()
+endfun
+
+fun! ToggleTheme() abort
+  let output = execute('set background')
+  if matchstr(output, 'background=\zs\S*') == 'dark'
+    call LightTheme()
+  else
+    call DarkTheme()
+  endif
+  call ReHighlight()
+  redr
+endfun
+
+call LightTheme()
+call ReHighlight()
+
+command Light :call LightTheme()
+command Dark :call DarkTheme()
+command ToggleTheme :call ToggleTheme()

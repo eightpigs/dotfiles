@@ -15,24 +15,6 @@ let mapleader="\<Space>"
 " Misc
 " ------------------------------------------------------------
 
-" 显示侧边栏，并定位到当前编辑文件
-func! NERDTreeToggleInCurDir()                     
-" If NERDTree is open in the current buffer
-    if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
-        exe ":NERDTreeClose"
-    else
-        if (expand("%:t") != '')
-            " exe ":NERDTreeToggle"
-            exe ":NERDTreeFind"
-        else
-            exe ":NERDTreeToggle"
-        endif
-    endif
-endfunc
-
-" show file explorer
-nnoremap <silent> <leader>' :call NERDTreeToggleInCurDir()<cr>
-
 " show tag list
 nnoremap <silent> <leader>[ :TagbarToggle<cr>
 
@@ -46,10 +28,10 @@ noremap <silent> U <C-r>
 noremap <silent> H ^
 noremap <silent> L $
 
-nmap / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
-nmap n <Plug>(easymotion-next)
-nmap N <Plug>(easymotion-prev)
+" nmap / <Plug>(easymotion-sn)
+" omap / <Plug>(easymotion-tn)
+" nmap n <Plug>(easymotion-next)
+" nmap N <Plug>(easymotion-prev)
 
 " w!! to write a file as sudo
 " stolen from skwp/dotfiles
