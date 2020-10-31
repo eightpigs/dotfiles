@@ -16,6 +16,7 @@ call('deoplete#custom#option', {{
   smart_case = true,
   refresh_always = true,
   min_pattern_length = 2,
+  num_processes = 2,
 }})
 
 

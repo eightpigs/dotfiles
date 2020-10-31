@@ -12,4 +12,4 @@ local g = vim.g
 g.NERDSpaceDelims = 1
 g.NERDDefaultAlign = 'left'
 g.NERDCompactSexyComs = 1
-g.NERDCreateDefaultMappings = 1
+g.NERDCreateDefaultMappings = 0

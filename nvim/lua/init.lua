@@ -24,3 +24,5 @@ end
 
 require 'plugins'
 require 'lsp'
+require 'actions'
+require 'keymapping'

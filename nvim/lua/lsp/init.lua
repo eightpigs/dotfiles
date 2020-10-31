@@ -66,6 +66,6 @@ function M.currentLSPServer()
   return name_str
 end
 
-command("command LSPServer :lua print(require'lsp'.currentServer())")
+command("command LSPServer :lua print(require'lsp'.currentLSPServer())")
 
 return M

@@ -1,4 +1,3 @@
-"--------------------------------------------------------------------------
 " 外观
 "--------------------------------------------------------------------------
 
@@ -91,7 +90,8 @@ fun! ToggleTheme() abort
   redr
 endfun
 
-call LightTheme()
+" call LightTheme()
+call DarkTheme()
 call ReHighlight()
 
 command Light :call LightTheme()

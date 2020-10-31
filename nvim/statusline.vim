@@ -24,24 +24,17 @@ func! FullStatusline() abort
   set statusline+=%1*
   set statusline+=%{&readonly?'\ [R]':''}
   set statusline+=%{&modified?'\ [+]':''}
-  "set statusline+=\ \ 
-  " set statusline+=%{FugitiveHead()}
-  " set statusline+=\ \ 
-  "set statusline+=%{GitStatus()}
-
   set statusline+=%=
   set statusline+=%1*
   set statusline+=%l:%c
-  set statusline+=\ \ 
+  set statusline+=\ 
   set statusline+=%p%%
-  set statusline+=\ \ 
+  set statusline+=\ 
   set statusline+=\%y
-  set statusline+=\ \ 
+  set statusline+=\ 
   set statusline+=%{&fileformat}
-  set statusline+=\ \ 
+  set statusline+=\ 
   set statusline+=%{&fileencoding?&fileencoding:&encoding}
-  set statusline+=\ \ 
-  set statusline+=%{HumanSize(getfsize(expand(@%)))}
 endfun
 
 fun! ResizeStatusline() abort
@@ -59,11 +52,5 @@ fun! ResizeStatusline() abort
     call FullStatusline()
   endif
 endfun
-
-" augroup cleanline
-"   autocmd!
-"   autocmd WinEnter * call ResizeStatusline()
-" augroup end
-
 
 call FullStatusline()

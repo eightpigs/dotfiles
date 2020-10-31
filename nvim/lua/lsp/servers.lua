@@ -1,10 +1,6 @@
 local nvim_lsp = require 'nvim_lsp'
 local lsp = vim.lsp
 
-local _web_config = {
-  root_dir = nvim_lsp.util.root_pattern('.git', 'package.json');
-}
-
 local servers = {
   {name = 'bashls'},
   {name = 'vimls'},
@@ -13,15 +9,28 @@ local servers = {
   {name = 'yamlls'},
   {
     name = 'vuels',
-    config = _web_config
+    config = {
+      root_dir = nvim_lsp.util.root_pattern("package.json", '.eslintrc.js', ".git"),
+      filetypes = { "vue", "javascript" }
+    }
   },
   {
     name = 'cssls',
-    config = _web_config
+    config = {
+      root_dir = nvim_lsp.util.root_pattern('.git', 'package.json')
+    }
   },
   {
     name = 'html',
-    config = _web_config
+    config = {
+      root_dir = nvim_lsp.util.root_pattern('.git', 'package.json'),
+      filetypes = { "html" },
+      configurationSection = { "html"},
+      embeddedLanguages = {
+        css = false,
+        javascript = false
+      }
+    }
   },
   {
     name = 'gopls',
@@ -32,9 +41,11 @@ local servers = {
   {name = 'pyls'},
   {
     name = 'rust_analyzer',
-    root_dir = nvim_lsp.util.root_pattern('Cargo.toml', 'rust-project.json', '.git');
-    settings = {
-      ["rust-analyzer"] = {}
+    config = {
+      root_dir = nvim_lsp.util.root_pattern('Cargo.toml', 'rust-project.json', '.git');
+      settings = {
+        ["rust-analyzer"] = {}
+      }
     }
   },
   {

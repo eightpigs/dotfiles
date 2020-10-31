@@ -4,12 +4,12 @@ local M = {}
 
 
 -- Key mapping
-function M.map(mode, key, result, opts)
+function M.map(mode, key, action, opts)
   opts = opts or {}
   fn.nvim_set_keymap(
     mode,
     key,
-    result,
+    action,
     {
       noremap = true,
       silent = opts.silent or true,

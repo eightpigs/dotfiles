@@ -34,10 +34,10 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 
 " 代码标签
-" Plug 'majutsushi/tagbar', { 'for': ['javascript', 'go', 'python', 'ruby', 'java', 'markdown', 'dart', 'lua'] }
+Plug 'majutsushi/tagbar', { 'for': ['javascript', 'go', 'python', 'ruby', 'java', 'markdown', 'dart', 'lua'] }
 
 " 注释插件
-Plug 'scrooloose/nerdcommenter', { 'on':  '<Plug>NERDCommenterToggle' }
+Plug 'preservim/nerdcommenter'
 
 " 搜索
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } 
@@ -64,7 +64,7 @@ Plug 'npxbr/glow.nvim', {'do': ':GlowInstall'}
 " -----------------------------
 " Web
 " -----------------------------
-Plug 'mattn/emmet-vim', { 'for': 'javascript' }
+Plug 'mattn/emmet-vim', { 'for': ['javascript', 'vue', 'html', 'css'] }
 
 
 " -----------------------------
@@ -73,8 +73,5 @@ Plug 'mattn/emmet-vim', { 'for': 'javascript' }
 Plug 'neovim/nvim-lspconfig'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/deoplete-lsp'
-" Plug 'Shougo/neosnippet.vim'
-" Plug 'Shougo/neosnippet-snippets'
-
 
 call plug#end()
