@@ -23,8 +23,8 @@ map('n', '<leader>2', [[:lua require'actions'.view.structure()<cr>]])
 -----------------------------
 
 map('n', '<leader>;', [[:lua require'actions'.search.file()<cr>]])
-map('n', '<leader>\'w', [[:lua require'actions'.search.file()<cr>]])
-map('n', '<leader>\'c', [[:lua require'actions'.search.file()<cr>]])
+map('n', '<leader>\'w', [[:lua require'actions'.search.word_buf()<cr>]])
+map('n', '<leader>\'c', [[:lua require'actions'.search.word()<cr>]])
 
 
 
