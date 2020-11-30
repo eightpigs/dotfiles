@@ -1,12 +1,9 @@
-local require = import and import(...) or require
 local sign_define = vim.fn.sign_define
 local command = vim.api.nvim_command
 local lsp = vim.lsp
 local b = vim.b
 local fn = vim.fn
 local M = {}
-
-require 'servers'
 
 sign_define(
   "LspDiagnosticsErrorSign",
@@ -45,7 +42,7 @@ sign_define(
   }
 )
 
--- command [[autocmd CursorHold  * lua vim.lsp.util.show_line_diagnostics()]]
+command [[autocmd CursorHold  * lua vim.lsp.util.show_line_diagnostics()]]
 command [[autocmd CursorHold  * lua vim.lsp.buf.document_highlight()]]
 command [[autocmd CursorHoldI * lua vim.lsp.buf.document_highlight()]]
 command [[autocmd CursorMoved * lua vim.lsp.buf.clear_references()]]
@@ -66,6 +63,6 @@ function M.currentLSPServer()
   return name_str
 end
 
-command("command LSPServer :lua print(require'lsp'.currentLSPServer())")
+command("command LSPServer :lua print(require'lsp.base'.currentLSPServer())")
 
 return M

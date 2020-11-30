@@ -1,4 +1,4 @@
-local nvim_lsp = require 'nvim_lsp'
+local lspconfig = require 'lspconfig'
 local lsp = vim.lsp
 
 local servers = {
@@ -10,20 +10,20 @@ local servers = {
   {
     name = 'vuels',
     config = {
-      root_dir = nvim_lsp.util.root_pattern("package.json", '.eslintrc.js', ".git"),
+      root_dir = lspconfig.util.root_pattern("package.json", '.eslintrc.js', ".git"),
       filetypes = { "vue", "javascript" }
     }
   },
   {
     name = 'cssls',
     config = {
-      root_dir = nvim_lsp.util.root_pattern('.git', 'package.json')
+      root_dir = lspconfig.util.root_pattern('.git', 'package.json')
     }
   },
   {
     name = 'html',
     config = {
-      root_dir = nvim_lsp.util.root_pattern('.git', 'package.json'),
+      root_dir = lspconfig.util.root_pattern('.git', 'package.json'),
       filetypes = { "html" },
       configurationSection = { "html"},
       embeddedLanguages = {
@@ -35,14 +35,14 @@ local servers = {
   {
     name = 'gopls',
     config = {
-      root_dir = nvim_lsp.util.root_pattern("go.mod", ".git");
+      root_dir = lspconfig.util.root_pattern("go.mod", ".git");
     }
   },
   {name = 'pyls'},
   {
     name = 'rust_analyzer',
     config = {
-      root_dir = nvim_lsp.util.root_pattern('Cargo.toml', 'rust-project.json', '.git');
+      root_dir = lspconfig.util.root_pattern('Cargo.toml', 'rust-project.json', '.git');
       settings = {
         ["rust-analyzer"] = {}
       }
@@ -51,7 +51,7 @@ local servers = {
   {
     name = "jdtls",
     config = {
-      root_dir = nvim_lsp.util.root_pattern("pom.xml", "settings.gradle", "gradle.properties", "build.gradle", ".git");
+      root_dir = lspconfig.util.root_pattern("pom.xml", "settings.gradle", "gradle.properties", "build.gradle", ".git");
       init_options = {
         jvm_args = {},
         -- workspace = "~/workspace/java"
@@ -61,7 +61,7 @@ local servers = {
   {
     name = "dartls",
     config = {
-      root_dir = nvim_lsp.util.root_pattern('.git', '.pubspec.yaml');
+      root_dir = lspconfig.util.root_pattern('.git', '.pubspec.yaml');
       init_options = {
         closingLabels = "true",
         flutterOutline = "true",
@@ -80,5 +80,5 @@ local servers = {
 
 for _, server in ipairs(servers) do
   local config = server.config or {}
-  nvim_lsp[server.name].setup(config)
+  lspconfig[server.name].setup(config)
 end

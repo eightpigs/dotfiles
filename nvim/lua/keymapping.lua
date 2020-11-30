@@ -1,8 +1,6 @@
 -------------------------------------------------------------------------------
 -- Key Mappings
 -------------------------------------------------------------------------------
-local require = import and import(...) or require
-
 local map = require 'utils'.vim.map
 local g = vim.g
 
