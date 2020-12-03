@@ -42,10 +42,10 @@ sign_define(
   }
 )
 
-command [[autocmd CursorHold  * lua vim.lsp.util.show_line_diagnostics()]]
-command [[autocmd CursorHold  * lua vim.lsp.buf.document_highlight()]]
-command [[autocmd CursorHoldI * lua vim.lsp.buf.document_highlight()]]
-command [[autocmd CursorMoved * lua vim.lsp.buf.clear_references()]]
+-- command [[autocmd CursorHold  * lua vim.lsp.util.show_line_diagnostics()]]
+-- command [[autocmd CursorHold  * lua vim.lsp.buf.document_highlight()]]
+-- command [[autocmd CursorHoldI * lua vim.lsp.buf.document_highlight()]]
+-- command [[autocmd CursorMoved * lua vim.lsp.buf.clear_references()]]
 
 function M.currentLSPServer()
   local bufnr = fn.bufnr('%')

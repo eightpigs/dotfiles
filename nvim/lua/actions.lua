@@ -6,13 +6,27 @@ local g = vim.g
 local t = vim.t
 local fn = vim.fn
 local lsp = vim.lsp
-local command = vim.api.nvim_command local M = {
+local command = vim.api.nvim_command
+local M = {
   view = {},
   search = {},
   navigate = {},
   edit = {},
   run = {}
 }
+
+
+-----------------------------
+-- Tools
+-----------------------------
+local function lsp_exec(func, msg)
+  local ready = lsp.buf.server_ready()
+  if ready ~= nil and ready then
+    func()
+  elseif msg ~= nil and string.len(msg) > 0 then
+    print(msg)
+  end
+end
 
 
 
@@ -72,12 +86,17 @@ end
 -- search word in current buffer.
 function M.search.word_buf(word)
   -- TODO or BLines / Lines ?
-  _search_word(word, function(w) command('/ '..w) end)
+  _search_word(word, function(w) command('/'..w) end)
 end
 
 -- search word in everywhere.
 function M.search.word(word)
   _search_word(word, function(w) command('Ag '..w) end)
+end
+
+-- search and highlight current word.
+function M.search.document_highlight()
+  lsp_exec(lsp.buf.document_highlight, '')
 end
 
 
@@ -86,15 +105,6 @@ end
 -- Navigate
 -----------------------------
 
-local function lsp_exec(func, msg)
-  local ready = lsp.buf.server_ready()
-  if ready ~= nil and ready then
-    func()
-  else
-    print(msg)
-  end
-end
-
 -- navigate to definition, need lsp.
 function M.navigate.definition()
   lsp_exec(lsp.buf.definition, 'Navigate to definition need LSP support.')
@@ -102,28 +112,28 @@ end
 
 -- navigate to implementation, need lsp.
 function M.navigate.implementation()
-  lsp_exec(lsp.buf.implementation, 'Navigate to implementatio nneed LSP support.')
+  lsp_exec(lsp.buf.implementation, 'Navigate to implementatio need LSP support.')
 end
 
 -- navigate to declaration, need lsp.
 function M.navigate.declaration()
-  lsp_exec(lsp.buf.declaration, 'Navigate to declaration nneed LSP support.')
+  lsp_exec(lsp.buf.declaration, 'Navigate to declaration need LSP support.')
 end
 
 -- show all references, need lsp.
 function M.navigate.references()
-  lsp_exec(lsp.buf.references, 'Show & Navigate to references nneed LSP support.')
+  lsp_exec(lsp.buf.references, 'Show & Navigate to references need LSP support.')
 end
 
 -- show all symbols, need lsp.
 function M.navigate.symbols()
-  lsp_exec(lsp.buf.document_symbol, 'Show & Navigate to symbols nneed LSP support.')
+  lsp_exec(lsp.buf.document_symbol, 'Show & Navigate to symbols need LSP support.')
 end
 
 
 
 -----------------------------
--- Edit
+-- Code
 -----------------------------
 
 -- toggle comment

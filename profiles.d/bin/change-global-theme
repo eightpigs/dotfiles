@@ -1,0 +1,43 @@
+#!/bin/sh
+
+
+next=$1
+
+_sed() {
+  sed_cmd1=$1
+  sed_cmd2=$2
+  cfg=$3
+  os=`uname -s`
+  if [ "$os" == 'Darwin' ]; then
+    sed -i '' $sed_cmd1 $cfg
+    sed -i '' $sed_cmd2 $cfg
+  else
+    sed -i $sed_cmd1 $cfg
+    sed -i $sed_cmd2 $cfg
+  fi
+}
+
+change_alacritty () {
+  cfg=~/.config/alacritty/alacritty.yml
+  if test -f "$cfg"; then
+    cur=`cat $cfg | grep "^colors-.*:$" | awk '{print(index($1,"dark")>0?"light":"dark")}'`
+    if [ "$next" != "$cur" ]; then
+      sed_cmd1='/colors:/s/colors:/colors-'$cur':/g'
+      sed_cmd2='/colors-'$next':/s/colors-'$next':/colors:/g'
+      _sed $sed_cmd1 $sed_cmd2 $cfg
+    fi
+  fi
+}
+
+change_vim () {
+  cfg=~/.config/nvim/interface.vim
+  if test -f "$cfg"; then
+    cur=`cat $cfg | grep '^call .*Theme()' | awk '{print(index($0,"Light")>0?"light":"dark")}'`
+    if [ "$next" != "$cur" ]; then
+      sed_cmd1='/call .'
+    fi
+  fi
+}
+
+
+change_alacritty

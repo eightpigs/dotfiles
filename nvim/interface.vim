@@ -70,6 +70,7 @@ fun! LightTheme() abort
   set background=light
   colorscheme base16-mexico-light
   call ReHighlight()
+  :silent !change-global-theme light
 endfun
 
 fun! DarkTheme() abort
@@ -77,6 +78,7 @@ fun! DarkTheme() abort
   set background=dark
   colorscheme base16-default-dark
   call ReHighlight()
+  :silent !change-global-theme dark
 endfun
 
 fun! ToggleTheme() abort
@@ -90,8 +92,8 @@ fun! ToggleTheme() abort
   redr
 endfun
 
-" call LightTheme()
-call DarkTheme()
+call LightTheme()
+" call DarkTheme()
 call ReHighlight()
 
 command Light :call LightTheme()
