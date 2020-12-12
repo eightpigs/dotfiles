@@ -1,0 +1,4 @@
+isLinux=`uname -o`
+if [[ "$isLinux" = "GNU/Linux" ]]; then
+  export FZF_DEFAULT_COMMAND='ag --hidden --color -p ~/.config/.ignore -U -g ""'
+fi

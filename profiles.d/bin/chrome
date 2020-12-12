@@ -1,0 +1,1 @@
+nohup chromium %U --enable-features=WebUIDarkMode --force-dark-mode --proxy-server=192.168.1.3:8890 >/dev/null 2>&1 & 

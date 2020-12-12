@@ -1,0 +1,222 @@
+;; include-file = /home/eightpigs/.config/polybar/colors/blue_grey
+;; include-file = /home/eightpigs/.config/polybar/colors/black
+include-file = /home/eightpigs/.config/polybar/colors/black_pure
+;; include-file = /home/eightpigs/.config/polybar/colors/gray
+
+[bar/top]
+;; xrandr --query | grep " connected"
+monitor = ${env:MONITOR:DP-2}
+;; monitor = ${env:MONITOR:HDMI-0}
+width = 100%
+height = 40
+radius = 2.0
+fixed-center = true
+top = true
+
+;override-redirect = true
+offset-x = 17
+offset-y = 10
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 5
+line-color = #f00
+
+;; border-size = 2
+;; border-color = ${colors.primary}
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 0
+module-margin-right = 0
+
+;; tray-position = right
+;; tray-detached = false
+;; tray-maxsize = 50
+;; tray-background = #FFFFFF
+;; tray-offset-x = -20
+;; tray-offset-y = -10
+;; tray-padding = 20
+
+;; fc-cache -f -v 
+;; gucharmap
+font-0 = Roboto:size=16;2
+;; font-0 = JetBrains Mono:style=Regular:size=16;2
+;; font-0 = Monaco:size=16;2
+font-1 = FontAwesome5Free:style=Solid:pixelsize=14:antialias=false;2
+font-2 = FontAwesome5Brands:style=Solid:pixelsize=10:antialias=false;2
+font-3 = FontAwesome5Free:style=Solid:pixelsize=14:antialias=false;4
+font-4 = Unifont:style=Medium:pixelsize=16:antialias=false;4
+font-5 = Source Han Sans CN,思源黑体 CN,Source Han Sans CN Normal,思源黑体 CN Normal:style=Normal,Regula:size=16;2
+font-6 = JetBrains Mono:style=Bold:size=16;2
+font-7 = JetBrains Mono:style=Regular:size=14;2
+font-8 = JetBrains Mono:style=Regular:size=16;2
+
+
+modules-left = i3 
+modules-center = xwindow
+modules-right = eth eth1 memory cpu pulseaudio date 
+
+wm-restack = i3
+
+dpi-x = 100
+dpi-y = 100
+
+dim-value = 1.0
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/xwindow]
+type = internal/xwindow
+label = %{T9} %title:0:200:...%
+# label-foreground = #333333
+# label-foreground = ${colors.foreground}
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+
+index-sort = true
+wrapping-scroll = false
+enable-scroll = false
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+ws-icon-0 = 1;%{T2}
+ws-icon-1 = 2;%{T4}
+ws-icon-2 = 3;%{T2}
+ws-icon-3 = 4;%{T2}
+ws-icon-4 = 5;%{T4}
+ws-icon-5 = 6;%{T4}
+ws-icon-6 = 7;7
+ws-icon-7 = 8;%{T4}
+ws-icon-8 = 9;%{T4}
+ws-icon-9 = 10;%{T4}
+
+; focused = Active workspace on focused monitor
+label-focused = %icon%
+label-focused-background = ${colors.primary-bg}
+label-focused-underline = ${colors.primary}
+label-focused-padding = 4
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %icon%
+label-unfocused-padding = 4
+label-unfocused-foreground = ${colors.foreground}
+
+; visible = Active workspace on unfocused monitor
+label-visible = %index%. %icon%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%. %icon%
+label-urgent-background = ${colors.primary}
+label-urgent-padding = 4
+
+[module/eth]
+type = internal/network
+interface = ens18
+interval = 0.5
+label-connected = %{T7} ↑:%upspeed% %downspeed%
+label-connected-foreground = ${colors.fg-01}
+label-connected-background = ${colors.bg-01}
+label-connected-padding = 4 
+
+label-disconnected = %ifname% disconnected
+label-disconnected-foreground = ${colors.fg-01}
+label-disconnected-background = ${colors.bg-01}
+
+[module/eth1]
+type = internal/network
+interface = eno2
+interval = 0.5
+;; label-connected =%{T7} ↑:%{T8} %upspeed%  %{T7}↓:%{T8} %downspeed%
+label-connected =%{T7}NET:%{T8} ↑ %upspeed%   ↓: %downspeed%
+label-connected-foreground = ${colors.fg-01}
+label-connected-background = ${colors.bg-01}
+label-connected-padding = 4
+
+label-disconnected = %ifname% disconnected
+label-disconnected-foreground = ${colors.fg-01}
+label-disconnected-background = ${colors.bg-01}
+
+[module/date]
+type = internal/date
+interval = 1.0
+date = %{T7} %a,%{T8} %Y-%m-%d %H:%M
+date-alt = %{T7} %A, %Y %B %d %H:%M
+format-foreground = ${colors.fg-05}
+format-background = ${colors.bg-05}
+format-padding = 4
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <label-volume> <bar-volume>
+;; label-volume = %{T2} %{T-} %percentage%%
+label-volume = %{T7}AUDIO:%{T8} %percentage%%
+label-volume-foreground = ${colors.fg-04}
+format-volume-background = ${colors.bg-04}
+format-volume-padding = 4
+
+label-muted = %{T4} %{T-}
+label-muted-foreground = #666
+format-muted-background = #D4D4D4
+format-muted-padding = 4
+
+bar-volume-width = 1
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+;; if empty, do not display progress bar
+bar-volume-indicator =
+bar-volume-indicator-font = 0
+bar-volume-fill = 
+bar-volume-fill-font = 4
+bar-volume-empty = 
+bar-volume-empty-font = 4
+bar-volume-empty-foreground = #555555
+
+[module/cpu]
+type = internal/cpu
+interval = 1
+format = <label>
+label =%{T7}CPU:%{T8} %percentage%%
+label-foreground= ${colors.fg-03}
+label-background = ${colors.bg-03}
+label-padding = 5
+
+[module/memory]
+type = internal/memory
+interval = 1
+format = <label>
+label = %{T7}RAM:%{T8} %gb_used%/%gb_free%
+
+label-foreground= ${colors.fg-02}
+label-background = ${colors.bg-02}
+label-padding = 5
+
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
