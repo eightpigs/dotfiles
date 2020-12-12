@@ -1,0 +1,27 @@
+[colors]
+background = #2D2D2D
+foreground = #F1F1F1
+foreground-alt=#F1F1F1
+primary = #FF0000
+primary-bg = #444
+
+bg-07 = #2D2D2D
+fg-07 = #FFFFFF
+
+bg-06 = #2D2D2D
+fg-06 = #FFFFFF
+
+bg-05 = #2D2D2D
+fg-05 = #FFFFFF
+
+bg-04 = #2D2D2D
+fg-04 = #FFFFFF
+
+bg-03 = #2D2D2D
+fg-03 = #FFFFFF
+
+bg-02 = #2D2D2D
+fg-02 = #FFFFFF
+
+bg-01 = #2D2D2D
+fg-01 = #FFFFFF

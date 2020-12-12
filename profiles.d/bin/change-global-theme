@@ -1,0 +1,61 @@
+#!/bin/bash
+
+cfg=~/.config/.terminal-theme
+specified_theme=$1
+
+get_cur_theme() {
+  if [ ! -f "$cfg" ]; then
+    echo 'dark' > $cfg
+  fi
+  echo `cat $cfg`
+}
+
+get_next_theme() {
+  if [ ! "$specified_theme" ]; then
+    if [ "$1" == 'dark' ]; then
+      echo 'light'
+    else
+      echo 'dark'
+    fi
+  else
+    echo $specified_theme
+  fi
+}
+ 
+_sed() {
+  sed_cmd1=$1
+  sed_cmd2=$2
+  os=`uname -s`
+  if [ "$os" == 'Darwin' ]; then
+    sed -i '' $sed_cmd1 $3
+    sed -i '' $sed_cmd2 $3
+  else
+    sed -i $sed_cmd1 $3
+    sed -i $sed_cmd2 $3
+  fi
+}
+
+change_alacritty () {
+  alacritty_cfg=~/.config/alacritty/alacritty.yml
+  if test -f "$alacritty_cfg"; then
+    cur=$1
+    next=$2
+    cur_in_cfg=`cat $alacritty_cfg | grep "^colors-.*:$" | awk '{print(index($1,"dark")>0?"light":"dark")}'`
+    if [ "$next" != "$cur_in_cfg" ]; then
+      sed_cmd1='/colors:/s/colors:/colors-'$cur':/g'
+      sed_cmd2='/colors-'$next':/s/colors-'$next':/colors:/g'
+      _sed $sed_cmd1 $sed_cmd2 $alacritty_cfg
+    fi
+  fi
+}
+
+change(){
+  cur=`get_cur_theme`
+  next=`get_next_theme $cur`
+
+  change_alacritty $cur $next
+
+  echo $next > $cfg
+}
+
+change

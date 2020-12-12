@@ -1,0 +1,4 @@
+#!/bin/sh
+HERE="$(dirname "$(readlink -f "${0}")")"
+export XDG_CURRENT_DESKTOP=DDE
+exec "${HERE}"/netease-cloud-music --force-device-scale-factor=2 $@

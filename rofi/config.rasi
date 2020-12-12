@@ -1,0 +1,25 @@
+configuration {
+  modi: "window,run,ssh,drun";
+  width: 50;
+  lines: 15;
+  columns: 1;
+  font: "JetBrains Mono 11";
+  show-icons: true;
+  padding: 20;
+  bw: 1;
+  eh: 1;
+  dpi: 1;
+  run-command: "{cmd}";
+  terminal: "alacritty";
+  ssh-client: "ssh";
+  ssh-command: "{terminal} -e {ssh-client} {host}";
+  run-shell-command: "{terminal} -e {cmd}";
+  window-command: "xkill -id {window}";
+  sidebar-mode: true;
+  combi-hide-mode-prefix: false;
+  icon-theme: "Paper-Mono-Dark";
+  drun-icon-theme: "Paper-Mono-Dark";
+}
+
+/* @import "/usr/share/rofi/themes/gruvbox-dark.rasi" */
+@import "./themes/default.rasi"
