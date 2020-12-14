@@ -66,3 +66,6 @@ export NVIM_HOME PATH
 RUST_HOME=~/.cargo
 PATH=$PATH:$RUST_HOME/bin
 export PATH RUST_HOME
+
+
+export FZF_DEFAULT_COMMAND='ag --hidden --color -p ~/.config/.ignore -U -g ""'
