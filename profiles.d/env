@@ -1,5 +1,5 @@
 SOFTWARE_PATH=~/.local
-WORKSPACE_PATH=/workspace
+WORKSPACE_PATH=~/Workspace
 
 export LC_ALL=en_US.UTF-8  
 export LANG=en_US.UTF-8
