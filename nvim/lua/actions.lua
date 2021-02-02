@@ -130,6 +130,15 @@ function M.navigate.symbols()
   lsp_exec(lsp.buf.document_symbol, 'Show & Navigate to symbols need LSP support.')
 end
 
+function M.navigate.diagnostic_next()
+  lsp_exec(vim.lsp.diagnostic.goto_next, 'Move to the next diagnostic need LSP support.')
+end
+
+function M.navigate.diagnostic_prev()
+  lsp_exec(vim.lsp.diagnostic.goto_prev, 'Move to the prev diagnostic need LSP support.')
+end
+
+
 
 
 -----------------------------
@@ -149,14 +158,14 @@ end
 
 -- rename variable or function name, need lsp.
 function M.edit.rename()
-  lsp.exec(lsp.buf.rename, 'rename need LSP support.')
+  lsp_exec(lsp.buf.rename, 'rename need LSP support.')
 end
 
 
 -- format document, need lsp.
 function M.edit.format()
   -- TODO support range_formatting()
-  lsp.exec(function() lsp.buf.formatting_sync(nil, 1000) end, 'format need LSP support.')
+  lsp_exec(function() lsp.buf.formatting_sync(nil, 1000) end, 'format need LSP support.')
 end
 
 

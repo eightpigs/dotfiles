@@ -3,57 +3,58 @@
 "-------------------------------------------------------------------------------
 
 " 关闭兼容模式
-set nocompatible                                    
+set nocompatible
 
 " 使用旧的正则表达式引擎
-set regexpengine=1                                  
+set regexpengine=1
 
 " 减少重绘次数
-set lazyredraw                                      
+set lazyredraw
 
 " 关闭响声
-set noeb novb                                       
+set noeb novb
 
 " backspace按键的工作方式
-set backspace=eol,start,indent                      
+set backspace=eol,start,indent
 
 " 调整补全列表行为
-set completeopt=menuone,menu,noselect,noinsert      
+set completeopt=menuone,menu,noselect,noinsert
 
 set updatetime=250
 
 " 设置分割线
-set fillchars=vert:│,stl:\ ,stlnc:\                 
+set fillchars=vert:│,stl:\ ,stlnc:\ 
+set list lcs=tab:\ \ ,conceal:\|
 
 " 使用系统的剪切板
-set clipboard=unnamedplus                           
+set clipboard=unnamedplus
 
 " 分割窗口时默认在右边、下边
-set splitright splitbelow                           
+set splitright splitbelow
 
 " 开启实时搜索功能
-set incsearch                                       
+set incsearch
 
 " 高亮显示搜索结果
-set hlsearch                                        
+set hlsearch
 
 " 搜索时大小写不敏感
-set ignorecase                                      
+set ignorecase
 
 " 如果有大写，则大小写敏感
-set smartcase                                       
+set smartcase
 
 " vim 自身命令行模式智能补全
-set wildmenu                                        " 
+set wildmenu
 
 " 总是显示状态栏
-set laststatus=2                                    
+set laststatus=2
 
 " 显示光标当前位置
-set ruler                                           
+set ruler
 
 " 关闭自动折行
-set nowrap                                          
+set nowrap
 
 " 开启语法高亮
 syntax on
@@ -83,11 +84,18 @@ set relativenumber
 set scrolloff=10
 
 " 基于缩进或语法进行代码折叠
-set foldmethod=indent
-" set foldmethod=syntax
-set nofoldenable
-set foldcolumn=0
-set signcolumn=auto
+set foldmethod=manual
+set foldlevelstart=2
+set foldenable
+set foldcolumn=auto:1
+set signcolumn=auto:1
+
+" 保持缩进
+augroup remember_folds
+  autocmd!
+  autocmd BufWritePre * mkview
+  autocmd BufWritePost * silent! loadview
+augroup END
 
 set nocursorcolumn
 set nocursorline
@@ -119,7 +127,7 @@ set wildignore+=*.jpg,*.png,*.jpeg,*.gif,*.svg,*.ico
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*,*/bower_components/*
 
 " 自动载入被修改的文件
-set autoread                                        
+set autoread
 au FocusGained,BufEnter * checktime
 
 filetype plugin indent on

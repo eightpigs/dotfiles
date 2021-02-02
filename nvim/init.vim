@@ -1,6 +1,6 @@
 source ~/.config/nvim/base.vim
-source ~/.config/nvim/plugins.vim
 source ~/.config/nvim/interface.vim
-source ~/.config/nvim/statusline.vim
 
-lua require 'init'
+lua require 'plugins'
+lua require 'actions'
+lua require 'keymapping'

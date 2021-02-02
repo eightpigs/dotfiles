@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 -- Key Mappings
 -------------------------------------------------------------------------------
-local map = require 'utils'.vim.map
+local map = require 'utils.vim'.map
 local g = vim.g
 
 g.mapleader = ' '
@@ -36,6 +36,9 @@ map('n', '<leader>gd', [[:lua require'actions'.navigate.declaration()<cr>]])
 map('n', '<leader>gr', [[:lua require'actions'.navigate.references()<cr>]])
 map('n', '<leader>gs', [[:lua require'actions'.navigate.symbols()<cr>]])
 
+map('n', '<leader>gn', [[:lua require'actions'.navigate.diagnostic_next()<cr>]])
+map('n', '<leader>gp', [[:lua require'actions'.navigate.diagnostic_prev()<cr>]])
+
 
 
 -----------------------------
@@ -44,6 +47,8 @@ map('n', '<leader>gs', [[:lua require'actions'.navigate.symbols()<cr>]])
 
 map('n', '<leader>or', [[:lua require'actions'.edit.rename()<cr>]])
 map('n', '<leader>of', [[:lua require'actions'.edit.format()<cr>]])
+-- TODO imports
+map('n', '<leader>oi', [[:lua require'actions'.edit.format()<cr>]])
 map('n', '<leader>/', [[:lua require'actions'.edit.comment()<cr>]])
 
 
@@ -52,30 +57,25 @@ map('n', '<leader>/', [[:lua require'actions'.edit.comment()<cr>]])
 -- Jump
 -----------------------------
 
-map('n', '<leader>j', [[:lua require'actions'.edit.rename()<cr>]])
-map('n', '<leader>j', [[:lua require'actions'.edit.format()<cr>]])
-map('n', '<leader>/', [[:lua require'actions'.edit.comment()<cr>]])
-
--- TODO
 map('n', '<leader>j;', [[g;zz]])
 map('n', '<leader>j,', [[g,zz]])
-
 
 
 
 -----------------------------
 -- Buffer
 -----------------------------
+
 map('n', '<leader>bn', [[:vnew<cr>]])
 map('n', '<leader>bo', [[:only<cr>]])
 map('n', '<leader>b;', [[:Buffers<cr>]])
 
 
 
-
 -----------------------------
 -- Windows
 -----------------------------
+
 map('n', '<leader>wl', [[<C-W>l]])
 map('n', '<leader>wh', [[<C-W>h]])
 map('n', '<leader>wk', [[<C-W>k]])

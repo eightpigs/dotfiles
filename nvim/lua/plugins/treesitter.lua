@@ -1,5 +1,7 @@
+local command = vim.api.nvim_command
+
 require'nvim-treesitter.configs'.setup {
-  -- ensure_installed = "maintained",
+  ensure_installed = "maintained",
   highlight = {
     enable = true,
   },
@@ -7,3 +9,8 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
   }
 }
+
+command [[
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+]]
