@@ -3,57 +3,58 @@
 "-------------------------------------------------------------------------------
 
 " 
-set nocompatible                                    
+set nocompatible
 
 " 
-set regexpengine=1                                  
+set regexpengine=1
 
 " 
-set lazyredraw                                      
+set lazyredraw
 
 " 
-set noeb novb                                       
+set noeb novb
 
 " backspace
-set backspace=eol,start,indent                      
+set backspace=eol,start,indent
 
 " 
-set completeopt=menuone,menu,noselect,noinsert      
+set completeopt=menuone,menu,noselect,noinsert
 
 set updatetime=250
 
 " 
-set fillchars=vert:,stl:\ ,stlnc:\                 
+set fillchars=vert:,stl:\ ,stlnc:\ 
+set list lcs=tab:\ \ ,conceal:\|
 
 " 
-set clipboard=unnamedplus                           
+set clipboard=unnamedplus
 
 " 
-set splitright splitbelow                           
+set splitright splitbelow
 
 " 
-set incsearch                                       
+set incsearch
 
 " 
-set hlsearch                                        
+set hlsearch
 
 " 
-set ignorecase                                      
+set ignorecase
 
 " ï
-set smartcase                                       
+set smartcase
 
 " vim 
-set wildmenu                                        " 
+set wildmenu
 
 " 
-set laststatus=2                                    
+set laststatus=2
 
 " 
-set ruler                                           
+set ruler
 
 " 
-set nowrap                                          
+set nowrap
 
 " 
 syntax on
@@ -83,11 +84,18 @@ set relativenumber
 set scrolloff=10
 
 " 
-set foldmethod=indent
-" set foldmethod=syntax
-set nofoldenable
-set foldcolumn=0
-set signcolumn=auto
+set foldmethod=manual
+set foldlevelstart=2
+set foldenable
+set foldcolumn=auto:1
+set signcolumn=auto:1
+
+" 
+augroup remember_folds
+  autocmd!
+  autocmd BufWritePre * mkview
+  autocmd BufWritePost * silent! loadview
+augroup END
 
 set nocursorcolumn
 set nocursorline
@@ -119,7 +127,7 @@ set wildignore+=*.jpg,*.png,*.jpeg,*.gif,*.svg,*.ico
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*,*/bower_components/*
 
 " 
-set autoread                                        
+set autoread
 au FocusGained,BufEnter * checktime
 
 filetype plugin indent on
