@@ -1,1 +1,7 @@
-export TERM=xterm-256color
+in_tmux=`echo $TMUX`
+if test -z $in_tmux ; then
+  export TERM=xterm-256color
+else
+  export TERM=tmux-256color
+fi
+
