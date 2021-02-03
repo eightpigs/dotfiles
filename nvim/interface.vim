@@ -74,6 +74,9 @@ fun! ReHighlight() abort
   execute 'hi VertSplit guibg='.l:normal_guibg
   execute 'hi FoldColumn guifg='.foled_guifg
   execute 'hi Conceal guifg='.foled_guifg
+  execute 'hi TabLine guibg=NONE'
+  execute 'hi TabLineSel guibg='.l:normal_guibg
+  execute 'hi TabLineFill guibg=NONE'
 
   if hlexists('GitGutterAdd')
     execute 'hi gitGutterAdd guibg='.l:normal_guibg
