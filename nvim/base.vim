@@ -132,5 +132,16 @@ au FocusGained,BufEnter * checktime
 
 filetype plugin indent on
 
+augroup Binary
+  au!
+  au BufReadPre  *.bin,*.class let &bin=1
+  au BufReadPost *.bin,*.class if &bin | %!xxd
+  au BufReadPost *.bin,*.class set ft=xxd | endif
+  au BufWritePre *.bin,*.class if &bin | %!xxd -r
+  au BufWritePre *.bin,*.class endif
+  au BufWritePost *.bin,*.class if &bin | %!xxd
+  au BufWritePost *.bin,*.class set nomod | endif
+augroup END
+
 let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'

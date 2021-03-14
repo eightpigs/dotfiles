@@ -63,10 +63,6 @@ fun! ReHighlight() abort
   let l:visual_guibg = GetHighlightTerm("Visual", "guibg")
   let l:foled_guifg = GetHighlightTerm("Folded", "guifg")
 
-  " execute 'hi LspReferenceText cterm=bold gui=bold,undercurl ctermfg=1 guibg='l:visual_guibg
-  " execute 'hi LspReferenceRead cterm=bold gui=bold,undercurl ctermfg=1 guibg='l:visual_guibg
-  " execute 'hi LspReferenceWrite cterm=bold gui=bold,undercurl ctermfg=1 guibg='l:visual_guibg
-
   execute 'hi LineNr guibg='.l:normal_guibg
   execute 'hi SignColumn guibg='.l:normal_guibg
   execute 'hi nonText guibg='.l:normal_guibg

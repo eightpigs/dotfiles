@@ -71,7 +71,6 @@ return require('packer').startup(function()
     config = [[require 'plugins.vim-rooter']]
   }
 
-	-- TODO check .editorconfig and load
 	use {
 		'editorconfig/editorconfig-vim',
     config = [[require 'plugins.editorconfig-vim']],
@@ -114,7 +113,8 @@ return require('packer').startup(function()
   use { 
     'fatih/vim-go', 
     ft = 'go', 
-    run = ':GoUpdateBinaries'
+    run = ':GoUpdateBinaries',
+    config = [[require 'plugins.vim-go']]
   }
 
   -- LSP支持 & 补全
@@ -124,15 +124,9 @@ return require('packer').startup(function()
     config = [[require 'lsp']]
   }
 
-  use {
-    'Shougo/deoplete.nvim', 
-    run = ':UpdateRemotePlugins' ,
-    config = [[require 'plugins.deoplete']]
-  }
-
-  use { 
-    'Shougo/deoplete-lsp', 
-    ft = { "bash", "vim", "json", "lua", "yaml", "vue", "css", "html", "go", "rust", "java", "dart", "javascript" },
-  }
+	use {
+		'hrsh7th/nvim-compe',
+    config = [[require 'plugins.nvim-compe']]
+	}
 
 end)

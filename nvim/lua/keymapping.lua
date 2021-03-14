@@ -49,7 +49,25 @@ map('n', '<leader>or', [[:lua require'actions'.edit.rename()<cr>]])
 map('n', '<leader>of', [[:lua require'actions'.edit.format()<cr>]])
 -- TODO imports
 map('n', '<leader>oi', [[:lua require'actions'.edit.format()<cr>]])
-map('n', '<leader>/', [[:lua require'actions'.edit.comment()<cr>]])
+map({'n'}, '<leader>/', [[:lua require'actions'.edit.comment('n')<cr>]])
+map({'v'}, '<leader>/', [[:lua require'actions'.edit.comment('v')<cr>]])
+
+
+
+-----------------------------
+-- Debug / Run
+-----------------------------
+map('n', '<F5>', [[:lua require'actions'.run.start()<cr>]])
+map('n', '<F3>', [[
+:lua require'actions'.run.stop()<cr>
+:lua require'actions'.debug.stop()<cr>
+]])
+map('n', '<F6>', [[:lua require'actions'.debug.start()<cr>]])
+map('n', '<F4>', [[:lua require'actions'.debug.breakpoint()<cr>]])
+map('n', '<F9>', [[:lua require'actions'.debug.continue()<cr>]])
+map('n', '<F8>', [[:lua require'actions'.debug.next()<cr>]])
+map('n', '<F7>', [[:lua require'actions'.debug.step()<cr>]])
+map('n', '<S-F7>', [[:lua require'actions'.debug.stepOut()<cr>]])
 
 
 

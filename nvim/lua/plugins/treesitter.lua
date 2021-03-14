@@ -6,11 +6,11 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
   },
   indent = {
-    enable = true,
+    enable = false,
   }
 }
 
-command [[
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-]]
+-- command [[
+-- set foldmethod=expr
+-- set foldexpr=nvim_treesitter#foldexpr()
+-- ]]
