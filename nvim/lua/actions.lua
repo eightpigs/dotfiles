@@ -6,13 +6,27 @@ local g = vim.g
 local t = vim.t
 local fn = vim.fn
 local lsp = vim.lsp
+local bo = vim.bo
 local command = vim.api.nvim_command
+
+local _actions = {}
+
 local M = {
   view = {},
   search = {},
   navigate = {},
   edit = {},
-  run = {}
+  run = {},
+  debug = {},
+  register = function(ft, key, func) 
+    if _actions[ft] == nil then
+      _actions[ft] = {}
+    end
+    _actions[ft][key] = func
+  end,
+  registerMulti = function(ft, dict) 
+    _actions[ft] = dict
+  end
 }
 
 
@@ -25,6 +39,13 @@ local function lsp_exec(func, msg)
     func()
   elseif msg ~= nil and string.len(msg) > 0 then
     print(msg)
+  end
+end
+
+local function exec_action(key) 
+  local ft = bo.filetype
+  if _actions[ft] ~= nil and _actions[ft][key] ~= nil then
+    _actions[ft][key]()
   end
 end
 
@@ -99,6 +120,10 @@ function M.search.document_highlight()
   lsp_exec(lsp.buf.document_highlight, '')
 end
 
+function M.search.clear_references()
+  lsp_exec(lsp.buf.clear_references, '')
+end
+
 
 
 -----------------------------
@@ -146,11 +171,14 @@ end
 -----------------------------
 
 -- toggle comment
-function M.edit.comment()
+function M.edit.comment(mode)
   if g.NERDSpaceDelims ~= nil then
-    command([[call NERDComment(0, 'toggle')]])
+    if mode == 'v' then
+     command([['<,'>call NERDComment('n', 'toggle')]])
+    else
+      command([[call NERDComment('n', 'toggle')]])
+    end
   else
-    -- TODO impl a filetypes to comment map
     print('Not support toggle comment.')
   end
 end
@@ -175,18 +203,43 @@ end
 -----------------------------
 
 function M.run.start()
-end
-
-function M.run.debug()
+  exec_action('run.start')
 end
 
 function M.run.restart()
+  exec_action('run.restart')
 end
 
 function M.run.stop()
+  exec_action('run.stop')
 end
 
-function M.run.breakpoint()
+function M.debug.start()
+  exec_action('debug.start')
+end
+
+function M.debug.stop()
+  exec_action('debug.stop')
+end
+
+function M.debug.breakpoint()
+  exec_action('debug.breakpoint')
+end
+
+function M.debug.continue()
+  exec_action('debug.continue')
+end
+
+function M.debug.next()
+  exec_action('debug.next')
+end
+
+function M.debug.step()
+  exec_action('debug.step')
+end
+
+function M.debug.stepOut()
+  exec_action('debug.stepOut')
 end
 
 return M

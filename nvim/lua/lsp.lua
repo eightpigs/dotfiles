@@ -6,8 +6,6 @@ local lsp = vim.lsp
 local b = vim.b
 local M = {}
 
-local _home = os.getenv('HOME')
-
 sign_define(
   "LspDiagnosticsErrorSign",
   {
@@ -50,7 +48,13 @@ function initServers()
     {name = 'bashls'},
     {name = 'vimls'},
     {name = 'jsonls'},
-    {name = 'sumneko_lua'},
+    {
+      name = 'sumneko_lua',
+      config = {
+        cmd = {vim.loop.os_homedir() .. "/.local/bin/lua-language-server", "-E", },
+        filetypes = {'lua'}
+      }
+    },
     {name = 'yamlls'},
     {
       name = 'vuels',
@@ -96,7 +100,7 @@ function initServers()
         root_dir = lspconfig.util.root_pattern(".project", "pom.xml", "settings.gradle", "gradle.properties", "build.gradle", ".git");
         init_options = {
           jvm_args = {},
-          workspace = _home.."/Workspace/java/"
+          workspace = vim.loop.os_homedir() .."/Workspace/java/"
         }
       }
     },
@@ -144,5 +148,10 @@ end
 initServers()
 
 command("command LSPServer :lua print(require'lsp'.currentLSPServer())")
+
+-- command [[autocmd CursorHold  * lua vim.lsp.util.show_line_diagnostics()]]
+-- command [[autocmd CursorHold  * lua require'actions'.search.document_highlight()]]
+-- command [[autocmd CursorHoldI * lua require'actions'.search.document_highlight()]]
+-- command [[autocmd CursorMoved * lua require'actions'.search.clear_references()]]
 
 return M
