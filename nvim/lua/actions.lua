@@ -5,7 +5,6 @@
 local g = vim.g
 local t = vim.t
 local fn = vim.fn
-local lsp = vim.lsp
 local bo = vim.bo
 local command = vim.api.nvim_command
 
@@ -18,13 +17,13 @@ local M = {
   edit = {},
   run = {},
   debug = {},
-  register = function(ft, key, func) 
+  register = function(ft, key, func)
     if _actions[ft] == nil then
       _actions[ft] = {}
     end
     _actions[ft][key] = func
   end,
-  registerMulti = function(ft, dict) 
+  registerMulti = function(ft, dict)
     _actions[ft] = dict
   end
 }
@@ -33,16 +32,16 @@ local M = {
 -----------------------------
 -- Tools
 -----------------------------
-local function lsp_exec(func, msg)
-  local ready = lsp.buf.server_ready()
-  if ready ~= nil and ready then
-    func()
+local function coc_action(action, msg)
+  local ready = fn["coc#rpc#ready"]()
+  if ready ~= nil and ready == 1 then
+    command('call CocActionAsync("'.. action..'")')
   elseif msg ~= nil and string.len(msg) > 0 then
     print(msg)
   end
 end
 
-local function exec_action(key) 
+local function exec_action(key)
   local ft = bo.filetype
   if _actions[ft] ~= nil and _actions[ft][key] ~= nil then
     _actions[ft][key]()
@@ -83,6 +82,15 @@ function M.view.structure()
   end
 end
 
+function M.view.diagnostics()
+  local id = vim.fn.get(vim.fn.getloclist(0,{winid = 0}), 'winid', 0)
+  if (id == 0) then
+    command(':CocDiagnostics 4')
+  else
+    command(':lclose')
+  end
+end
+
 
 
 
@@ -117,11 +125,7 @@ end
 
 -- search and highlight current word.
 function M.search.document_highlight()
-  lsp_exec(lsp.buf.document_highlight, '')
-end
-
-function M.search.clear_references()
-  lsp_exec(lsp.buf.clear_references, '')
+  coc_action('highlight', '')
 end
 
 
@@ -132,36 +136,35 @@ end
 
 -- navigate to definition, need lsp.
 function M.navigate.definition()
-  lsp_exec(lsp.buf.definition, 'Navigate to definition need LSP support.')
+  coc_action('jumpDefinition', 'Navigate to definition need LSP support.')
 end
 
 -- navigate to implementation, need lsp.
 function M.navigate.implementation()
-  lsp_exec(lsp.buf.implementation, 'Navigate to implementatio need LSP support.')
+  coc_action('jumpImplementation', 'Navigate to implementatio need LSP support.')
 end
 
 -- navigate to declaration, need lsp.
 function M.navigate.declaration()
-  lsp_exec(lsp.buf.declaration, 'Navigate to declaration need LSP support.')
+  coc_action('jumpDeclaration', 'Navigate to declaration need LSP support.')
 end
 
 -- show all references, need lsp.
 function M.navigate.references()
-  lsp_exec(lsp.buf.references, 'Show & Navigate to references need LSP support.')
+  coc_action('jumpReferences', 'Show & Navigate to references need LSP support.')
 end
 
 -- show all symbols, need lsp.
 function M.navigate.symbols()
-  lsp_exec(lsp.buf.document_symbol, 'Show & Navigate to symbols need LSP support.')
+  coc_action('documentSymbols', 'Show & Navigate to symbols need LSP support.')
 end
 
-function M.navigate.diagnostic_next()
-  lsp_exec(vim.lsp.diagnostic.goto_next, 'Move to the next diagnostic need LSP support.')
-end
-
-function M.navigate.diagnostic_prev()
-  lsp_exec(vim.lsp.diagnostic.goto_prev, 'Move to the prev diagnostic need LSP support.')
-end
+-- function M.navigate.diagnostic_next()
+--   coc_action(vim.lsp.diagnostic.goto_next, 'Move to the next diagnostic need LSP support.')
+-- end
+-- function M.navigate.diagnostic_prev()
+--   coc_action(vim.lsp.diagnostic.goto_prev, 'Move to the prev diagnostic need LSP support.')
+-- end
 
 
 
@@ -186,14 +189,23 @@ end
 
 -- rename variable or function name, need lsp.
 function M.edit.rename()
-  lsp_exec(lsp.buf.rename, 'rename need LSP support.')
+  coc_action('rename', 'rename need LSP support.')
 end
 
 
 -- format document, need lsp.
-function M.edit.format()
-  -- TODO support range_formatting()
-  lsp_exec(function() lsp.buf.formatting_sync(nil, 1000) end, 'format need LSP support.')
+function M.edit.format(mode)
+  if mode ~= nil and mode == 'v' then
+    coc_action('formatSelected', 'formatSelected need LSP support.')
+  else
+    coc_action('format', 'format need LSP support.')
+  end
+end
+
+
+-- organize import, need lsp.
+function M.edit.imports()
+  coc_action('organizeImport', 'organizeImport need LSP support.')
 end
 
 

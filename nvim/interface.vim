@@ -25,6 +25,14 @@ fun! GetHighlightTerm(group, term)
   return matchstr(output, a:term.'=\zs\S*')
 endfun
 
+fun! GetCocStatus()
+  let s:cs = coc#status()
+  if len(s:cs) > 0
+    return '[LSP: '.s:cs.']'
+  endif
+  return ''
+endfun
+
 func! Statusline() abort
   hi clear StatusLine
   hi clear StatusLineNC
@@ -36,6 +44,8 @@ func! Statusline() abort
   set statusline=
   set statusline+=%2*
   set statusline+=\ %t
+  set statusline+=\ 
+  set statusline+=\%{GetCocStatus()}
   set statusline+=%1*
   set statusline+=%{&readonly?'\ [R]':''}
   set statusline+=%{&modified?'\ [+]':''}

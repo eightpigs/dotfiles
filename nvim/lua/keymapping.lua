@@ -13,6 +13,7 @@ g.mapleader = ' '
 
 map('n', '<leader>1', [[:lua require'actions'.view.explore()<cr> zz]])
 map('n', '<leader>2', [[:lua require'actions'.view.structure()<cr>]])
+map('n', '<leader>3', [[:lua require'actions'.view.diagnostics()<cr>]])
 
 
 
@@ -20,6 +21,7 @@ map('n', '<leader>2', [[:lua require'actions'.view.structure()<cr>]])
 -- Search
 -----------------------------
 
+map('n', ';', [[:lua require'actions'.search.file()<cr>]])
 map('n', '<leader>;', [[:lua require'actions'.search.file()<cr>]])
 map('n', '<leader>\'w', [[:lua require'actions'.search.word_buf()<cr>]])
 map('n', '<leader>\'c', [[:lua require'actions'.search.word()<cr>]])
@@ -30,14 +32,17 @@ map('n', '<leader>\'c', [[:lua require'actions'.search.word()<cr>]])
 -- Navigate
 -----------------------------
 
-map('n', '<leader>gj', [[:lua require'actions'.navigate.definition()<cr>]])
-map('n', '<leader>gi', [[:lua require'actions'.navigate.implementation()<cr>]])
-map('n', '<leader>gd', [[:lua require'actions'.navigate.declaration()<cr>]])
-map('n', '<leader>gr', [[:lua require'actions'.navigate.references()<cr>]])
-map('n', '<leader>gs', [[:lua require'actions'.navigate.symbols()<cr>]])
+map('n', 'gj', [[:lua require'actions'.navigate.definition()<cr>]])
+map('n', 'gi', [[:lua require'actions'.navigate.implementation()<cr>]])
+map('n', 'gd', [[:lua require'actions'.navigate.declaration()<cr>]])
+map('n', 'gr', [[:lua require'actions'.navigate.references()<cr>]])
+map('n', 'gs', [[:lua require'actions'.navigate.symbols()<cr>]])
 
-map('n', '<leader>gn', [[:lua require'actions'.navigate.diagnostic_next()<cr>]])
-map('n', '<leader>gp', [[:lua require'actions'.navigate.diagnostic_prev()<cr>]])
+map('n', 'gn', [[:lua require'actions'.navigate.diagnostic_next()<cr>]])
+map('n', 'gp', [[:lua require'actions'.navigate.diagnostic_prev()<cr>]])
+
+-- map('n', 'gn', [[<Plug>(coc-diagnostic-next)]])
+-- map('n', 'gp', [[<Plug>(coc-diagnostic-prev)]])
 
 
 
@@ -45,12 +50,12 @@ map('n', '<leader>gp', [[:lua require'actions'.navigate.diagnostic_prev()<cr>]])
 -- Edit
 -----------------------------
 
-map('n', '<leader>or', [[:lua require'actions'.edit.rename()<cr>]])
-map('n', '<leader>of', [[:lua require'actions'.edit.format()<cr>]])
--- TODO imports
-map('n', '<leader>oi', [[:lua require'actions'.edit.format()<cr>]])
-map({'n'}, '<leader>/', [[:lua require'actions'.edit.comment('n')<cr>]])
-map({'v'}, '<leader>/', [[:lua require'actions'.edit.comment('v')<cr>]])
+map('n', '<leader>r', [[:lua require'actions'.edit.rename()<cr>]])
+map('n', '<leader>f', [[:lua require'actions'.edit.format()<cr>]])
+map('x', '<leader>f', [[:lua require'actions'.edit.format('v')<cr>]])
+map('n', '<leader>\'', [[:lua require'actions'.edit.imports()<cr>]])
+map('n', '<leader>/', [[:lua require'actions'.edit.comment('n')<cr>]])
+map('v', '<leader>/', [[:lua require'actions'.edit.comment('v')<cr>]])
 
 
 

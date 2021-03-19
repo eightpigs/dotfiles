@@ -14,6 +14,8 @@ set lazyredraw
 " 关闭响声
 set noeb novb
 
+set shortmess+=c
+
 " backspace按键的工作方式
 set backspace=eol,start,indent
 
@@ -113,6 +115,7 @@ set undodir=~/.vim/undodir
 
 " 在状态栏显示当前输入的命令
 set showcmd
+set cmdheight=2
 
 " 不显示当前模式：主要用于有lightline 或者 airline 的情况
 " set noshowmode

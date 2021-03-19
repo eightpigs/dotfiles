@@ -4,8 +4,8 @@ local M = {}
 -- Key mapping
 function M.map(mode, key, action, opts)
   if (type(mode) == "table") then
-    for k,v in pairs(mode) do 
-      map(v, key, action, opts) 
+    for _,v in pairs(mode) do
+      map(v, key, action, opts)
     end
   else
     map(mode, key, action, opts)

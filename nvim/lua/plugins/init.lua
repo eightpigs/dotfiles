@@ -33,7 +33,8 @@ return require('packer').startup(function()
 	-- git diff
 	use { 
     'airblade/vim-gitgutter', 
-    config = [[require 'plugins.vim-gitgutter']]
+    config = [[require 'plugins.vim-gitgutter']],
+		ft = {'', 'txt'}
   }
 
 	-- 代码标签
@@ -110,23 +111,22 @@ return require('packer').startup(function()
   }
 
   -- Go
-  use { 
-    'fatih/vim-go', 
-    ft = 'go', 
+  use {
+    'fatih/vim-go',
+    ft = 'go',
     run = ':GoUpdateBinaries',
     config = [[require 'plugins.vim-go']]
   }
 
-  -- LSP支持 & 补全
   use {
-    'neovim/nvim-lspconfig',
-    ft = { "bash", "vim", "json", "lua", "yaml", "vue", "css", "html", "go", "rust", "java", "dart", "javascript" },
-    config = [[require 'lsp']]
+    'neoclide/coc.nvim',
+    -- ft = { "bash", "vim", "json", "lua", "yaml", "vue", "css", "html", "go", "rust", "java", "dart", "javascript" },
+    config = [[require 'plugins.coc-vim']]
   }
 
-	use {
-		'hrsh7th/nvim-compe',
-    config = [[require 'plugins.nvim-compe']]
-	}
+	-- use {
+	-- 	'hrsh7th/nvim-compe',
+  --   config = [[require 'plugins.nvim-compe']]
+	-- }
 
 end)
