@@ -42,14 +42,14 @@ change_alacritty () {
     next=$2
     cur_in_cfg=`cat $alacritty_cfg | grep "^colors-.*:$" | awk '{print(index($1,"dark")>0?"light":"dark")}'`
     if [ "$next" != "$cur_in_cfg" ]; then
-      sed_cmd1='/colors:/s/colors:/colors-'$cur':/g'
-      sed_cmd2='/colors-'$next':/s/colors-'$next':/colors:/g'
+      sed_cmd1='s/^colors:/colors-'$cur':/g'
+      sed_cmd2='s/^colors-'$next':/colors:/g'
       _sed $sed_cmd1 $sed_cmd2 $alacritty_cfg
     fi
   fi
 }
 
-change(){
+change () {
   cur=`get_cur_theme`
   next=`get_next_theme $cur`
 

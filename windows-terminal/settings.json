@@ -3,7 +3,6 @@
   "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
   "copyOnSelect": true,
   "copyFormatting": false,
-  "theme": "dark",
   "alwaysShowTabs": false,
   "tabWidthMode": "equal",
   "confirmCloseAllTabs": false,
@@ -11,12 +10,13 @@
   "profiles": {
     "defaults": {
       "fontFace": "Consolas",
-      "fontSize": 13,
+      "fontSize": 12,
       "padding": "8,8,8,8",
       "scrollbarState": "hidden",
-      "colorScheme": "Default Dark",
       "cursorShape": "filledBox",
-      "tabColor": "#181818"
+      "colorScheme": "Default Dark",
+      "cursorColor": "#f8f8f8",
+      "tabColor": "#f8f8f8"
     },
     "list": [
       {
@@ -27,15 +27,15 @@
       },
       {
         "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-        "name": "Windows CMD",
+        "name": "Command Line",
         "commandline": "cmd.exe",
         "hidden": false
       },
       {
-          "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
-          "hidden": true,
-          "name": "Azure Cloud Shell",
-          "source": "Windows.Terminal.Azure"
+        "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+        "hidden": true,
+        "name": "Azure Cloud Shell",
+        "source": "Windows.Terminal.Azure"
       }
     ]
   },
@@ -60,6 +60,27 @@
       "brightPurple": "#ba8baf",
       "brightCyan": "#86c1b9",
       "brightWhite": "#f8f8f8"
+    },
+    {
+      "name": "Mexico Light",
+      "background": "#f8f8f8",
+      "foreground": "#383838",
+      "black": "#f8f8f8",
+      "red": "#ab4642",
+      "green": "#538947",
+      "yellow": "#f79a0e",
+      "blue": "#7cafc2",
+      "purple": "#96609e",
+      "cyan": "#4b8093",
+      "white": "#383838",
+      "brightBlack": "#b8b8b8",
+      "brightRed": "#ab4642",
+      "brightGreen": "#538947",
+      "brightYellow": "#f79a0e",
+      "brightBlue": "#7cafc2",
+      "brightPurple": "#96609e",
+      "brightCyan": "#4b8093",
+      "brightWhite": "#181818"
     }
   ],
   "actions": [
@@ -68,11 +89,11 @@
         "action": "copy",
         "singleLine": false
       },
-      "keys": "ctrl+c"
+      "keys": "ctrl+shift+c"
     },
     {
       "command": "paste",
-      "keys": "ctrl+v"
+      "keys": "ctrl+shift+v"
     },
     {
       "command": "find",

@@ -1,0 +1,27 @@
+#! /bin/bash
+function find_and_update() {
+  echo "now: "$1
+  if [ -d "$1/.git" ]; then
+    if [ -z "$(git status --porcelain)"  ]; then 
+      git fetch
+      git pull origin
+    else
+      echo "Uncommitted changes, skiped."
+    fi
+  elif [ -d "$1" ]; then
+    for file in `ls $1`;
+    do
+      find_and_update "$1/$file"
+    done
+  else
+    echo "$1 not dir."
+  fi
+}
+
+read -p 'Please input base dir: ' base_dir
+if [ "$base_dir" = "" ]; then
+  base_dir=`pwd`
+fi
+
+echo $base_dir
+# find_and_update base_dir
