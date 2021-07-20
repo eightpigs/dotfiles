@@ -9,6 +9,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export NO_PROXY='127.0.0.1,localhost'
 export GO111MODULE=on
 export GOPROXY=https://goproxy.cn
+export KUBECONFIG=~/.kube/k3s.yaml
 
 BIN_HOME=~/.local/bin
 PATH=$PATH:$BIN_HOME
@@ -51,13 +52,23 @@ export FLUTTER_HOME PATH
 export FLUTTER_STORAGE_BASE_URL="https://mirrors.tuna.tsinghua.edu.cn/flutter"
 export PUB_HOSTED_URL="https://mirrors.tuna.tsinghua.edu.cn/dart-pub"
 
-ANDROID_HOME=$WORKSPACE_PATH/libs/android-sdk/
-PATH=$PATH:$ANDROID_HOME/bin:$ANDROID_HOME/platform-tools
-export ANDROID_HOME PATH
+ANDROID_HOME=$SOFTWARE_PATH/android
+ANDROID_PALT_HOME=$ANDROID_HOME/platform-tools
+ANDROID_CMD_HOME=$ANDROID_HOME/cmdline-tools
+PATH=$PATH:$ANDROID_PALT_HOME:$ANDROID_CMD_HOME/bin
+export ANDROID_HOME ANDROID_PALT_HOME ANDROID_CMD_HOME PATH
 
 NODE_JS_HOME=$SOFTWARE_PATH/node
 PATH=$PATH:$NODE_JS_HOME/bin
 export NODE_JS_HOME PATH
+
+YARN_PATH=~/.yarn/
+PATH=$PATH:$YARN_PATH/bin
+export PATH YARN_PATH
+
+LUAROCKS_PATH=$SOFTWARE_PATH/luarocks
+PATH=$PATH:$LUAROCKS_PATH/bin:~/.luarocks/bin
+export PATH LUAROCKS_PATH
 
 NVIM_HOME=$SOFTWARE_PATH/nvim
 PATH=$PATH:$NVIM_HOME/bin
@@ -66,9 +77,6 @@ export NVIM_HOME PATH
 RUST_HOME=~/.cargo
 PATH=$PATH:$RUST_HOME/bin
 export PATH RUST_HOME
-
-
-export FZF_DEFAULT_COMMAND='ag --hidden --color -p ~/.config/.ignore -U -g ""'
 
 if [[ $TMUX != "" ]] then
   export TERM="tmux-256color"
