@@ -5,4 +5,4 @@
 - Beautiful interface
 - replace <PREFIX> % to <PREFIX> |
 - replace <PREFIX> " to <PREFIX> -
-- default shell : zsh
+- default shell: zsh
