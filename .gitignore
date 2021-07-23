@@ -1,28 +1,11 @@
 .DS_Store
+
 profiles.d/work
-emacs/auto-save-list
-emacs/elpa
-emacs/ido.last
-emacs/recentf
-.idea
-dlv
-configstore
-neofetch
-htop
-karabiner/automatic_backups
-rclone
-**/sublime-text-3/**
-!**/sublime-text-3/Packages/User/Preferences.sublime-settings
-**/Code\ -\ OSS/**
-!**/Code\ -\ OSS/User/settings.json
-netease-cloud-music
-onedrive
-GIMP
-Android\ Open\ Source\ Project
-Electron
-Insomnia
-JetBrains
-Thunar
-chromium
-dconf
-nvim/plugin
+
+cfg/emacs/auto-save-list
+cfg/emacs/elpa
+cfg/emacs/ido.last
+cfg/emacs/recentf
+cfg/nvim/plugin
+
+cfg/karabiner/automatic_backups

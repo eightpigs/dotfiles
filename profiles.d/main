@@ -1,11 +1,10 @@
-source ~/.config/profiles.d/alias
-source ~/.config/profiles.d/env
-source ~/.config/profiles.d/x.d/*
-source ~/.config/profiles.d/term
-source ~/.config/profiles.d/zsh
-source ~/.config/profiles.d/os/`uname -s`
+source $XDG_CONFIG_HOME/profiles.d/term
+source $XDG_CONFIG_HOME/profiles.d/alias
+source $XDG_CONFIG_HOME/profiles.d/env
+source $XDG_CONFIG_HOME/profiles.d/zsh
+source $XDG_CONFIG_HOME/profiles.d/fzf
 
-work_profile=$HOME"/.config/profiles.d/work"
+work_profile="$XDG_CONFIG_HOME/profiles.d/work"
 if [ -f "$work_profile" ]; then
   source $work_profile
 fi
