@@ -20,10 +20,6 @@ export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 
-MY_BIN_HOME=~/.config/profiles.d/bin
-PATH=$PATH:$MY_BIN_HOME
-export MY_BIN PATH
-
 GRADLE_HOME=$SOFTWARE_PATH/gradle
 PATH=$PATH:$GRADLE_HOME/bin
 export GRADLE_HOME PATH 
@@ -77,9 +73,3 @@ export NVIM_HOME PATH
 RUST_HOME=~/.cargo
 PATH=$PATH:$RUST_HOME/bin
 export PATH RUST_HOME
-
-if [[ $TMUX != "" ]] then
-  export TERM="tmux-256color"
-else
-  export TERM="xterm-256color"
-fi

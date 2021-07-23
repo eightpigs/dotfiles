@@ -11,43 +11,12 @@ if [ -d /Applications/Xcode-beta.app ]; then
   sudo xcode-select --switch /Applications/Xcode-beta.app
 fi
 sudo xcode-select --install &> /dev/null
-
 sudo scutil --set HostName fighter.local
 
-if [ $SHELL != '/bin/zsh' ]; then
-  chsh -s /bin/zsh
-  sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-fi
-
-if [ ! -d ~/Workspace/git ]; then
-  mkdir -p ~/Workspace/git
-fi
 
 
 
-
-# Python
-# -----------------------------------------------------------------------------
-if ! command -v /usr/bin/python2 -m pip --version &> /dev/null
-then
-  curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip2.py
-  /usr/bin/python2 get-pip2.py
-  /usr/bin/python2 -m pip install pynvim
-  rm get-pip2.py
-fi
-
-if ! command -v /usr/bin/python3 -m pip --version &> /dev/null
-then
-  curl https://bootstrap.pypa.io/get-pip.py -o get-pip3.py
-  /usr/bin/python3 get-pip3.py
-  /usr/bin/python3 -m pip install pynvim
-  rm get-pip3.py
-fi
-
-
-
-
-# Homebrew & Softwares
+# Softwares
 # -----------------------------------------------------------------------------
 if ! command -v brew --version &> /dev/null
 then
@@ -101,32 +70,4 @@ if [ $reinstallEmacs == 'y' ]; then
     --with-native-comp \
     --with-modern-black-dragon-icon
   ln -s /usr/local/opt/emacs-plus@28/Emacs.app /Applications
-fi
-
-
-
-
-# Neovim
-# -----------------------------------------------------------------------------
-reinstallNeovim='y'
-if command -v nvim -version &> /dev/null
-then
-  read -p "Reinstall Neovim? (y/n): " reinstallNeovim
-fi
-
-if [ $reinstallEmacs == 'y' ]; then
-  if [ ! -d ~/Workspace/git/neovim ]; then
-    mkdir -p ~/Workspace/git/neovim
-  fi
-  cd ~/Workspace/git/neovim
-  if ! command -v git status &> /dev/null
-  then
-    git clone git@github.com:neovim/neovim .
-  else
-    git fetch
-    git pull origin
-  fi
-  make clean distclean
-  proxylup && make -j 8 && proxydown
-  make CMAKE_INSTALL_PREFIX=$HOME/.local/nvim install
 fi
