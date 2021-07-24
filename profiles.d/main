@@ -1,3 +1,5 @@
+export XDG_CONFIG_HOME="$HOME/.config"
+
 source $XDG_CONFIG_HOME/profiles.d/term
 source $XDG_CONFIG_HOME/profiles.d/alias
 source $XDG_CONFIG_HOME/profiles.d/env

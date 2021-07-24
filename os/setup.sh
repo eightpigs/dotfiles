@@ -20,6 +20,9 @@ fi
 
 "$SCRIPTPATH/commons/setup-pre.sh"
 
-[ -f "$OS_FILE" ] && $OS_FILE
+if [ -f "$OS_FILE" ]; then
+  chmod +x $OS_FILE
+  $OS_FILE
+fi
 
 "$SCRIPTPATH/commons/setup-post.sh"
