@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 if [ $XDG_CONFIG_HOME == "" ]; then
   export XDG_CONFIG_HOME="$HOME/.config"
 fi
@@ -8,14 +10,15 @@ fi
 $PWD/os/setup.sh
 
 # Custom bin.
+[ ! -d ~/.local/bin ] && mkdir ~/.local/bin
 cp -rf $PWD/bin/* ~/.local/bin
 
+# Configs
 if [ -d $XDG_CONFIG_HOME ]; then
   mv $XDG_CONFIG_HOME $HOME/.config.bak-$(date +%F)
 fi
 mkdir $XDG_CONFIG_HOME
 
-# Configs
 for cfg in `ls -a $PWD/cfg/`;
 do
   if [ $cfg == "." ] || [ $cfg == ".." ]; then
