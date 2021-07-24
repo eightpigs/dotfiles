@@ -38,7 +38,7 @@ fi
 
 # SSH Keys
 if [ ! -f "$HOME/.ssh/github" ]; then
-  ssh-keygen -t ed25519 -C "user@example.com" -f /home/user/.ssh/github -q -P ""
+  ssh-keygen -t ed25519 -C "user@example.com" -f $HOME/.ssh/github -q -P ""
 
   cat>~/.ssh/config<<EOF
 Host github.com
