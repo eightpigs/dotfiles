@@ -11,13 +11,16 @@ $PWD/os/setup.sh
 cp -rf $PWD/bin/* ~/.local/bin
 
 if [ -d $XDG_CONFIG_HOME ]; then
-  mv $XDG_CONFIG_HOME $HOME/.config.bak
+  mv $XDG_CONFIG_HOME $HOME/.config.bak-$(date +%F)
 fi
 mkdir $XDG_CONFIG_HOME
 
 # Configs
-for cfg in `ls -a -I "." -I ".." $PWD/cfg/`;
+for cfg in `ls -a $PWD/cfg/`;
 do
+  if [ $cfg == "." ] || [ $cfg == ".." ]; then
+    continue
+  fi
   if [ -f "$PWD/cfg/$cfg/.init.sh" ]; then
     chmod +x $PWD/cfg/$cfg/.init.sh
     $PWD/cfg/$cfg/.init.sh
