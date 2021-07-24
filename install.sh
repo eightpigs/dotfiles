@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -x
-
 if [ $XDG_CONFIG_HOME == "" ]; then
   export XDG_CONFIG_HOME="$HOME/.config"
 fi
@@ -24,9 +22,10 @@ do
   if [ $cfg == "." ] || [ $cfg == ".." ]; then
     continue
   fi
-  if [ -f "$PWD/cfg/$cfg/.init.sh" ]; then
-    chmod +x $PWD/cfg/$cfg/.init.sh
-    $PWD/cfg/$cfg/.init.sh
+  CFG_FILE="$PWD/cfg/$cfg/.init.sh"
+  if [ -f $CFG_FILE ]; then
+    chmod +x $CFG_FILE
+    $CFG_FILE
   else
     ln -sfv $PWD/cfg/$cfg $XDG_CONFIG_HOME/$cfg
   fi
