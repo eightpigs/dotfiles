@@ -13,7 +13,7 @@ cp -rf $PWD/bin/* ~/.local/bin
 
 # Configs
 if [ -d $XDG_CONFIG_HOME ]; then
-  mv $XDG_CONFIG_HOME $HOME/.config.bak-$(date '+%Y-%m-%d %H:%M:%S')
+  mv $XDG_CONFIG_HOME $HOME/.config.bak-$(date '+%Y-%m-%d_%H:%M:%S')
 fi
 mkdir $XDG_CONFIG_HOME
 
