@@ -21,7 +21,6 @@ fi
 "$SCRIPTPATH/commons/setup-pre.sh"
 
 if [ -f "$OS_FILE" ]; then
-  chmod +x $OS_FILE
   $OS_FILE
 fi
 
