@@ -8,7 +8,7 @@ alias top=htop
 alias ssh='TERM=xterm ssh'
 
 # Proxy
-alias proxylup='export http_proxy=http://127.0.0.1:8001;export https_proxy=$http_proxy'
+alias proxylup='export http_proxy=http://127.0.0.1:8890;export https_proxy=$http_proxy'
 alias proxyrup='export http_proxy=http://192.168.2.4:8890;export https_proxy=$http_proxy'
 alias proxydown='unset http_proxy;unset https_proxy'
 
