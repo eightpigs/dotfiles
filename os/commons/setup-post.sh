@@ -28,8 +28,10 @@ if [ $reinstallNeovim == 'y' ]; then
   make CMAKE_INSTALL_PREFIX=$HOME/.local/nvim install
 fi
 
-
-
-
 # tmux
 [ ! -d ~/.tmux/plugins ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+
+# lua tools
+which lua-format &> /dev/null || luarocks install --server=https://luarocks.org/dev luaformatter
+
