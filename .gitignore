@@ -6,6 +6,8 @@ cfg/emacs/auto-save-list
 cfg/emacs/elpa
 cfg/emacs/ido.last
 cfg/emacs/recentf
+cfg/emacs/eln-cache
 cfg/nvim/plugin
+cfg/nvim/lua
 
 cfg/karabiner/automatic_backups
