@@ -23,8 +23,8 @@ then
 fi
 
 export HOMEBREW_NO_AUTO_UPDATE=1
-brews=(ninja libtool automake cmake pkg-config boost gettext wget \
-  curl fzf fd bat the_silver_searcher mitmproxy tmux autojump unrar mycli htop ctags)
+brews=(ninja libtool automake cmake pkg-config boost gettext wget telnet curl fzf fd \
+  bat the_silver_searcher mitmproxy tmux autojump unrar mycli htop ctags glow tree)
 casks=(smcfancontrol hammerspoon alacritty)
 for soft in ${brews[@]}
 do
