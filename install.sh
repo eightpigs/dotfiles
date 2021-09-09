@@ -4,24 +4,31 @@ if [ $XDG_CONFIG_HOME == "" ]; then
   export XDG_CONFIG_HOME="$HOME/.config"
 fi
 
+
 # OS Init.
+# -----------------------------------------------------------------------------
 $PWD/os/setup.sh
 
-# Custom bin.
+
+# Customized bin.
 [ ! -d ~/.local/bin ] && mkdir ~/.local/bin
 cp -rf $PWD/bin/* ~/.local/bin
 
+
 # Configs
+# ----------------------------------------------------------------------------
+
+# backup
 if [ -d $XDG_CONFIG_HOME ]; then
-  mv $XDG_CONFIG_HOME $HOME/.config.bak-$(date '+%Y-%m-%d_%H:%M:%S')
+  cp -r $XDG_CONFIG_HOME $HOME/.config.bak-$(date '+%Y-%m-%d_%H:%M:%S')
 fi
-mkdir $XDG_CONFIG_HOME
 
 for cfg in `ls -a $PWD/cfg/`;
 do
   if [ $cfg == "." ] || [ $cfg == ".." ]; then
     continue
   fi
+  rm -rf $XDG_CONFIG_HOME/$cfg
   CFG_FILE="$PWD/cfg/$cfg/.init.sh"
   if [ -f $CFG_FILE ]; then
     chmod +x $CFG_FILE
@@ -32,7 +39,10 @@ do
 done
 
 # Profiles
+# -----------------------------------------------------------------------------
+rm -r $XDG_CONFIG_HOME/profiles.d
 ln -sfv $PWD/profiles.d $XDG_CONFIG_HOME/profiles.d
+
 
 if [ -f ~/.zshrc ]; then
   cat>~/.zshrc<<EOF
