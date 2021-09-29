@@ -9,7 +9,7 @@ DISABLE_LS_COLORS="false"
 DISABLE_AUTO_TITLE="true"
 ENABLE_CORRECTION="true"
 
-plugins=(git autojump extract zsh-vi-mode)
+plugins=(git autojump extract)
 
 source $ZSH/oh-my-zsh.sh
 
