@@ -7,10 +7,8 @@
  '(git-gutter:deleted-sign " - ")
  '(git-gutter:modified-sign " * ")
  '(git-gutter:update-interval 2)
- '(horizontal-scroll-bar-mode nil)
  '(package-selected-packages
-   '(dart-mode which-key use-package try rustic org-bullets magit go-mode git-gutter evil-leader doom-themes doom-modeline company cnfonts))
- '(scroll-bar-mode nil))
+   '(dart-mode go-mode rustic magit which-key use-package try org-bullets magit-section git-gutter git-commit evil-leader doom-themes doom-modeline company)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
