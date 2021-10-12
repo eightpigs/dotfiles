@@ -18,12 +18,17 @@ fi
 
 # Softwares
 # -----------------------------------------------------------------------------
-sudo apt install gperf luajit luarocks libuv1-dev \
-  libluajit-5.1-dev libunibilium-dev libmsgpack-dev \
-  libtermkey-dev libvterm-dev libutf8proc-dev silversearcher-ag \
-  wget curl git make cmake build-essential gettext python3-distutils \
-  zsh tmux htop unzip clang python-dev python3-dev jq dnsutils podman buildah skopeo \
-  apt-transport-https gnupg2 ncat autojump libreadline-dev bat
+sudo apt install \
+  gperf luajit luarocks libuv1-dev silversearcher-ag exuberant-ctags dnsutils \
+  libluajit-5.1-dev libunibilium-dev libmsgpack-dev libtermkey-dev libvterm-dev \
+  libutf8proc-dev wget curl git make cmake build-essential gettext ncat autojump\
+  python3-distutils python-dev python3-dev zsh tmux htop unzip clang jq fd-find \
+  podman buildah skopeo apt-transport-https gnupg2 libreadline-dev bat fzf unrar \
+  vpnc
 
+# fdfind to fd
+ln -s $(which fdfind) ~/.local/bin/fd
 
 # TODO check to sid.
+
+pip3 install mycli
