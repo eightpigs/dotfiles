@@ -10,3 +10,5 @@ work_profile="$XDG_CONFIG_HOME/profiles.d/work"
 if [ -f "$work_profile" ]; then
   source $work_profile
 fi
+
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
