@@ -14,7 +14,7 @@
 
   (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
   
-  (setq custom-file "~/.emacs.d/custom.el")
+  (setq custom-file "~/.config/emacs/custom.el")
   ;; (load custom-file)
 
   (require 'init-basic)
