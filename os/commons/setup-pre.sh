@@ -43,13 +43,15 @@ fi
 
 
 # SSH Keys
+# -----------------------------------------------------------------------------
 if [ ! -f "$HOME/.ssh/github" ]; then
   ssh-keygen -t ed25519 -C "eightpigs@outlook.com" -f $HOME/.ssh/github -q -P ""
 
+  cur_user=`users`
   cat>~/.ssh/config<<EOF
 Host github.com
   HostName github.com
-  User eightpigs
+  User $cur_user
   IdentityFile ~/.ssh/github
   PreferredAuthentications publickey
 EOF
@@ -58,4 +60,13 @@ EOF
 
   /usr/bin/cat ~/.ssh/github.pub
   read n
+fi
+
+
+# Node Version Manager
+# -----------------------------------------------------------------------------
+if ! command -v nvm --version &> /dev/null
+then
+  latest_tag=`curl --silent "https://api.github.com/repos/nvm-sh/nvm/releases/latest" | jq -r .tag_name`
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$latest_tag/install.sh | bash
 fi

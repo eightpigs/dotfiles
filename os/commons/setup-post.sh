@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# neovim
+# -----------------------------------------------------------------------------
 reinstallNeovim='y'
 if command -v nvim -version &> /dev/null
 then
@@ -34,4 +36,3 @@ fi
 
 # lua tools
 which lua-format &> /dev/null || luarocks install --server=https://luarocks.org/dev luaformatter
-
