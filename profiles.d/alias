@@ -1,18 +1,39 @@
+#!/bin/zsh
+
+# misc tools
 alias cls=clear
 alias vim=nvim
 alias vi=nvim
 alias v=nvim
-alias ll="ls -alsHh"
-alias bat="bat --style=full --color=always --theme=base16-256 --decorations=always"
+alias ls="ls --color=auto"
+alias ll="ls -alsHh --color=auto"
+alias bat="bat --style=full --color=always --decorations=always"
 alias top=htop
 alias ssh='TERM=xterm ssh'
+alias mkdir='mkdir -pv'
+alias now='date +"%A %Y-%m-%d %X" --color=auto'
+alias nowtime=now
+alias nowdate='date +"%d-%m-%Y"'
+alias ping='time ping'
+
+# Control cd command behavior
+alias .2='cd ../../'
+alias .3='cd ../../../'
+alias .4='cd ../../../../'
+alias .5='cd ../../../../..'
+alias .6='cd ../../../../../..'
+alias .7='cd ../../../../../../..'
+
+#  Global alias
+alias -g G='| grep'
+alias -g WC='| wc -l'
+alias -g TF='| tail -f'
+alias -g TF='| tail -f'
 
 # Proxy
 alias proxylup='export http_proxy=http://127.0.0.1:8890;export https_proxy=$http_proxy'
 alias proxyrup='export http_proxy=http://192.168.2.4:8890;export https_proxy=$http_proxy'
 alias proxydown='unset http_proxy;unset https_proxy'
-
-alias remoteAdbDebug='adb shell setprop service.adb.tcp.port 5555'
 
 # Kubectl
 alias kgs="kubectl get svc -A -o wide"
@@ -30,5 +51,34 @@ alias ktn="kubectl top nodes"
 # Applications
 alias android_sdk_install="sdkmanager --install --channel=0 --sdk_root=$HOME/.local/android/libs 'platforms;android-30'"
 alias android-studio="nohup /bin/sh ~/.local/android-studio/bin/studio.sh >/dev/null 2>&1 &"
-alias chrome="nohup chromium %U --enable-features=WebUIDarkMode --force-dark-mode --proxy-server=192.168.2.4:8890 >/dev/null 2>&1 &"
+alias chrome="nohup chromium %U --enable-features=WebUIDarkMode --force-dark-mode --proxy-server=$(echo $http_proxy) >/dev/null 2>&1 &"
 alias idea="nohup /bin/sh ~/.local/idea/bin/idea.sh >/dev/null 2>&1 &"
+alias remoteAdbDebug='adb shell setprop service.adb.tcp.port 5555'
+
+# Git
+function _git_current_remote() { git rev-parse --symbolic-full-name --abbrev-ref @{u} | awk -F '/' '{print $1}'; }
+
+alias gst="git status"
+alias gadd="git add "
+alias gco="git checkout "
+alias gcm="git commit -m "
+alias gcam="git commit --amend"
+
+alias gbc="git checkout -b "
+alias gbd="git branch -D"
+function gbdr() { git push $(_git_current_remote) :$1; }
+
+alias glg="git log --stat --graph "
+alias glgs="git log --pretty=format:'%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]' --decorate --date=short --graph"
+alias glgl="git log --pretty=format:'%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]' --decorate --numstat"
+alias glast="git log -1 HEAD"
+
+alias gdff="git diff"
+alias gmr="git merge"
+alias gft="git fetch"
+
+alias grs="git remote show"
+function grg() { git remote get-url $(_git_current_remote) $1; }
+
+function gpll() { git pull $(_git_current_remote) $1; }
+function gpsh() { git push $(_git_current_remote) $1; }

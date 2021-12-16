@@ -36,3 +36,6 @@ fi
 
 # lua tools
 which lua-format &> /dev/null || luarocks install --server=https://luarocks.org/dev luaformatter
+
+# cargo
+cargo install stylua

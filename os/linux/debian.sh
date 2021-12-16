@@ -24,7 +24,10 @@ sudo apt install \
   libutf8proc-dev wget curl git make cmake build-essential gettext ncat autojump\
   python3-distutils python-dev python3-dev zsh tmux htop unzip clang jq fd-find \
   podman buildah skopeo apt-transport-https gnupg2 libreadline-dev bat fzf unrar \
-  vpnc
+  vpnc libjansson-dev zsh
+
+# use zsh
+chsh -s /bin/zsh
 
 # fdfind to fd
 ln -s $(which fdfind) ~/.local/bin/fd
@@ -32,3 +35,4 @@ ln -s $(which fdfind) ~/.local/bin/fd
 # TODO check to sid.
 
 pip3 install mycli
+

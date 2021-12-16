@@ -1,19 +1,4 @@
-#!/bin/bash
-
-# Shell
-if [ $SHELL != '/bin/zsh' ]; then
-  chsh -s /bin/zsh
-  sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-fi
-
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
-  ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting > /dev/null 2>&1
-git clone https://github.com/zsh-users/zsh-autosuggestions \
-  ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions > /dev/null 2>&1
-git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH/custom/plugins/zsh-vi-mode > /dev/null 2>&1
-
-
-
+# !/bin/bash
 
 # Dir
 mkdir -p $HOME/{Workspace,Downloads,.config}
@@ -22,22 +7,32 @@ mkdir -p $HOME/{Workspace,Downloads,.config}
 
 # Python
 # -----------------------------------------------------------------------------
-if ! command -v /usr/bin/python2 -m pip --version &> /dev/null
-then
+/usr/bin/python2 -m pip --version &> /dev/null
+if [ $? == 1 ]; then
   curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip2.py
   /usr/bin/python2 get-pip2.py
   /usr/bin/python2 -m pip install pynvim
   rm get-pip2.py
 fi
 
-if ! command -v /usr/bin/python3 -m pip --version &> /dev/null
-then
+/usr/bin/python3 -m pip --version &> /dev/null
+if [ $? == 1 ]; then
   curl https://bootstrap.pypa.io/get-pip.py -o get-pip3.py
   /usr/bin/python3 get-pip3.py
   /usr/bin/python3 -m pip install pynvim
   /usr/bin/python3 -m pip install python-language-server
   rm get-pip3.py
 fi
+
+
+
+# Rust
+# -----------------------------------------------------------------------------
+cargo -V &> /dev/null
+if [ $? != 0 ]; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+fi
+
 
 
 
@@ -65,8 +60,8 @@ fi
 
 # Node Version Manager
 # -----------------------------------------------------------------------------
-if ! command -v nvm --version &> /dev/null
-then
+nvm --version &> /dev/null
+if [ $? == 1 ]; then
   latest_tag=`curl --silent "https://api.github.com/repos/nvm-sh/nvm/releases/latest" | jq -r .tag_name`
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$latest_tag/install.sh | bash
 fi

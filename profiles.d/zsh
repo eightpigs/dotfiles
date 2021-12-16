@@ -1,27 +1,203 @@
-export ZSH="$HOME/.oh-my-zsh"
+#!/bin/zsh
 
-ZSH_THEME="robbyrussell"
+# plugin manager
+# unplugged: https://github.com/mattmc3/zsh_unplugged
+# -----------------------------------------------------------------------------
 
-CASE_SENSITIVE="true"
-DISABLE_AUTO_UPDATE="true"
-DISABLE_UPDATE_PROMPT="true"
-DISABLE_LS_COLORS="false"
-DISABLE_AUTO_TITLE="true"
-ENABLE_CORRECTION="true"
+ZPLUGINDIR=$HOME/.zsh/plugins
 
-plugins=(git autojump extract)
+# clone a plugin, find an init.zsh, source it, and add it to your fpath
+function plugin-load () {
+  local giturl="$1"
+  local plugin_name=${${giturl##*/}%.git}
+  local plugindir="${ZPLUGINDIR:-$HOME/.zsh/plugins}/$plugin_name"
 
-source $ZSH/oh-my-zsh.sh
+  # clone if the plugin isn't there already
+  if [[ ! -d $plugindir ]]; then
+    command git clone --depth 1 --recursive --shallow-submodules $giturl $plugindir
+    if [[ $? -ne 0 ]]; then
+      echo "plugin-load: git clone failed for: $giturl" >&2 && return 1
+    fi
+  fi
 
-# 自定义主题
-if [[ -z $ZSH_THEME_CLOUD_PREFIX ]]; then
-    ZSH_THEME_CLOUD_PREFIX='>'
-fi
-PROMPT='%{$fg_bold[green]%}%p%{$fg[green]%}%c %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[blue]%} %{$fg_bold[cyan]%}$ZSH_THEME_CLOUD_PREFIX % %{$reset_color%}'
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[green]%}[%{$fg[cyan]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[green]%}] %{$fg[yellow]%}✹ %{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}]"
+  # symlink an init.zsh if there isn't one so the plugin is easy to source
+  if [[ ! -f $plugindir/init.zsh ]]; then
+    local initfiles=(
+      # look for specific files first
+      $plugindir/$plugin_name.plugin.zsh(N)
+      $plugindir/$plugin_name.zsh(N)
+      $plugindir/$plugin_name(N)
+      $plugindir/$plugin_name.zsh-theme(N)
+      # then do more aggressive globbing
+      $plugindir/*.plugin.zsh(N)
+      $plugindir/*.zsh(N)
+      $plugindir/*.zsh-theme(N)
+      $plugindir/*.sh(N)
+    )
+    if [[ ${#initfiles[@]} -eq 0 ]]; then
+      echo "plugin-load: no plugin init file found" >&2 && return 1
+    fi
+    command ln -s ${initfiles[1]} $plugindir/init.zsh
+  fi
+
+  # source the plugin
+  source $plugindir/init.zsh
+
+  # modify fpath
+  fpath+=$plugindir
+  [[ -d $plugindir/functions ]] && fpath+=$plugindir/functions
+}
+
+# load all plugins
+function plugins-load() {
+  for repo in $plugins; do
+    plugin-load https://github.com/${repo}.git
+  done
+  unset repo
+  unset plugins
+}
+
+# if you want to compile your plugins you may see performance gains
+function plugin-compile () {
+  local plugindir="${ZPLUGINDIR:-$HOME/.zsh/plugins}"
+  autoload -U zrecompile
+  local f
+  for f in $plugindir/**/*.zsh{,-theme}(N); do
+    zrecompile -pq "$f"
+  done
+}
+
+function plugin-update () {
+  local plugindir="${ZPLUGINDIR:-$HOME/.zsh/plugins}"
+  for d in $plugindir/*/.git(/); do
+    echo "Updating ${d:h:t}..."
+    command git -C "${d:h}" pull --ff --recurse-submodules --depth 1 --rebase --autostash
+  done
+}
 
 
-unsetopt correctall
+# https://github.com/unixorn/awesome-zsh-plugins
+plugins=(
+  # core plugins
+  mafredri/zsh-async
+  zsh-users/zsh-autosuggestions
+  zsh-users/zsh-completions
+  zsh-users/zsh-history-substring-search
+
+  # user plugins
+)
+
+plugins-load
+
+
+# options
+# https://zsh.sourceforge.io/Doc/Release/Concept-Index.html#Concept-Index
+# -----------------------------------------------------------------------------
+setopt PROMPT_SUBST
+# auto cd when input dir path
+setopt AUTO_CD
+setopt AUTO_PUSHD
+# /u/l/s/z => /usr/local/share/zsh/
+setopt COMPLETE_IN_WORD
+setopt AUTO_LIST
+setopt AUTO_MENU
+# setopt MENU_COMPLETE
+
+autoload -U compinit && compinit
+autoload -U promptinit && promptinit
+autoload -U colors && colors
+autoload -Uz vcs_info
+
+# remove core dump file when crashes
+limit coredumpsize 0
+
+
+# auto complete
+# https://gist.github.com/chriscchau/5829283
+# https://zsh.sourceforge.io/Doc/Release/Completion-System.html
+# -----------------------------------------------------------------------------
+# activate approximate completion, but only after regular completion (_complete)
+zstyle ':completion:::::' completer _complete _approximate
+# limit to 2 errors
+zstyle ':completion:*:approximate:*' max-errors 2
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' menu select
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' select-prompt '%SSelect:  lines: %L  matches: %M  [%p]'
+# to try first simple completion and, if that generates no matches, case-insensitive completion:
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*:*:default' force-list always
+
+# complete group
+zstyle ':completion:*:matches' group 'yes'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:options' auto-description '%d'
+zstyle ':completion:*:descriptions' format $'\e[01;33m -- %d --\e[0m'
+zstyle ':completion:*:messages' format $'\e[01;35m -- %d --\e[0m'
+zstyle ':completion:*:warnings' format $'\e[01;31m -- No Matches Found --\e[0m'
+zstyle ':completion:*:corrections' format $'\e[01;32m -- %d (errors: %e) --\e[0m'
+
+# path complete
+zstyle ':completion:*' expand 'yes'
+zstyle ':completion:*' squeeze-shlashes 'yes'
+
+# kill complete
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:*:*:*:processes' force-list always
+zstyle ':completion:*:processes' command 'ps -au$USER'
+
+# Version-Control
+# https://zsh.sourceforge.io/Doc/Release/User-Contributions.html#Version-Control-Information
+zstyle ':vcs_info:*' actionformats '%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
+zstyle ':vcs_info:*' formats '%F{3}[%F{2}%b%F{3}]%f '
+zstyle ':vcs_info:*' enable git
+precmd () { vcs_info }
+
+
+# prompt
+# https://www.masterzen.fr/2009/04/19/in-love-with-zsh-part-one/
+# https://zsh.sourceforge.io/Doc/Release/Prompt-Expansion.html
+# https://en.wikipedia.org/wiki/ANSI_escape_code
+# https://chrisyeh96.github.io/2020/03/28/terminal-colors.html
+# -----------------------------------------------------------------------------
+# eg. ~/Workspace/git/dotfiles [master] →
+PROMPT='%{$fg[blue]%}%~ %{$fg[blue]%}${vcs_info_msg_0_}%(?.%{$fg_bold[blue]%}→.%{$fg_bold[red]%}→) %{$reset_color%}'
+
+# https://www.masterzen.fr/2009/04/19/in-love-with-zsh-part-one/
+# let's complete known hosts and hosts from ssh's known_hosts file
+hosts=($(( ( [ -r .ssh/known_hosts ] && awk '{print $1}' .ssh/known_hosts | tr , '\n');) | sort -u) )
+zstyle ':completion:*' hosts $hosts
+
+
+# keymaps
+# https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html#Keymaps
+# -----------------------------------------------------------------------------
+
+# use emacs key
+bindkey -e
+
+# shift-tab: go backward in menu (invert of tab)
+bindkey '^[[Z' reverse-menu-complete
+
+# double esc: insert sudo to line start
+sudo-command-line() {
+  [[ -z $BUFFER ]] && zle up-history
+  [[ $BUFFER != sudo\ * ]] && BUFFER="sudo $BUFFER"
+  zle end-of-line                 # cursor to end
+}
+zle -N sudo-command-line
+bindkey "\e\e" sudo-command-line
+
+# edit command line
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
+
+# only the past commands matching the current line up to the current cursor position will be shown when Up or Down keys are pressed.
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search

@@ -24,8 +24,12 @@ fi
 
 export HOMEBREW_NO_AUTO_UPDATE=1
 brews=(ninja libtool automake cmake pkg-config boost gettext wget telnet curl fzf fd \
-  bat the_silver_searcher mitmproxy tmux autojump unar mycli htop ctags glow tree luarocks)
+  bat the_silver_searcher mitmproxy tmux autojump unar mycli htop ctags glow tree luarocks zsh)
 casks=(smcfancontrol hammerspoon alacritty)
+
+brew tap universal-ctags/universal-ctags
+brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+
 for soft in ${brews[@]}
 do
   brew list $soft > /dev/null 2>&1 || brew install $soft
@@ -34,6 +38,9 @@ for soft in ${casks[@]}
 do
   brew list --cask $soft > /dev/null 2>&1 || brew install --cask $soft
 done
+
+# use zsh
+chsh -s $(which zsh)
 
 if [ ! -d ~/.hammerspoon ]; then
   it clone git@github.com:eightpigs/awesome-hammerspoon.git ~/.hammerspoon
