@@ -19,8 +19,9 @@ cp -rf $PWD/bin/* ~/.local/bin
 # ----------------------------------------------------------------------------
 
 # backup
+backup_file=$HOME/.config.bak-$(date '+%Y-%m-%d_%H:%M:%S')
 if [ -d $XDG_CONFIG_HOME ]; then
-  cp -r $XDG_CONFIG_HOME $HOME/.config.bak-$(date '+%Y-%m-%d_%H:%M:%S')
+  cp -r $XDG_CONFIG_HOME $backup_file
 fi
 
 for cfg in `ls -a $PWD/cfg/`;

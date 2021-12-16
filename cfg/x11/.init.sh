@@ -8,5 +8,3 @@ if [[ $XDG_SESSION_TYPE == "x11" ]]; then
   ln -sfv $PWD/cfg/x11/xinitrc ~/.xinitrc
   xrdb -merge $HOME/.Xresources
 fi
-
-
