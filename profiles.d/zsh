@@ -103,6 +103,19 @@ setopt AUTO_LIST
 setopt AUTO_MENU
 # setopt MENU_COMPLETE
 
+# history
+HISTSIZE=10000
+setopt APPEND_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FCNTL_LOCK
+setopt SHARE_HISTORY
+setopt INC_APPEND_HISTORY
+setopt HIST_FIND_NO_DUPS
+
+# history unique
+# setopt HIST_IGNORE_ALL_DUPS
+# setopt HIST_IGNORE_DUPS
+
 autoload -U compinit && compinit
 autoload -U promptinit && promptinit
 autoload -U colors && colors
