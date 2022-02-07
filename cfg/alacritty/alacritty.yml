@@ -10,11 +10,11 @@ window:
     general: Alacritty
   dynamic_padding: true
   dynamic_title: true
+  opacity: 1.0
 
 scrolling:
   history: 10000
 
-background_opacity: 1.0
 selection:
   save_to_clipboard: true
 
@@ -25,7 +25,7 @@ font:
   bold:
     family: "CaskaydiaCove NF"
     style: "Regular"
-  size: 14
+  size: 13
   use_thin_strokes: true
   offset:
     x: 0
