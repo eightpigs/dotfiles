@@ -11,6 +11,7 @@ $PWD/os/setup.sh
 
 
 # Customized bin.
+# -----------------------------------------------------------------------------
 [ ! -d ~/.local/bin ] && mkdir ~/.local/bin
 cp -rf $PWD/bin/* ~/.local/bin
 

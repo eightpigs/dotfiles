@@ -1,0 +1,17 @@
+graph { colorscheme: greys9; }
+node { border: solid; }
+
+[ ./install.sh ] - 1 -> [ ./os/commons/setup-pre.sh ]
+[ ./os/commons/setup-pre.sh ] - (Linux Distros) -> { flow: down; } [ ./os/linux/{debian...}.sh ]
+[ ./os/commons/setup-pre.sh ] - (MacOS) -> [ ./os/darwin/setup.sh ]
+[ ./os/linux/{debian...}.sh ] --> [ ./os/commons/setup-post.sh ]
+[ ./os/darwin/setup.sh ] --> [ ./os/commons/setup-post.sh ]
+
+(OS: [./os/commons/setup-pre.sh], [./os/linux/{debian...}.sh], [./os/darwin/setup.sh], [./os/commons/setup-post.sh]) { fill: 2; }
+
+[ ./install.sh ] - 2 -> [ Overwrite bins ]
+[ ./install.sh ] - 3 -> { flow: down; } [ Backup dotfiles to\n ~/.config-bak ] --> { flow: down; } [ Install software configs\n./cfg/*/.init.sh ] --> [link software cfgs to\n~/.config/]
+[ ./install.sh ] - 4 -> [ link profiles ] --> [ Enable profiles ]
+
+( Software config: [Backup dotfiles to\n ~/.config-bak], [ Install software configs\n./cfg/*/.init.sh ], [link software cfgs to\n~/.config/]) { fill: 2; }
+( Profile: [ link profiles ], [ Enable profiles ] ) { fill: 2; }
