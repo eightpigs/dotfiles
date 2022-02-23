@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg width="1390.52" height="682.04" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!-- Generated at Wed Feb 23 14:20:38 2022 by:
+  Graph::Easy v0.76
+  Graph::Easy::As_svg v0.28
+-->
+
+<title>Untitled graph</title>
+<defs>
+ <!-- open arrow -->
+ <g id="ah" stroke-linecap="round" stroke-width="1">
+  <line x1="-8" y1="-4" x2="1" y2="0" />
+  <line x1="1" y1="0" x2="-8" y2="4" />
+ </g>
+
+ <!-- class definitions -->
+ <style type="text/css"><![CDATA[
+ .edge {
+  font-size: 13px;
+  stroke: black;
+  text-align: center;
+ }
+ .graph {
+  font-size: 16px;
+  text-align: center;
+ }
+ .node {
+  font-size: 16px;
+  text-align: center;
+ }
+ ]]></style>
+</defs>
+
+<!-- graph background with border (mainly for printing) -->
+<rect x="0.5" y="0.5" width="1388.52" height="680.04" fill="white" stroke="white" />
+
+<g id="10" class="group">
+ <rect x="922.28" y="283.56" width="38.4" height="14" fill="#f0f0f0"/>
+
+ <rect x="922.28" y="189.28" width="38.4" height="29" fill="#f0f0f0"/>
+ <line x1="922.78" y1="189.78" x2="960.18" y2="189.78"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="1358.52" y="297.56" width="14" height="84.48" fill="#f0f0f0"/>
+ <line x1="1372.02" y1="298.06" x2="1372.02" y2="381.54"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="1358.52" y="382.04" width="14" height="44.8" fill="#f0f0f0"/>
+ <line x1="1372.02" y1="382.54" x2="1372.02" y2="426.34"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="1076.52" y="218.28" width="14" height="65.28" fill="#f0f0f0"/>
+
+ <rect x="922.28" y="480.84" width="38.4" height="38.4" fill="#f0f0f0"/>
+ <line x1="922.78" y1="518.74" x2="960.18" y2="518.74"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="616.48" y="382.04" width="44.8" height="44.8" fill="#f0f0f0"/>
+ <line x1="616.98" y1="382.54" x2="616.98" y2="426.34"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="616.48" y="297.56" width="44.8" height="84.48" fill="#f0f0f0"/>
+ <line x1="616.98" y1="298.06" x2="616.98" y2="381.54"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="960.68" y="283.56" width="115.84" height="14" fill="#f0f0f0"/>
+
+ <rect x="960.68" y="189.28" width="115.84" height="29" fill="#f0f0f0"/>
+ <line x1="961.18" y1="189.78" x2="1076.02" y2="189.78"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="661.28" y="480.84" width="261" height="38.4" fill="#f0f0f0"/>
+ <line x1="661.78" y1="518.74" x2="921.78" y2="518.74"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="1090.52" y="283.56" width="268" height="14" fill="#f0f0f0"/>
+
+ <rect x="1090.52" y="189.28" width="268" height="29" fill="#f0f0f0"/>
+ <line x1="1091.02" y1="189.78" x2="1358.02" y2="189.78"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="1358.52" y="218.28" width="14" height="65.28" fill="#f0f0f0"/>
+ <line x1="1372.02" y1="218.78" x2="1372.02" y2="283.06"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="616.48" y="218.28" width="44.8" height="65.28" fill="#f0f0f0"/>
+ <line x1="616.98" y1="218.78" x2="616.98" y2="283.06"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="661.28" y="283.56" width="261" height="14" fill="#f0f0f0"/>
+
+ <rect x="1076.52" y="382.04" width="14" height="44.8" fill="#f0f0f0"/>
+
+ <rect x="960.68" y="480.84" width="115.84" height="38.4" fill="#f0f0f0"/>
+ <line x1="961.18" y1="518.74" x2="1076.02" y2="518.74"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="661.28" y="189.28" width="261" height="29" fill="#f0f0f0"/>
+ <line x1="661.78" y1="189.78" x2="921.78" y2="189.78"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <!-- OS:,  -->
+ <rect x="661.28" y="189.28" width="261" height="29" fill="#f0f0f0"/>
+ <line x1="661.78" y1="189.78" x2="921.78" y2="189.78"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <text x="667" y="208" style="font-family:serif;font-size:12.8px" fill="#000000" text-anchor="start">OS:</text>
+
+ <rect x="1076.52" y="297.56" width="14" height="84.48" fill="#f0f0f0"/>
+
+ <rect x="1090.52" y="480.84" width="268" height="38.4" fill="#f0f0f0"/>
+ <line x1="1091.02" y1="518.74" x2="1358.02" y2="518.74"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="922.28" y="382.04" width="38.4" height="44.8" fill="#f0f0f0"/>
+
+ <rect x="616.48" y="480.84" width="44.8" height="38.4" fill="#f0f0f0"/>
+ <line x1="616.98" y1="518.74" x2="660.78" y2="518.74"  stroke="#000000" stroke-dasharray="6,2"/>
+ <line x1="616.98" y1="481.34" x2="616.98" y2="518.74"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="1358.52" y="283.56" width="14" height="14" fill="#f0f0f0"/>
+ <line x1="1372.02" y1="284.06" x2="1372.02" y2="297.06"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="616.48" y="426.84" width="44.8" height="54" fill="#f0f0f0"/>
+ <line x1="616.98" y1="427.34" x2="616.98" y2="480.34"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="1358.52" y="189.28" width="14" height="29" fill="#f0f0f0"/>
+ <line x1="1359.02" y1="189.78" x2="1372.02" y2="189.78"  stroke="#000000" stroke-dasharray="6,2"/>
+ <line x1="1372.02" y1="189.78" x2="1372.02" y2="217.78"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="922.28" y="297.56" width="38.4" height="84.48" fill="#f0f0f0"/>
+
+ <rect x="616.48" y="189.28" width="44.8" height="29" fill="#f0f0f0"/>
+ <line x1="616.98" y1="189.78" x2="660.78" y2="189.78"  stroke="#000000" stroke-dasharray="6,2"/>
+ <line x1="616.98" y1="189.78" x2="616.98" y2="217.78"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="1358.52" y="426.84" width="14" height="54" fill="#f0f0f0"/>
+ <line x1="1372.02" y1="427.34" x2="1372.02" y2="480.34"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="616.48" y="283.56" width="44.8" height="14" fill="#f0f0f0"/>
+ <line x1="616.98" y1="284.06" x2="616.98" y2="297.06"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="1358.52" y="480.84" width="14" height="38.4" fill="#f0f0f0"/>
+ <line x1="1372.02" y1="481.34" x2="1372.02" y2="518.74"  stroke="#000000" stroke-dasharray="6,2"/>
+ <line x1="1359.02" y1="518.74" x2="1372.02" y2="518.74"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="960.68" y="382.04" width="115.84" height="44.8" fill="#f0f0f0"/>
+
+ <rect x="1076.52" y="480.84" width="14" height="38.4" fill="#f0f0f0"/>
+ <line x1="1077.02" y1="518.74" x2="1090.02" y2="518.74"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="1076.52" y="426.84" width="14" height="54" fill="#f0f0f0"/>
+
+ <rect x="960.68" y="297.56" width="115.84" height="84.48" fill="#f0f0f0"/>
+
+ <rect x="1076.52" y="189.28" width="14" height="29" fill="#f0f0f0"/>
+ <line x1="1077.02" y1="189.78" x2="1090.02" y2="189.78"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="1076.52" y="283.56" width="14" height="14" fill="#f0f0f0"/>
+</g>
+
+<g id="24" class="group">
+ <rect x="537.76" y="90.8" width="78.72" height="14" fill="#f0f0f0"/>
+ <line x1="538.26" y1="104.3" x2="615.98" y2="104.3"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="922.28" y="17" width="38.4" height="29" fill="#f0f0f0"/>
+ <line x1="922.78" y1="17.5" x2="960.18" y2="17.5"  stroke="#000000" stroke-dasharray="6,2"/>
+ <line x1="960.18" y1="17.5" x2="960.18" y2="45.5"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="499.36" y="90.8" width="38.4" height="14" fill="#f0f0f0"/>
+ <line x1="499.86" y1="104.3" x2="537.26" y2="104.3"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="264.36" y="90.8" width="235" height="14" fill="#f0f0f0"/>
+ <line x1="264.86" y1="104.3" x2="498.86" y2="104.3"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="616.48" y="90.8" width="44.8" height="14" fill="#f0f0f0"/>
+ <line x1="616.98" y1="104.3" x2="660.78" y2="104.3"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="499.36" y="17" width="38.4" height="29" fill="#f0f0f0"/>
+ <line x1="499.86" y1="17.5" x2="537.26" y2="17.5"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="264.36" y="17" width="235" height="29" fill="#f0f0f0"/>
+ <line x1="264.86" y1="17.5" x2="498.86" y2="17.5"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <!-- Profile:,  -->
+ <rect x="264.36" y="17" width="235" height="29" fill="#f0f0f0"/>
+ <line x1="264.86" y1="17.5" x2="498.86" y2="17.5"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <text x="270" y="36" style="font-family:serif;font-size:12.8px" fill="#000000" text-anchor="start">Profile:</text>
+
+ <rect x="616.48" y="17" width="44.8" height="29" fill="#f0f0f0"/>
+ <line x1="616.98" y1="17.5" x2="660.78" y2="17.5"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="537.76" y="17" width="78.72" height="29" fill="#f0f0f0"/>
+ <line x1="538.26" y1="17.5" x2="615.98" y2="17.5"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="922.28" y="90.8" width="38.4" height="14" fill="#f0f0f0"/>
+ <line x1="960.18" y1="91.3" x2="960.18" y2="104.3"  stroke="#000000" stroke-dasharray="6,2"/>
+ <line x1="922.78" y1="104.3" x2="960.18" y2="104.3"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="250.36" y="90.8" width="14" height="14" fill="#f0f0f0"/>
+ <line x1="250.86" y1="104.3" x2="263.86" y2="104.3"  stroke="#000000" stroke-dasharray="6,2"/>
+ <line x1="250.86" y1="91.3" x2="250.86" y2="104.3"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="250.36" y="17" width="14" height="29" fill="#f0f0f0"/>
+ <line x1="250.86" y1="17.5" x2="263.86" y2="17.5"  stroke="#000000" stroke-dasharray="6,2"/>
+ <line x1="250.86" y1="17.5" x2="250.86" y2="45.5"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="661.28" y="90.8" width="261" height="14" fill="#f0f0f0"/>
+ <line x1="661.78" y1="104.3" x2="921.78" y2="104.3"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="922.28" y="46" width="38.4" height="44.8" fill="#f0f0f0"/>
+ <line x1="960.18" y1="46.5" x2="960.18" y2="90.3"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="661.28" y="17" width="261" height="29" fill="#f0f0f0"/>
+ <line x1="661.78" y1="17.5" x2="921.78" y2="17.5"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="250.36" y="46" width="14" height="44.8" fill="#f0f0f0"/>
+ <line x1="250.86" y1="46.5" x2="250.86" y2="90.3"  stroke="#000000" stroke-dasharray="6,2"/>
+</g>
+
+<g id="23" class="group">
+ <rect x="264.36" y="650.04" width="235" height="14" fill="#f0f0f0"/>
+ <line x1="264.86" y1="663.54" x2="498.86" y2="663.54"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="499.36" y="650.04" width="38.4" height="14" fill="#f0f0f0"/>
+ <line x1="499.86" y1="663.54" x2="537.26" y2="663.54"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="537.76" y="650.04" width="78.72" height="14" fill="#f0f0f0"/>
+ <line x1="538.26" y1="663.54" x2="615.98" y2="663.54"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="250.36" y="596.04" width="14" height="54" fill="#f0f0f0"/>
+ <line x1="250.86" y1="596.54" x2="250.86" y2="649.54"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="922.28" y="650.04" width="38.4" height="14" fill="#f0f0f0"/>
+ <line x1="960.18" y1="650.54" x2="960.18" y2="663.54"  stroke="#000000" stroke-dasharray="6,2"/>
+ <line x1="922.78" y1="663.54" x2="960.18" y2="663.54"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="250.36" y="650.04" width="14" height="14" fill="#f0f0f0"/>
+ <line x1="250.86" y1="663.54" x2="263.86" y2="663.54"  stroke="#000000" stroke-dasharray="6,2"/>
+ <line x1="250.86" y1="650.54" x2="250.86" y2="663.54"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="661.28" y="551.24" width="261" height="44.8" fill="#f0f0f0"/>
+ <line x1="661.78" y1="551.74" x2="921.78" y2="551.74"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="661.28" y="650.04" width="261" height="14" fill="#f0f0f0"/>
+ <line x1="661.78" y1="663.54" x2="921.78" y2="663.54"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="250.36" y="519.24" width="14" height="32" fill="#f0f0f0"/>
+ <line x1="250.86" y1="519.74" x2="250.86" y2="550.74"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="922.28" y="551.24" width="38.4" height="44.8" fill="#f0f0f0"/>
+ <line x1="922.78" y1="551.74" x2="960.18" y2="551.74"  stroke="#000000" stroke-dasharray="6,2"/>
+ <line x1="960.18" y1="551.74" x2="960.18" y2="595.54"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="537.76" y="551.24" width="78.72" height="44.8" fill="#f0f0f0"/>
+ <line x1="538.26" y1="551.74" x2="615.98" y2="551.74"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="499.36" y="382.04" width="38.4" height="44.8" fill="#f0f0f0"/>
+ <line x1="499.86" y1="382.54" x2="537.26" y2="382.54"  stroke="#000000" stroke-dasharray="6,2"/>
+ <line x1="537.26" y1="382.54" x2="537.26" y2="426.34"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="264.36" y="382.04" width="235" height="44.8" fill="#f0f0f0"/>
+ <line x1="264.86" y1="382.54" x2="498.86" y2="382.54"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <!-- Software config:,  -->
+ <rect x="264.36" y="382.04" width="235" height="44.8" fill="#f0f0f0"/>
+ <line x1="264.86" y1="382.54" x2="498.86" y2="382.54"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <text x="270" y="409" style="font-family:serif;font-size:12.8px" fill="#000000" text-anchor="start">Software config:</text>
+
+ <rect x="250.36" y="382.04" width="14" height="44.8" fill="#f0f0f0"/>
+ <line x1="250.86" y1="382.54" x2="263.86" y2="382.54"  stroke="#000000" stroke-dasharray="6,2"/>
+ <line x1="250.86" y1="382.54" x2="250.86" y2="426.34"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="250.36" y="551.24" width="14" height="44.8" fill="#f0f0f0"/>
+ <line x1="250.86" y1="551.74" x2="250.86" y2="595.54"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="499.36" y="551.24" width="38.4" height="44.8" fill="#f0f0f0"/>
+
+ <rect x="922.28" y="596.04" width="38.4" height="54" fill="#f0f0f0"/>
+ <line x1="960.18" y1="596.54" x2="960.18" y2="649.54"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="499.36" y="519.24" width="38.4" height="32" fill="#f0f0f0"/>
+ <line x1="537.26" y1="519.74" x2="537.26" y2="550.74"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="616.48" y="650.04" width="44.8" height="14" fill="#f0f0f0"/>
+ <line x1="616.98" y1="663.54" x2="660.78" y2="663.54"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="250.36" y="426.84" width="14" height="54" fill="#f0f0f0"/>
+ <line x1="250.86" y1="427.34" x2="250.86" y2="480.34"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="250.36" y="480.84" width="14" height="38.4" fill="#f0f0f0"/>
+ <line x1="250.86" y1="481.34" x2="250.86" y2="518.74"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="499.36" y="426.84" width="38.4" height="54" fill="#f0f0f0"/>
+ <line x1="537.26" y1="427.34" x2="537.26" y2="480.34"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="499.36" y="480.84" width="38.4" height="38.4" fill="#f0f0f0"/>
+ <line x1="537.26" y1="481.34" x2="537.26" y2="518.74"  stroke="#000000" stroke-dasharray="6,2"/>
+
+ <rect x="616.48" y="551.24" width="44.8" height="44.8" fill="#f0f0f0"/>
+ <line x1="616.98" y1="551.74" x2="660.78" y2="551.74"  stroke="#000000" stroke-dasharray="6,2"/>
+</g>
+
+<g id="12" class="edge">
+ <!-- from ./install.sh to Overwrite bins -->
+ <!-- horizontal -->
+ <line x1="179.94" y1="250.92" x2="242.42" y2="250.92" stroke="#000000" />
+ <use stroke="#000000" xlink:href="#ah" transform="translate(178.94 250.92)rotate(180)"/>
+ <text x="201" y="246" style="font-family:sans-serif;font-size:12.8px" fill="#000000" stroke="none">2</text>
+</g>
+
+<g id="14" class="edge">
+ <!-- from ./install.sh to Backup dotfiles to\n ~/.config-bak -->
+ <!-- vertical -->
+ <line x1="381.86" y1="303.96" x2="381.86" y2="372.59" stroke="#000000" />
+ <use stroke="#000000" xlink:href="#ah" transform="translate(381.86 373.59)rotate(90)"/>
+ <text x="387.4" y="339" style="font-family:sans-serif;font-size:12.8px" fill="#000000" stroke="none" text-anchor="start">3</text>
+</g>
+
+<g id="16" class="edge">
+ <!-- from Backup dotfiles to\n ~/.config-bak to Install software configs\n./cfg/*/.init.sh -->
+ <!-- vertical -->
+ <rect x="264.36" y="480.84" width="235" height="38.4" fill="#f0f0f0" stroke="none" />
+ <line x1="381.86" y1="487.24" x2="381.86" y2="519.24" stroke="#000000" />
+
+ <!-- vertical -->
+ <rect x="264.36" y="551.24" width="235" height="44.8" fill="#f0f0f0" stroke="none" />
+ <line x1="381.86" y1="551.24" x2="381.86" y2="590.56" stroke="#000000" />
+ <use stroke="#000000" xlink:href="#ah" transform="translate(381.86 591.56)rotate(90)"/>
+
+ <!-- vertical -->
+ <rect x="264.36" y="519.24" width="235" height="32" fill="#f0f0f0" stroke="none" />
+ <line x1="381.86" y1="519.24" x2="381.86" y2="551.24" stroke="#000000" />
+</g>
+
+<g id="18" class="edge">
+ <!-- from Install software configs\n./cfg/*/.init.sh to link software cfgs to\n~/.config/ -->
+ <!-- horizontal -->
+ <rect x="499.36" y="596.04" width="38.4" height="54" fill="#f0f0f0" stroke="none" />
+ <line x1="503.2" y1="623.04" x2="537.76" y2="623.04" stroke="#000000" />
+
+ <!-- horizontal -->
+ <rect x="616.48" y="596.04" width="44.8" height="54" fill="#f0f0f0" stroke="none" />
+ <line x1="616.48" y1="623.04" x2="655.8" y2="623.04" stroke="#000000" />
+ <use stroke="#000000" xlink:href="#ah" x="656.8" y="623.04"/>
+
+ <!-- horizontal -->
+ <rect x="537.76" y="596.04" width="78.72" height="54" fill="#f0f0f0" stroke="none" />
+ <line x1="537.76" y1="623.04" x2="616.48" y2="623.04" stroke="#000000" />
+</g>
+
+<g id="2" class="edge">
+ <!-- from ./install.sh to ./os/commons/setup-pre.sh -->
+ <!-- horizontal -->
+ <line x1="545.63" y1="250.92" x2="607.61" y2="250.92" stroke="#000000" />
+ <use stroke="#000000" xlink:href="#ah" x="608.61" y="250.92"/>
+ <text x="558" y="246" style="font-family:sans-serif;font-size:12.8px" fill="#000000" stroke="none">1</text>
+</g>
+
+<g id="20" class="edge">
+ <!-- from ./install.sh to link profiles -->
+ <!-- vertical -->
+ <line x1="381.86" y1="114.25" x2="381.86" y2="182.88" stroke="#000000" />
+ <use stroke="#000000" xlink:href="#ah" transform="translate(381.86 113.25)rotate(-90)"/>
+ <text x="387.4" y="147" style="font-family:sans-serif;font-size:12.8px" fill="#000000" stroke="none" text-anchor="start">4</text>
+</g>
+
+<g id="22" class="edge">
+ <!-- from link profiles to Enable profiles -->
+ <!-- horizontal -->
+ <rect x="499.36" y="46" width="38.4" height="44.8" fill="#f0f0f0" stroke="none" />
+ <line x1="503.2" y1="68.4" x2="537.76" y2="68.4" stroke="#000000" />
+
+ <!-- horizontal -->
+ <rect x="616.48" y="46" width="44.8" height="44.8" fill="#f0f0f0" stroke="none" />
+ <line x1="616.48" y1="68.4" x2="655.8" y2="68.4" stroke="#000000" />
+ <use stroke="#000000" xlink:href="#ah" x="656.8" y="68.4"/>
+
+ <!-- horizontal -->
+ <rect x="537.76" y="46" width="78.72" height="44.8" fill="#f0f0f0" stroke="none" />
+ <line x1="537.76" y1="68.4" x2="616.48" y2="68.4" stroke="#000000" />
+</g>
+
+<g id="4" class="edge">
+ <!-- from ./os/commons/setup-pre.sh to ./os/linux/{debian...}.sh -->
+ <!-- vertical -->
+ <rect x="661.28" y="382.04" width="261" height="44.8" fill="#f0f0f0" stroke="none" />
+ <line x1="791.78" y1="382.04" x2="791.78" y2="421.36" stroke="#000000" />
+ <use stroke="#000000" xlink:href="#ah" transform="translate(791.78 422.36)rotate(90)"/>
+
+ <!-- vertical -->
+ <rect x="661.28" y="297.56" width="261" height="84.48" fill="#f0f0f0" stroke="none" />
+ <line x1="791.78" y1="303.96" x2="791.78" y2="382.04" stroke="#000000" />
+ <text x="797.4" y="339" style="font-family:sans-serif;font-size:12.8px" fill="#000000" stroke="none" text-anchor="start">(Linux Distros)</text>
+</g>
+
+<g id="6" class="edge">
+ <!-- from ./os/commons/setup-pre.sh to ./os/darwin/setup.sh -->
+ <!-- horizontal -->
+ <rect x="922.28" y="218.28" width="38.4" height="65.28" fill="#f0f0f0" stroke="none" />
+ <line x1="926.12" y1="250.92" x2="960.68" y2="250.92" stroke="#000000" />
+
+ <!-- horizontal -->
+ <rect x="960.68" y="218.28" width="115.84" height="65.28" fill="#f0f0f0" stroke="none" />
+ <line x1="960.68" y1="250.92" x2="1063.94" y2="250.92" stroke="#000000" />
+ <use stroke="#000000" xlink:href="#ah" x="1064.94" y="250.92"/>
+ <text x="981" y="246" style="font-family:sans-serif;font-size:12.8px" fill="#000000" stroke="none">(MacOS)</text>
+</g>
+
+<g id="8" class="edge">
+ <!-- from ./os/linux/{debian...}.sh to ./os/commons/setup-post.sh -->
+ <!-- horizontal -->
+ <rect x="922.28" y="426.84" width="38.4" height="54" fill="#f0f0f0" stroke="none" />
+ <line x1="926.12" y1="453.84" x2="960.68" y2="453.84" stroke="#000000" />
+
+ <!-- horizontal -->
+ <rect x="960.68" y="426.84" width="115.84" height="54" fill="#f0f0f0" stroke="none" />
+ <line x1="960.68" y1="453.84" x2="1063.94" y2="453.84" stroke="#000000" />
+ <use stroke="#000000" xlink:href="#ah" x="1064.94" y="453.84"/>
+</g>
+
+<g id="9" class="edge">
+ <!-- from ./os/darwin/setup.sh to ./os/commons/setup-post.sh -->
+ <!-- vertical -->
+ <rect x="1090.52" y="382.04" width="268" height="44.8" fill="#f0f0f0" stroke="none" />
+ <line x1="1224.52" y1="382.04" x2="1224.52" y2="421.36" stroke="#000000" />
+ <use stroke="#000000" xlink:href="#ah" transform="translate(1224.52 422.36)rotate(90)"/>
+
+ <!-- vertical -->
+ <rect x="1090.52" y="297.56" width="268" height="84.48" fill="#f0f0f0" stroke="none" />
+ <line x1="1224.52" y1="303.96" x2="1224.52" y2="382.04" stroke="#000000" />
+</g>
+
+<g id="0" class="node">
+ <!-- ./install.sh, rect -->
+ <rect fill="#ffffff" height="64.28" stroke="#000000" width="234" x="264.86" y="218.78" />
+ <text x="381" y="256" style="font-family:serif" fill="#000000" text-anchor="middle">./install.sh</text>
+</g>
+
+<g id="1" class="node">
+ <!-- ./os/commons/setup-pre.sh, rect -->
+ <rect fill="#ffffff" height="64.28" stroke="#000000" width="260" x="661.78" y="218.78" />
+ <text x="791" y="256" style="font-family:serif" fill="#000000" text-anchor="middle">./os/commons/setup-pre.sh</text>
+</g>
+
+<g id="3" class="node">
+ <!-- ./os/linux/{debian...}.sh, rect -->
+ <rect fill="#ffffff" height="53" stroke="#000000" width="260" x="661.78" y="427.34" />
+ <text x="791" y="459" style="font-family:serif" fill="#000000" text-anchor="middle">./os/linux/{debian...}.sh</text>
+</g>
+
+<g id="5" class="node">
+ <!-- ./os/darwin/setup.sh, rect -->
+ <rect fill="#ffffff" height="64.28" stroke="#000000" width="267" x="1091.02" y="218.78" />
+ <text x="1224" y="256" style="font-family:serif" fill="#000000" text-anchor="middle">./os/darwin/setup.sh</text>
+</g>
+
+<g id="7" class="node">
+ <!-- ./os/commons/setup-post.sh, rect -->
+ <rect fill="#ffffff" height="53" stroke="#000000" width="267" x="1091.02" y="427.34" />
+ <text x="1224" y="459" style="font-family:serif" fill="#000000" text-anchor="middle">./os/commons/setup-post.sh</text>
+</g>
+
+<g id="11" class="node">
+ <!-- Overwrite bins, rect -->
+ <rect fill="#ffffff" height="64.28" stroke="#000000" width="153" x="17.5" y="218.78" />
+ <text x="94" y="256" style="font-family:serif" fill="#000000" text-anchor="middle">Overwrite bins</text>
+</g>
+
+<g id="13" class="node">
+ <!-- Backup dotfiles to\n ~/.config-bak, rect -->
+ <rect fill="#ffffff" height="53" stroke="#000000" width="234" x="264.86" y="427.34" />
+ <text x="381" y="450" style="font-family:serif" fill="#000000" text-anchor="middle">
+  <tspan x="381" y="448">Backup dotfiles to</tspan>
+  <tspan x="381" y="466">~/.config-bak</tspan>
+ </text>
+</g>
+
+<g id="15" class="node">
+ <!-- Install software configs\n./cfg/*/.init.sh, rect -->
+ <rect fill="#ffffff" height="53" stroke="#000000" width="234" x="264.86" y="596.54" />
+ <text x="381" y="620" style="font-family:serif" fill="#000000" text-anchor="middle">
+  <tspan x="381" y="618">Install software configs</tspan>
+  <tspan x="381" y="636">./cfg/*/.init.sh</tspan>
+ </text>
+</g>
+
+<g id="17" class="node">
+ <!-- link software cfgs to\n~/.config/, rect -->
+ <rect fill="#ffffff" height="53" stroke="#000000" width="260" x="661.78" y="596.54" />
+ <text x="791" y="620" style="font-family:serif" fill="#000000" text-anchor="middle">
+  <tspan x="791" y="618">link software cfgs to</tspan>
+  <tspan x="791" y="636">~/.config/</tspan>
+ </text>
+</g>
+
+<g id="19" class="node">
+ <!-- link profiles, rect -->
+ <rect fill="#ffffff" height="43.8" stroke="#000000" width="234" x="264.86" y="46.5" />
+ <text x="381" y="74" style="font-family:serif" fill="#000000" text-anchor="middle">link profiles</text>
+</g>
+
+<g id="21" class="node">
+ <!-- Enable profiles, rect -->
+ <rect fill="#ffffff" height="43.8" stroke="#000000" width="260" x="661.78" y="46.5" />
+ <text x="791" y="74" style="font-family:serif" fill="#000000" text-anchor="middle">Enable profiles</text>
+</g>
+
+</svg>
