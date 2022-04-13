@@ -24,15 +24,15 @@ font:
     style: "SemiLight"
   bold:
     family: "CaskaydiaCove NF"
-    style: "SemiBold"
+    style: "Regular"
   size: 14
   use_thin_strokes: true
   offset:
     x: 0
-    y: 4
+    y: 6
   glyph_offset:
     x: 0
-    y: 2
+    y: 3
   builtin_box_drawing: true
 draw_bold_text_with_bright_colors: false
 
@@ -174,7 +174,6 @@ key_bindings:
   - { key: Key8,      mods: Alt,       chars: "\x1b8"                       }
   - { key: Key9,      mods: Alt,       chars: "\x1b9"                       }
   - { key: Key0,      mods: Alt,       chars: "\x1b0"                       }
-  - { key: Space,     mods: Control,   chars: "\x00"                        } # Ctrl + Space
   - { key: Grave,     mods: Alt,       chars: "\x1b`"                       } # Alt + `
   - { key: Grave,     mods: Alt|Shift, chars: "\x1b~"                       } # Alt + ~
   - { key: Period,    mods: Alt,       chars: "\x1b."                       } # Alt + .
@@ -188,4 +187,4 @@ key_bindings:
   - { key: Backslash, mods: Alt,       chars: "\x1b\\"                      } # Alt + \
   - { key: Backslash, mods: Alt|Shift, chars: "\x1b|"                       } # Alt + |
   - { key: Semicolon, mods: Alt,       chars: "\x1b;"                       } # Alt + ;
-
+  - { key: Space,     mods: Control,   chars: "\x00"                        } # Ctrl + Space
