@@ -1,17 +1,24 @@
 {
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Gruvbox Dark Hard",
-    "workbench.activityBar.visible": false,
-    "workbench.statusBar.feedback.visible": false,
+    "workbench.colorTheme": "GitHub Dark",
     "workbench.settings.editor": "json",
+    "workbench.reduceMotion": "on",
     "explorer.confirmDragAndDrop": false,
-    "editor.lineNumbers": "relative",
+    "explorer.confirmDelete": false,
+    "editor.lineNumbers": "on",
     "editor.formatOnSave": false,
     "editor.fontSize": 14,
     "editor.tabSize": 2,
-    "editor.renderWhitespace": "boundary",
+    "editor.fontFamily": "'Cascadia Code', Consolas, 'Courier New', monospace, 'Microsoft YaHei UI'",
+    "editor.lineHeight": 22,
     "editor.renderControlCharacters": true,
     "editor.tabCompletion": "on",
+    "editor.wordWrapColumn": 120,
+    "editor.cursorBlinking": "solid",
+    "editor.minimap.enabled": false,
+    "terminal.integrated.tabs.enableAnimation": false,
+    "git.autofetch": true,
+    "git.path": "/usr/local/bin/git",
     "breadcrumbs.enabled": true,
     "window.restoreFullscreen": true,
     "zenMode.fullScreen": false,
@@ -24,8 +31,7 @@
         "**/.idea": true,
         "**/CVS": true,
         "**/.DS_Store": true
-      },
-    "git.path": "/usr/local/bin/git",
+    },
     "vim.easymotion": true,
     "vim.history": 200,
     "vim.hlsearch": true,
@@ -191,7 +197,21 @@
             ]
         }
     ],
-    "explorer.confirmDelete": false,
-    
+    "remote.SSH.remotePlatform": {
+        "dev.loc": "linux"
+    },
+    "dart.devToolsTheme": "light",
+    "dart.lineLength": 120,
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [
+            120
+        ],
+        "editor.selectionHighlight": false,
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "editor.suggestSelection": "first",
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": false
+    },
 }
-
