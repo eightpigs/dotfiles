@@ -25,7 +25,11 @@ local function os_type()
 end
 
 local fonts = {
-  [os_type_win] = { "CodeNewRoman NF", "YouYuan", "Microsoft YaHei" },
+  [os_type_win] = {
+    { family = "CaskaydiaCove NF", italic = true },
+    { family = "CodeNewRoman NF", italic = true },
+    { family = "Microsoft YaHei", italic = true, weight = "Regular" }
+  },
   [os_type_mac] = { "CaskaydiaCove NF", "PingFang SC" },
   [os_type_linux] = { "CaskaydiaCove NF" }
 }
@@ -38,16 +42,49 @@ local progs = {
 }
 
 local cur_os_type = os_type()
+local font = wezterm.font_with_fallback(fonts[cur_os_type], {})
 
 local cfg = {
-  color_scheme = "Gruvbox Dark",
+  color_scheme = "Light",
 
+  color_schemes = {
+    ["Dark"] = {
+      foreground = "#e1e4e8",
+      background = "#1d2021",
+      cursor_bg = "#c9d1d9",
+      cursor_border = "#c9d1d9",
+      cursor_fg = "#101216",
+      selection_bg = "#3b5070",
+      selection_fg = "#ffffff",
+      scrollbar_thumb = "#222222",
+      split = "#444444",
+      ansi = { "#000000", "#ff4722", "#56d364", "#e3b341", "#79b8ff", "#db61a2", "#2b7489", "#ffffff" },
+      brights = { "#4d4d4d", "#ff4722", "#56d364", "#e3b341", "#79b8ff", "#db61a2", "#2b7489", "#ffffff" },
+      indexed = { [136] = "#af8700" },
+      compose_cursor = "#c9d1d9"
+    },
+    ["Light"] = {
+      foreground = "#373b41",
+      background = "#ffffff",
+      cursor_bg = "#373b41",
+      cursor_border = "#373b41",
+      cursor_fg = "#ffffff",
+      selection_bg = "#768db0",
+      selection_fg = "#ffffff",
+      scrollbar_thumb = "#222222",
+      split = "#444444",
+      ansi = { "#ffffff", "#cc342b", "#198844", "#e89409", "#3971ed", "#a36ac7", "#3971ed", "#373b41" },
+      brights = { "#b4b7b4", "#cc342b", "#198844", "#e89409", "#3971ed", "#a36ac7", "#3971ed", "#1d1f21" },
+      indexed = { [136] = "#ff4722" },
+      compose_cursor = "#373b41"
+    }
+  },
   default_prog = progs[cur_os_type],
 
   -- fonts
-  font = wezterm.font_with_fallback(fonts[cur_os_type], {}),
-  font_size = 14.0,
-  line_height = 1.1,
+  font = font,
+  font_size = 11.5,
+  line_height = 1.05,
 
   -- scroll_bar
   scrollback_lines = 9999,
@@ -62,12 +99,7 @@ local cfg = {
 
   -- windows
   window_padding = { left = "1cell", right = "1cell", top = "0.5cell", bottom = "0.5cell" },
-  window_frame = {
-    -- font = font_with_fallback("JetBrains Mono"),
-    font_size = 10.0,
-    active_titlebar_bg = "#333333",
-    inactive_titlebar_bg = "#333333"
-  },
+  window_frame = { font = font, font_size = 11.0, active_titlebar_bg = "#1d2021", inactive_titlebar_bg = "#575757" },
   keys = { { key = "q", mods = "CMD", action = "QuitApplication" } }
 }
 
