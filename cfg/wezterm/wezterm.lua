@@ -24,14 +24,20 @@ local function os_type()
   end
 end
 
-local fonts = {
+local os_fonts = {
   [os_type_win] = {
-    { family = "CaskaydiaCove NF", italic = true },
-    { family = "CodeNewRoman NF", italic = true },
-    { family = "Microsoft YaHei", italic = true, weight = "Regular" }
+    fonts = {
+      { family = "CaskaydiaCove NF", italic = true },
+      { family = "CodeNewRoman NF", italic = true },
+      { family = "Microsoft YaHei", italic = true, weight = "Regular" }
+    },
+    size = 11.5
   },
-  [os_type_mac] = { "CaskaydiaCove NF", "PingFang SC" },
-  [os_type_linux] = { "CaskaydiaCove NF" }
+  [os_type_mac] = {
+    fonts = { { family = "CaskaydiaCove NF", italic = true }, { "PingFang SC", italic = true } },
+    size = 15.0
+  },
+  [os_type_linux] = { fonts = { { family = "CaskaydiaCove NF", italic = true } }, size = 14.0 }
 }
 
 local progs = {
@@ -42,7 +48,8 @@ local progs = {
 }
 
 local cur_os_type = os_type()
-local font = wezterm.font_with_fallback(fonts[cur_os_type], {})
+local font_cfg = os_fonts[cur_os_type]
+local font = wezterm.font_with_fallback(font_cfg.fonts, {})
 
 local cfg = {
   color_scheme = "Light",
@@ -83,7 +90,7 @@ local cfg = {
 
   -- fonts
   font = font,
-  font_size = 11.5,
+  font_size = font_cfg.size,
   line_height = 1.05,
 
   -- scroll_bar
