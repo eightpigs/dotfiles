@@ -24,20 +24,33 @@ local function os_type()
   end
 end
 
+-- { family = "JetBrainsMono NF", weight = "Regular", style = "Normal", scale = 1.0 },
+-- { family = "Iosevka NF", weight = "Medium", style = "Normal", scale = 1.1 },
+-- { family = "CodeNewRoman NF", style = "Normal" },
 local os_fonts = {
   [os_type_win] = {
     fonts = {
-      { family = "CaskaydiaCove NF", italic = true },
-      { family = "CodeNewRoman NF", italic = true },
-      { family = "Microsoft YaHei", italic = true, weight = "Regular" }
+      { family = "IBM Plex Mono", weight = "Medium", style = "Normal", scale = 1.0 },
+      { family = "CaskaydiaCove NF", weight = "Regular", style = "Normal", scale = 1.20 },
+      { family = "Microsoft YaHei" }
     },
-    size = 11.5
+    size = 12
   },
   [os_type_mac] = {
-    fonts = { { family = "CaskaydiaCove NF", italic = true }, { "PingFang SC", italic = true } },
+    fonts = {
+      { family = "IBM Plex Mono", weight = "Medium", style = "Normal", scale = 1.0 },
+      { family = "CaskaydiaCove NF", weight = "Regular", style = "Normal", scale = 1.20 },
+      { "PingFang SC" }
+    },
     size = 15.0
   },
-  [os_type_linux] = { fonts = { { family = "CaskaydiaCove NF", italic = true } }, size = 14.0 }
+  [os_type_linux] = {
+    fonts = {
+      { family = "IBM Plex Mono", weight = "Medium", style = "Normal", scale = 1.0 },
+      { family = "CaskaydiaCove NF", weight = "Regular", style = "Normal", scale = 1.20 }
+    },
+    size = 14.0
+  }
 }
 
 local progs = {
@@ -47,51 +60,55 @@ local progs = {
   [os_type_linux] = { "zsh", "-l" }
 }
 
+local color_schemes = {
+  ["Dark"] = {
+    foreground = "#e1e4e8",
+    background = "#1f2428",
+    cursor_bg = "#c9d1d9",
+    cursor_border = "#c9d1d9",
+    cursor_fg = "#101216",
+    selection_bg = "#3b5070",
+    selection_fg = "#ffffff",
+    scrollbar_thumb = "#222222",
+    split = "#444444",
+    ansi = { "#000000", "#ea4a5a", "#56d364", "#e3b341", "#2188ff", "#db61a2", "#2b7489", "#ffffff" },
+    brights = { "#4d4d4d", "#ea4a5a", "#56d364", "#e3b341", "#2188ff", "#db61a2", "#2b7489", "#ffffff" },
+    indexed = { [136] = "#af8700" },
+    compose_cursor = "#c9d1d9"
+  },
+  ["Light"] = {
+    foreground = "#24292e",
+    background = "#ffffff",
+    cursor_bg = "#373b41",
+    cursor_border = "#373b41",
+    cursor_fg = "#ffffff",
+    selection_bg = "#768db0",
+    selection_fg = "#ffffff",
+    scrollbar_thumb = "#222222",
+    split = "#444444",
+    ansi = { "#ffffff", "#cc342b", "#198844", "#e89409", "#3971ed", "#a36ac7", "#3971ed", "#373b41" },
+    brights = { "#b4b7b4", "#cc342b", "#198844", "#e89409", "#3971ed", "#a36ac7", "#3971ed", "#1d1f21" },
+    indexed = { [136] = "#ff4722" },
+    compose_cursor = "#373b41"
+  }
+}
+
 local cur_os_type = os_type()
 local font_cfg = os_fonts[cur_os_type]
-local font = wezterm.font_with_fallback(font_cfg.fonts, {})
+local font = wezterm.font_with_fallback(font_cfg.fonts)
+local color_scheme_key = "Light"
+local cur_color_scheme = color_schemes[color_scheme_key]
 
 local cfg = {
-  color_scheme = "Light",
+  color_scheme = color_scheme_key,
 
-  color_schemes = {
-    ["Dark"] = {
-      foreground = "#e1e4e8",
-      background = "#1d2021",
-      cursor_bg = "#c9d1d9",
-      cursor_border = "#c9d1d9",
-      cursor_fg = "#101216",
-      selection_bg = "#3b5070",
-      selection_fg = "#ffffff",
-      scrollbar_thumb = "#222222",
-      split = "#444444",
-      ansi = { "#000000", "#ff4722", "#56d364", "#e3b341", "#79b8ff", "#db61a2", "#2b7489", "#ffffff" },
-      brights = { "#4d4d4d", "#ff4722", "#56d364", "#e3b341", "#79b8ff", "#db61a2", "#2b7489", "#ffffff" },
-      indexed = { [136] = "#af8700" },
-      compose_cursor = "#c9d1d9"
-    },
-    ["Light"] = {
-      foreground = "#373b41",
-      background = "#ffffff",
-      cursor_bg = "#373b41",
-      cursor_border = "#373b41",
-      cursor_fg = "#ffffff",
-      selection_bg = "#768db0",
-      selection_fg = "#ffffff",
-      scrollbar_thumb = "#222222",
-      split = "#444444",
-      ansi = { "#ffffff", "#cc342b", "#198844", "#e89409", "#3971ed", "#a36ac7", "#3971ed", "#373b41" },
-      brights = { "#b4b7b4", "#cc342b", "#198844", "#e89409", "#3971ed", "#a36ac7", "#3971ed", "#1d1f21" },
-      indexed = { [136] = "#ff4722" },
-      compose_cursor = "#373b41"
-    }
-  },
+  color_schemes = color_schemes,
   default_prog = progs[cur_os_type],
 
   -- fonts
   font = font,
   font_size = font_cfg.size,
-  line_height = 1.05,
+  line_height = 1.10,
 
   -- scroll_bar
   scrollback_lines = 9999,
@@ -101,13 +118,48 @@ local cfg = {
   enable_tab_bar = true,
   hide_tab_bar_if_only_one_tab = true,
   tab_bar_at_bottom = false,
-  tab_max_width = 20,
-  use_fancy_tab_bar = true,
+  use_fancy_tab_bar = false,
+  tab_max_width = 60,
 
   -- windows
   window_padding = { left = "1cell", right = "1cell", top = "0.5cell", bottom = "0.5cell" },
   window_frame = { font = font, font_size = 11.0, active_titlebar_bg = "#1d2021", inactive_titlebar_bg = "#575757" },
-  keys = { { key = "q", mods = "CMD", action = "QuitApplication" } }
+  keys = { { key = "q", mods = "CMD", action = "QuitApplication" } },
+
+  window_close_confirmation = "NeverPrompt",
+  colors = {
+    tab_bar = {
+      background = cur_color_scheme.foreground,
+      active_tab = {
+        bg_color = cur_color_scheme.selection_bg,
+        fg_color = cur_color_scheme.selection_fg,
+        -- Half, Normal, Bold"
+        intensity = "Normal",
+        -- None, Single, Double
+        underline = "None",
+        italic = false,
+        strikethrough = false
+      },
+      inactive_tab = {
+        bg_color = cur_color_scheme.foreground,
+        fg_color = cur_color_scheme.background
+      },
+      inactive_tab_hover = {
+        bg_color = cur_color_scheme.foreground,
+        fg_color = cur_color_scheme.background,
+        italic = true
+      },
+      new_tab = {
+        bg_color = cur_color_scheme.cursor_border,
+        fg_color = cur_color_scheme.background
+      },
+      new_tab_hover = {
+        bg_color = cur_color_scheme.cursor_border,
+        fg_color = cur_color_scheme.background,
+        italic = true
+      }
+    }
+  }
 }
 
 return cfg
