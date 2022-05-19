@@ -3,7 +3,7 @@ export FZF_COMMITS_LOG_FORMAT='%C(auto)%h%d %s %C(#4d739e)%C(bold)%cr %an'
 export FZF_DEFAULT_COMMAND='ag --hidden --color -p ~/.config/.ignore -U -g ""'
 
 # https://minsw.github.io/fzf-color-picker/
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#373b41,bg:#ffffff,hl:#cc342b --color=fg+:#ffffff,bg+:#ffffff,hl+:#cc342b --color=info:#fba922,prompt:#373b41,pointer:#cc342b --color=marker:#3971ed,spinner:#3971ed,header:#3971ed'
+# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#373b41,bg:#ffffff,hl:#cc342b --color=fg+:#ffffff,bg+:#ffffff,hl+:#cc342b --color=info:#fba922,prompt:#373b41,pointer:#cc342b --color=marker:#3971ed,spinner:#3971ed,header:#3971ed'
  
 # fglog - git commit browser
 fglog() {
