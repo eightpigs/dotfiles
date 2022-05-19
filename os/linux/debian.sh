@@ -21,10 +21,10 @@ fi
 sudo apt install \
   gperf luajit luarocks libuv1-dev silversearcher-ag exuberant-ctags dnsutils \
   libluajit-5.1-dev libunibilium-dev libmsgpack-dev libtermkey-dev libvterm-dev \
-  libutf8proc-dev wget curl git make cmake build-essential gettext ncat autojump\
-  python3-distutils python-dev python3-dev zsh tmux htop unzip clang jq fd-find \
-  podman buildah skopeo apt-transport-https gnupg2 libreadline-dev bat fzf unrar \
-  vpnc libjansson-dev zsh
+  libutf8proc-dev wget curl git make cmake build-essential gettext ncat autojump \
+  python3-distutils python-dev python3-dev python3-venv python3-pip zsh tmux htop \
+  unzip clang jq fd-find podman buildah skopeo apt-transport-https gnupg2 libreadline-dev \
+  bat fzf unrar vpnc libjansson-dev zsh
 
 # use zsh
 chsh -s /bin/zsh
