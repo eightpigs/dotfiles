@@ -36,9 +36,10 @@ alias proxyrup='export http_proxy=http://proxy.loc:8890;export https_proxy=$http
 alias proxydown='unset http_proxy;unset https_proxy'
 
 # Kubectl
+alias k="kubectl"
 alias kgs="kubectl get svc -A -o wide"
 alias kge="kubectl get events -A"
-alias kgp="kubectl get pods -A -o wide"
+alias kgp="kubectl get pods -A"
 alias kgpv="kubectl get pv -A -o wide"
 alias kgpvc="kubectl get pvc -A -o wide"
 alias kgn="kubectl get nodes -A -o wide"

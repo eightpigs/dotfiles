@@ -27,7 +27,7 @@ M2_HOME=$SOFTWARE_PATH/maven
 PATH=$PATH:$M2_HOME/bin
 export M2_HOME PATH 
 
-JAVA_HOME=$SOFTWARE_PATH/java/openjdk/17
+JAVA_HOME=$SOFTWARE_PATH/java/hotspot/11
 JRE_HOME=$JAVA_HOME/jre
 PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib
@@ -44,8 +44,8 @@ export GOROOT PATH
 FLUTTER_HOME=$SOFTWARE_PATH/flutter
 PATH=$PATH:$FLUTTER_HOME/bin
 export FLUTTER_HOME PATH
-export FLUTTER_STORAGE_BASE_URL="https://mirrors.tuna.tsinghua.edu.cn/flutter"
-export PUB_HOSTED_URL="https://mirrors.tuna.tsinghua.edu.cn/dart-pub"
+export FLUTTER_STORAGE_BASE_URL=https://mirrors.tuna.tsinghua.edu.cn/flutter
+export PUB_HOSTED_URL=https://mirrors.tuna.tsinghua.edu.cn/dart-pub
 
 ANDROID_HOME=$SOFTWARE_PATH/android
 ANDROID_PALT_HOME=$ANDROID_HOME/platform-tools
@@ -54,7 +54,7 @@ ANDROID_EMULATOR_HOME=$ANDROID_HOME/emulator
 PATH=$PATH:$ANDROID_PALT_HOME:$ANDROID_CMD_HOME/bin:$ANDROID_EMULATOR_HOME
 export ANDROID_HOME ANDROID_PALT_HOME ANDROID_CMD_HOME ANDROID_EMULATOR_HOME PATH
 
-NODE_JS_HOME=$SOFTWARE_PATH/node
+NODE_JS_HOME=$SOFTWARE_PATH/node/16.15.0
 PATH=$PATH:$NODE_JS_HOME/bin
 export NODE_JS_HOME PATH
 
