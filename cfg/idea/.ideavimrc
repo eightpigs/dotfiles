@@ -26,69 +26,42 @@ nnoremap <leader>wh <C-W>h
 nnoremap <leader>wl <C-W>l
 nnoremap <leader>wk <C-W>k
 
-nnoremap <leader>g; :action Back<CR>
-nnoremap <leader>n' :action Forward<CR>
-
 nnoremap <leader>] :action ShowPopupMenu<CR>
 nnoremap <leader>1 :NERDTreeToggle<CR>
-
-
 
 
 " ------------------------------------------------------------
 " Content 
 " ------------------------------------------------------------
 
-" 保存当前内容
 nnoremap <leader>i :action SaveDocument<CR>
-" 保存所有
 nnoremap <leader>I :action SaveAll<CR>
-" 格式化代码
 nnoremap <leader>ff :action ReformatCode<CR>
-" 优化包导入
 nnoremap <leader>fi :action OptimizeImports<CR>
-" switch current line to buttom
+
 nnoremap <leader>fj ddp
-" switch current line to top
 nnoremap <leader>fk ddkP
 
-nnoremap <leader>f' :action QuickJavaDoc<cr>
-nnoremap <leader>fs :action GotoSuperMethod<cr>
-nnoremap <leader>gi :action GotoImplementation<cr>
-nnoremap <leader>gu :action GotoDeclaration<cr>
+nnoremap K :action QuickJavaDoc<cr>
+nnoremap gs :action GotoSuperMethod<cr>
+nnoremap gi :action GotoImplementation<cr>
+nnoremap gd :action GotoDeclaration<cr>
+nnoremap gD :action GotoTypeDeclaration<cr>
 
-" show file structure
 nnoremap <leader>[ :action FileStructurePopup<cr>
-" go next error / warning
 nnoremap <leader>f, :action GotoNextError<cr>
-" go prev error / warning
 nnoremap <leader>f. :action GotoPreviousError<cr>
-" close 
 nnoremap <leader>q :action CloseContent<cr>
-" close all
 nnoremap <leader>Q :action CloseAllEditors<cr>
-" rename
 nnoremap <leader>r :action RenameElement<cr>
 
 
 " ------------------------------------------------------------
 " Search
 " ------------------------------------------------------------
-nnoremap <leader>s; :action GotoClass<cr>
-nnoremap <leader>s' :action GotoFile<cr>
-noremap <leader>; :action GotoFile<cr>
+nnoremap <leader>; :action GotoFile<cr>
 noremap <leader>' :action GotoSymbol<cr>
-noremap <leader>e :action RecentFiles<cr>
-
-
-
-
-" ------------------------------------------------------------
-" Version Control
-" ------------------------------------------------------------
-nnoremap <leader>vc :action GotoClass<cr>
-nnoremap <leader>s' :action GotoFile<cr>
-
+noremap ; :action RecentFiles<cr>
 
 
 

@@ -24,9 +24,24 @@ local function os_type()
   end
 end
 
--- { family = "JetBrainsMono NF", weight = "Regular", style = "Normal", scale = 1.0 },
--- { family = "Iosevka NF", weight = "Medium", style = "Normal", scale = 1.1 },
--- { family = "CodeNewRoman NF", style = "Normal" },
+local function tbl_copy(original, override, override_sub_tbl)
+  local n = {}
+  for k, v in pairs(original) do
+    n[k] = v
+    if (override_sub_tbl ~= nil and override_sub_tbl and override ~= nil) then
+      for sk, sv in pairs(override) do
+        n[k][sk] = sv
+      end
+    end
+  end
+  if ((override_sub_tbl == nil or override_sub_tbl) and override ~= nil) then
+    for k, v in pairs(override) do
+      n[k] = v
+    end
+  end
+  return setmetatable(n, getmetatable(original))
+end
+
 local os_fonts = {
   [os_type_win] = {
     fonts = {
@@ -38,11 +53,10 @@ local os_fonts = {
   },
   [os_type_mac] = {
     fonts = {
-      { family = "IBM Plex Mono", weight = "Medium", style = "Normal", scale = 1.0 },
-      { family = "CaskaydiaCove NF", weight = "Regular", style = "Normal", scale = 1.20 },
-      { "PingFang SC" }
+      { family = "IBM Plex Mono", weight = "Regular", stretch = "Normal", style = "Normal", scale = 1.15 },
+      { family = "PingFang SC", weight = "Regular", stretch = "Normal", style = "Normal", scale = 1.15 }
     },
-    size = 15.0
+    size = 13.0
   },
   [os_type_linux] = {
     fonts = {
@@ -101,14 +115,24 @@ local cur_color_scheme = color_schemes[color_scheme_key]
 
 local cfg = {
   color_scheme = color_scheme_key,
-
   color_schemes = color_schemes,
   default_prog = progs[cur_os_type],
 
   -- fonts
   font = font,
   font_size = font_cfg.size,
-  line_height = 1.10,
+  line_height = 1.2,
+  font_antialias = "Subpixel", -- Subpixel
+  font_hinting = "Full",
+  font_shaper = "Harfbuzz",
+  font_rules = {
+    { italic = true, font = wezterm.font_with_fallback(tbl_copy(font_cfg.fonts, { italic = true }, true)) },
+    {
+      intensity = "Bold",
+      font = wezterm.font_with_fallback(tbl_copy(font_cfg.fonts, { italic = false, weight = "Medium" }, true))
+    },
+    { intensity = "Half", font = wezterm.font_with_fallback(tbl_copy(font_cfg.fonts, { weight = "Light" }, true)) }
+  },
 
   -- scroll_bar
   scrollback_lines = 9999,
@@ -119,7 +143,7 @@ local cfg = {
   hide_tab_bar_if_only_one_tab = true,
   tab_bar_at_bottom = false,
   use_fancy_tab_bar = false,
-  tab_max_width = 60,
+  tab_max_width = 120,
 
   -- windows
   window_padding = { left = "1cell", right = "1cell", top = "0.5cell", bottom = "0.5cell" },
@@ -140,24 +164,14 @@ local cfg = {
         italic = false,
         strikethrough = false
       },
-      inactive_tab = {
-        bg_color = cur_color_scheme.foreground,
-        fg_color = cur_color_scheme.background
-      },
+      inactive_tab = { bg_color = cur_color_scheme.foreground, fg_color = cur_color_scheme.background },
       inactive_tab_hover = {
         bg_color = cur_color_scheme.foreground,
         fg_color = cur_color_scheme.background,
         italic = true
       },
-      new_tab = {
-        bg_color = cur_color_scheme.cursor_border,
-        fg_color = cur_color_scheme.background
-      },
-      new_tab_hover = {
-        bg_color = cur_color_scheme.cursor_border,
-        fg_color = cur_color_scheme.background,
-        italic = true
-      }
+      new_tab = { bg_color = cur_color_scheme.cursor_border, fg_color = cur_color_scheme.background },
+      new_tab_hover = { bg_color = cur_color_scheme.cursor_border, fg_color = cur_color_scheme.background, italic = true }
     }
   }
 }
