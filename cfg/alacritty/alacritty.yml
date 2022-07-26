@@ -20,19 +20,21 @@ selection:
 
 font:
   normal:
-    family: "CaskaydiaCove NF"
-    style: "SemiLight"
-  bold:
-    family: "CaskaydiaCove NF"
+    family: "IBM Plex Mono"
     style: "Regular"
+    # family: "CaskaydiaCove NF"
+    # style: "SemiLight"
+  bold:
+    family: "IBM Plex Mono"
+    style: "SemiBold"
   size: 14
   use_thin_strokes: true
   offset:
     x: 0
-    y: 6
+    y: 10
   glyph_offset:
     x: 0
-    y: 3
+    y: 5
   builtin_box_drawing: true
 draw_bold_text_with_bright_colors: false
 
