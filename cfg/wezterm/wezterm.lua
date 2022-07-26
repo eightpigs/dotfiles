@@ -24,17 +24,17 @@ local function os_type()
   end
 end
 
-local function tbl_copy(original, override, override_sub_tbl)
+local function tbl_copy(original, override)
   local n = {}
   for k, v in pairs(original) do
     n[k] = v
-    if (override_sub_tbl ~= nil and override_sub_tbl and override ~= nil) then
+    if (override ~= nil and type(v) == "table") then
       for sk, sv in pairs(override) do
         n[k][sk] = sv
       end
     end
   end
-  if ((override_sub_tbl == nil or override_sub_tbl) and override ~= nil) then
+  if (override ~= nil) then
     for k, v in pairs(override) do
       n[k] = v
     end
@@ -53,10 +53,10 @@ local os_fonts = {
   },
   [os_type_mac] = {
     fonts = {
-      { family = "IBM Plex Mono", weight = "Regular", stretch = "Normal", style = "Normal", scale = 1.15 },
-      { family = "PingFang SC", weight = "Regular", stretch = "Normal", style = "Normal", scale = 1.15 }
+      { family = "IBM Plex Mono", weight = "Regular", stretch = "Normal", style = "Normal", scale = 1.0 },
+      { family = "PingFang SC", weight = "Regular", stretch = "Normal", style = "Normal", scale = 1.0 }
     },
-    size = 13.0
+    size = 14.0
   },
   [os_type_linux] = {
     fonts = {
@@ -110,6 +110,7 @@ local color_schemes = {
 local cur_os_type = os_type()
 local font_cfg = os_fonts[cur_os_type]
 local font = wezterm.font_with_fallback(font_cfg.fonts)
+
 local color_scheme_key = "Light"
 local cur_color_scheme = color_schemes[color_scheme_key]
 
@@ -122,20 +123,25 @@ local cfg = {
   font = font,
   font_size = font_cfg.size,
   line_height = 1.2,
-  font_antialias = "Subpixel", -- Subpixel
-  font_hinting = "Full",
-  font_shaper = "Harfbuzz",
+  freetype_load_target = "HorizontalLcd",
+  freetype_load_flags = 'FORCE_AUTOHINT',
+  freetype_render_target = 'HorizontalLcd',
   font_rules = {
-    { italic = true, font = wezterm.font_with_fallback(tbl_copy(font_cfg.fonts, { italic = true }, true)) },
+    { italic = true, font = wezterm.font_with_fallback(tbl_copy(font_cfg.fonts, { italic = true })) },
+    {
+      italic = true,
+      intensity = "Bold",
+      font = wezterm.font_with_fallback(tbl_copy(font_cfg.fonts, { italic = true, weight = "Medium" }))
+    },
     {
       intensity = "Bold",
-      font = wezterm.font_with_fallback(tbl_copy(font_cfg.fonts, { italic = false, weight = "Medium" }, true))
+      font = wezterm.font_with_fallback(tbl_copy(font_cfg.fonts, { italic = false, weight = "Medium" }))
     },
-    { intensity = "Half", font = wezterm.font_with_fallback(tbl_copy(font_cfg.fonts, { weight = "Light" }, true)) }
+    { intensity = "Half", font = font }
   },
 
   -- scroll_bar
-  scrollback_lines = 9999,
+  scrollback_lines = 99999,
   enable_scroll_bar = false,
 
   -- tab_bar
