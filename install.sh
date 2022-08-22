@@ -1,8 +1,6 @@
 #!/bin/bash
 
-if [ $XDG_CONFIG_HOME == "" ]; then
-  export XDG_CONFIG_HOME="$HOME/.config"
-fi
+export XDG_CONFIG_HOME="$HOME/.config"
 
 
 # OS Init.

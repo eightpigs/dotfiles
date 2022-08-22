@@ -1,8 +1,8 @@
-local wezterm = require 'wezterm';
+local wezterm = require 'wezterm'
 
-local os_type_win = "Windows"
-local os_type_mac = "MacOS"
-local os_type_linux = "Linux"
+local os_win = "Windows"
+local os_mac = "MacOS"
+local os_linux = "Linux"
 
 function os.exec(cmd)
   local f = assert(io.popen(cmd, 'r'))
@@ -11,15 +11,15 @@ function os.exec(cmd)
   return s
 end
 
-local function os_type()
+local function get_current_os()
   if package.config:sub(1, 1) ~= "/" then
-    return os_type_win
+    return os_win
   else
     local output = os.exec("uname")
     if string.find(output, "Darwin") then
-      return os_type_mac
+      return os_mac
     else
-      return os_type_linux
+      return os_linux
     end
   end
 end
@@ -43,25 +43,27 @@ local function tbl_copy(original, override)
 end
 
 local os_fonts = {
-  [os_type_win] = {
+  [os_win] = {
     fonts = {
-      { family = "IBM Plex Mono", weight = "Medium", style = "Normal", scale = 1.0 },
-      { family = "CaskaydiaCove NF", weight = "Regular", style = "Normal", scale = 1.20 },
+      { family = "IBM Plex Mono", weight = "Medium", scale = 1.0 },
+      { family = "CaskaydiaCove NF", weight = "Regular", scale = 1.20 },
       { family = "Microsoft YaHei" }
     },
     size = 12
   },
-  [os_type_mac] = {
+  [os_mac] = {
     fonts = {
-      { family = "IBM Plex Mono", weight = "Regular", stretch = "Normal", style = "Normal", scale = 1.0 },
-      { family = "PingFang SC", weight = "Regular", stretch = "Normal", style = "Normal", scale = 1.0 }
+      { family = "IBM Plex Mono", weight = "Regular", scale = 1.0 },
+      { family = "Fira Code", weight = "Regular", scale = 1.0 },
+      { family = "Cascadia Mono", weight = "Regular", scale = 1.02 },
+      { family = "PingFang SC", weight = "Regular", scale = 1.0 }
     },
     size = 14.0
   },
-  [os_type_linux] = {
+  [os_linux] = {
     fonts = {
-      { family = "IBM Plex Mono", weight = "Medium", style = "Normal", scale = 1.0 },
-      { family = "CaskaydiaCove NF", weight = "Regular", style = "Normal", scale = 1.20 }
+      { family = "IBM Plex Mono", weight = "Medium", scale = 1.0 },
+      { family = "CaskaydiaCove NF", weight = "Regular", scale = 1.20 }
     },
     size = 14.0
   }
@@ -69,9 +71,9 @@ local os_fonts = {
 
 local progs = {
   -- https://aka.ms/powershell
-  [os_type_win] = { "C:\\Program Files\\PowerShell\\7\\pwsh.exe" },
-  [os_type_mac] = { "zsh", "-l" },
-  [os_type_linux] = { "zsh", "-l" }
+  [os_win] = { "C:\\Program Files\\PowerShell\\7\\pwsh.exe" },
+  [os_mac] = { "zsh", "-l" },
+  [os_linux] = { "zsh", "-l" }
 }
 
 local color_schemes = {
@@ -103,29 +105,44 @@ local color_schemes = {
     ansi = { "#ffffff", "#cc342b", "#198844", "#e89409", "#3971ed", "#a36ac7", "#3971ed", "#373b41" },
     brights = { "#b4b7b4", "#cc342b", "#198844", "#e89409", "#3971ed", "#a36ac7", "#3971ed", "#1d1f21" },
     indexed = { [136] = "#ff4722" },
-    compose_cursor = "#373b41"
+    compose_cursor = "#373b41",
+    tab_bar = {
+      background = "#f1f1f1",
+      active_tab = {
+        bg_color = '#d0d0d0',
+        fg_color = '#24292e',
+        intensity = 'Bold',
+        underline = 'None',
+        italic = false,
+        strikethrough = false
+      },
+      inactive_tab = { bg_color = '#f1f1f1', fg_color = '#24292e' },
+      inactive_tab_hover = { bg_color = '#f1f1f1', fg_color = '#24292e', intensity = 'Bold' },
+      new_tab = { bg_color = '#f1f1f1', fg_color = '#24292e' },
+      new_tab_hover = { bg_color = '#f1f1f1', fg_color = '#24292e', intensity = 'Bold' }
+    }
   }
 }
 
-local cur_os_type = os_type()
-local font_cfg = os_fonts[cur_os_type]
-local font = wezterm.font_with_fallback(font_cfg.fonts)
-
-local color_scheme_key = "Light"
-local cur_color_scheme = color_schemes[color_scheme_key]
+local cur_os = get_current_os()
+local font_cfg = os_fonts[cur_os]
 
 local cfg = {
-  color_scheme = color_scheme_key,
+  default_prog = progs[cur_os],
+  automatically_reload_config = true,
+
+  color_scheme = wezterm.gui.get_appearance():find("Light") ~= nil and "Light" or "Dark",
   color_schemes = color_schemes,
-  default_prog = progs[cur_os_type],
+  bold_brightens_ansi_colors = true,
 
   -- fonts
-  font = font,
+  font = wezterm.font_with_fallback(font_cfg.fonts),
   font_size = font_cfg.size,
   line_height = 1.2,
-  freetype_load_target = "HorizontalLcd",
-  freetype_load_flags = 'FORCE_AUTOHINT',
-  freetype_render_target = 'HorizontalLcd',
+  freetype_load_target = "Light",
+  freetype_load_flags = "NO_HINTING",
+  freetype_render_target = "HorizontalLcd",
+  allow_square_glyphs_to_overflow_width = 'Never',
   font_rules = {
     { italic = true, font = wezterm.font_with_fallback(tbl_copy(font_cfg.fonts, { italic = true })) },
     {
@@ -134,10 +151,10 @@ local cfg = {
       font = wezterm.font_with_fallback(tbl_copy(font_cfg.fonts, { italic = true, weight = "Medium" }))
     },
     {
+      italic = false,
       intensity = "Bold",
       font = wezterm.font_with_fallback(tbl_copy(font_cfg.fonts, { italic = false, weight = "Medium" }))
-    },
-    { intensity = "Half", font = font }
+    }
   },
 
   -- scroll_bar
@@ -152,34 +169,44 @@ local cfg = {
   tab_max_width = 120,
 
   -- windows
+  window_decorations = 'TITLE | RESIZE',
   window_padding = { left = "1cell", right = "1cell", top = "0.5cell", bottom = "0.5cell" },
-  window_frame = { font = font, font_size = 11.0, active_titlebar_bg = "#1d2021", inactive_titlebar_bg = "#575757" },
-  keys = { { key = "q", mods = "CMD", action = "QuitApplication" } },
-
   window_close_confirmation = "NeverPrompt",
-  colors = {
-    tab_bar = {
-      background = cur_color_scheme.foreground,
-      active_tab = {
-        bg_color = cur_color_scheme.selection_bg,
-        fg_color = cur_color_scheme.selection_fg,
-        -- Half, Normal, Bold"
-        intensity = "Normal",
-        -- None, Single, Double
-        underline = "None",
-        italic = false,
-        strikethrough = false
-      },
-      inactive_tab = { bg_color = cur_color_scheme.foreground, fg_color = cur_color_scheme.background },
-      inactive_tab_hover = {
-        bg_color = cur_color_scheme.foreground,
-        fg_color = cur_color_scheme.background,
-        italic = true
-      },
-      new_tab = { bg_color = cur_color_scheme.cursor_border, fg_color = cur_color_scheme.background },
-      new_tab_hover = { bg_color = cur_color_scheme.cursor_border, fg_color = cur_color_scheme.background, italic = true }
-    }
-  }
+
+  -- keys
+  disable_default_key_bindings = false,
+  keys = {
+    { key = "q", mods = "CMD", action = "QuitApplication" },
+    { key = 'F9', mods = 'ALT', action = wezterm.action.ShowTabNavigator }
+  },
+
+  ssh_domains = { { name = 'dev', remote_address = 'dev.loc' } }
 }
+
+-- events
+-- ----------------------------------------------------------------------------
+
+-- params: window, pane
+local function refresh_config(window, _)
+  if cur_os == os_mac then
+    local overrides = window:get_config_overrides() or {}
+    local font_size = wezterm.gui.screens().active.name == "Built-in Retina Display" and 16.0 or 15.0
+    if window:effective_config().font_size ~= font_size then
+      overrides.font_size = font_size
+      window:set_config_overrides(overrides)
+    end
+  end
+end
+
+wezterm.on('window-config-reloaded', refresh_config)
+wezterm.on('window-resized', refresh_config)
+-- params: tab, tabs, panes, config, hover, max_width
+wezterm.on('format-tab-title', function(tab, _, _, _, _, _)
+  local idx = tab.tab_index + 1
+  if tab.is_active then
+    return { { Attribute = { Intensity = 'Bold' } }, { Text = ' ' .. idx .. ': ' .. tab.active_pane.title .. ' ' } }
+  end
+  return { { Text = ' ' .. idx .. ': ' .. tab.active_pane.title .. ' ' } }
+end)
 
 return cfg
