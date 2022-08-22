@@ -23,9 +23,11 @@ then
 fi
 
 export HOMEBREW_NO_AUTO_UPDATE=1
-brews=(ninja libtool automake cmake pkg-config boost gettext wget telnet curl fzf fd \
-  bat the_silver_searcher mitmproxy tmux autojump unar mycli htop ctags glow tree luarocks zsh)
-casks=(smcfancontrol hammerspoon alacritty)
+brews=(ninja libtool automake cmake pkg-config boost gettext wget telnet curl \
+  fzf fd bat the_silver_searcher mitmproxy tmux autojump unar mycli htop ctags \
+  glow tree luarocks zsh gpg2 jq
+)
+casks=(hammerspoon alacritty squirrel)
 
 brew tap universal-ctags/universal-ctags
 brew install --HEAD universal-ctags/universal-ctags/universal-ctags
@@ -39,6 +41,9 @@ do
   brew list --cask $soft > /dev/null 2>&1 || brew install --cask $soft
 done
 
+brew tap wez/wezterm
+brew install --cask wez/wezterm/wezterm
+
 # use zsh
 chsh -s $(which zsh)
 
@@ -46,12 +51,9 @@ if [ ! -d ~/.hammerspoon ]; then
   it clone git@github.com:eightpigs/awesome-hammerspoon.git ~/.hammerspoon
 fi
 
-# https://gist.github.com/bbqtd/a4ac060d6f6b9ea6fe3aabe735aa9d95
-infocmp -x tmux-256color > /dev/null 2>&1 || (curl -LO https://invisible-island.net/datafiles/current/terminfo.src.gz \
-  && gunzip terminfo.src.gz \
-  && /usr/bin/tic -xe alacritty-direct,tmux-256color terminfo.src \
-  && rm -f terminfo.src.gz
-)
+# https://github.com/htop-dev/htop/issues/251
+# https://github.com/mikepqr/dotfiles/commit/12f8446ceeb3124ea6078e4f69b3008d3809d87e
+curl -O https://gist.githubusercontent.com/nicm/ea9cf3c93f22e0246ec858122d9abea1/raw/37ae29fc86e88b48dbc8a674478ad3e7a009f357/tmux-256color /usr/bin/tic -x tmux-256color
 
 
 
@@ -68,6 +70,7 @@ if [ -d /Applications/Emacs.app ]; then
 fi
 
 if [ $reinstallEmacs == 'y' ]; then
+  brew tap d12frosted/emacs-plus
   brew install emacs-plus@28 \
     --with-ctags \
     --with-dbus \
