@@ -49,13 +49,48 @@ change_alacritty () {
   fi
 }
 
+change_kitty () {
+  kitty_cfg_dir=~/.config/kitty
+  theme_dir="$kitty_cfg_dir/themes"
+
+  dark_theme="$theme_dir/Gruvbox Material Dark Medium.conf"
+  light_theme="$theme_dir/Base16 Google Light.conf"
+  current_theme="$theme_dir/current-theme.conf"
+
+  if [[ -f $dark_theme && -f $light_theme ]]; then
+    next=$2
+    if [ $next == "dark" ]; then
+      rm $current_theme
+      ln -s "$dark_theme" $current_theme
+    else
+      rm $current_theme
+      ln -s "$light_theme" $current_theme
+    fi
+    ls /tmp/kitty.socket-* | xargs -I{} \
+      kitty @ --to unix:{} \
+      set_colors --configured $current_theme 2>/dev/null
+  fi
+}
+
+change_nvim () {
+  next=$2
+  # light / dark -> :Light<CR> / :Dark<CR>
+  nvim_cmd=":$(tr '[:lower:]' '[:upper:]' <<< ${next:0:1})${next:1}<CR>"
+  # https://neovim.io/doc/user/builtin.html#serverlist()
+  ls ${XDG_RUNTIME_DIR:-${TMPDIR}nvim.${USER}}/*/nvim.*.0 | xargs -I{} echo {} \
+    | xargs -I{} nvim --server {} --remote-send $nvim_cmd >/dev/null 2>&1
+} 
+
 change () {
   cur=`get_cur_theme`
   next=`get_next_theme $cur`
 
   change_alacritty $cur $next
+  change_kitty $cur $next
+  change_nvim $cur $next
 
   echo $next > $cfg
 }
 
+source ~/.zshrc
 change
