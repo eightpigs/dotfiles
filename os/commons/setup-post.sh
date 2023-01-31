@@ -33,9 +33,5 @@ fi
 # tmux
 [ ! -d ~/.tmux/plugins ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-
-# lua tools
-which lua-format &> /dev/null || luarocks install --server=https://luarocks.org/dev luaformatter
-
-# cargo
-cargo install stylua
+# fzf-colors
+git clone git@github.com:tinted-theming/base16-fzf.git ~/.fzf.colors
