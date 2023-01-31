@@ -7,32 +7,33 @@ mkdir -p $HOME/{Workspace,Downloads,.config}
 
 # Python
 # -----------------------------------------------------------------------------
-/usr/bin/python2 -m pip --version &> /dev/null
-if [ $? == 1 ]; then
-  curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip2.py
-  /usr/bin/python2 get-pip2.py
-  /usr/bin/python2 -m pip install pynvim
-  rm get-pip2.py
+if [ -f /usr/bin/python2 ]; then
+	/usr/bin/python2 -m pip --version &> /dev/null
+	if [ $? == 1 ]; then
+		curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip2.py
+		/usr/bin/python2 get-pip2.py
+		rm get-pip2.py
+	fi
+	/usr/bin/python2 -m pip install pynvim
 fi
 
-/usr/bin/python3 -m pip --version &> /dev/null
-if [ $? == 1 ]; then
-  curl https://bootstrap.pypa.io/get-pip.py -o get-pip3.py
-  /usr/bin/python3 get-pip3.py
+if [ -f /usr/bin/python3 ]; then
+  /usr/bin/python3 -m pip --version &> /dev/null
+  if [ $? == 1 ]; then
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip3.py
+    /usr/bin/python3 get-pip3.py
+    rm get-pip3.py
+  fi
   /usr/bin/python3 -m pip install pynvim
   /usr/bin/python3 -m pip install python-language-server
-  rm get-pip3.py
+  pip3 install iredis
 fi
-
 
 
 # Rust
 # -----------------------------------------------------------------------------
-cargo -V &> /dev/null
-if [ $? != 0 ]; then
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-fi
-
+[ ! -f $HOME/.cargo/env ] && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+cargo install stylua --features lua54
 
 
 

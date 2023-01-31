@@ -16,6 +16,8 @@ alias nowtime=now
 alias nowdate='date +"%d-%m-%Y"'
 alias ping='time ping'
 
+alias python='python3'
+
 # Control cd command behavior
 alias .2='cd ../../'
 alias .3='cd ../../../'
@@ -61,6 +63,7 @@ function _git_current_remote() { git rev-parse --symbolic-full-name --abbrev-ref
 
 alias gst="git status"
 alias gadd="git add "
+alias gfa="git ls-files -m -o --exclude-standard | fzf -m --print0 | xargs -0 -o -t git add"
 alias gco="git checkout "
 alias gcm="git commit -m "
 alias gcam="git commit --amend"
@@ -75,6 +78,7 @@ alias glgl="git log --pretty=format:'%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%c
 alias glast="git log -1 HEAD"
 
 alias gdff="git diff"
+alias gdfs="git diff --staged "
 alias gmr="git merge"
 alias gft="git fetch"
 
@@ -83,3 +87,15 @@ function grg() { git remote get-url $(_git_current_remote) $1; }
 
 function gpll() { git pull $(_git_current_remote) $1; }
 function gpsh() { git push $(_git_current_remote) $1; }
+
+function use_nvm() {
+  export NVM_DIR="$HOME/.config/nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+}
+
+function use_pyenv() {
+  export PYENV_ROOT="$HOME/.pyenv"
+  command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
+}

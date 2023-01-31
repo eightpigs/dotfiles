@@ -11,7 +11,10 @@ $PWD/os/setup.sh
 # Customized bin.
 # -----------------------------------------------------------------------------
 [ ! -d ~/.local/bin ] && mkdir ~/.local/bin
-cp -rf $PWD/bin/* ~/.local/bin
+for f in `ls -a $PWD/bin/`;
+do
+  ln -s $PWD/bin/$f ~/.local/bin/$f > /dev/null 2>&1
+done
 
 
 # Configs
@@ -21,6 +24,7 @@ cp -rf $PWD/bin/* ~/.local/bin
 backup_file=$HOME/.config.bak-$(date '+%Y-%m-%d_%H:%M:%S')
 if [ -d $XDG_CONFIG_HOME ]; then
   cp -r $XDG_CONFIG_HOME $backup_file
+  echo "Backup dir: $backup_file"
 fi
 
 for cfg in `ls -a $PWD/cfg/`;
@@ -34,7 +38,7 @@ do
     chmod +x $CFG_FILE
     $CFG_FILE
   else
-    ln -sfv $PWD/cfg/$cfg $XDG_CONFIG_HOME/$cfg
+    ln -sfv $PWD/cfg/$cfg $XDG_CONFIG_HOME/$cfg > /dev/null 2>&1
   fi
 done
 
