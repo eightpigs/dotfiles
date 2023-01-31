@@ -1,3 +1,5 @@
+""" Common settings -----------------------------------------------------------
+""" Common settings -----------------------------------------------------------
 set hlsearch
 set incsearch
 set ignorecase
@@ -7,80 +9,92 @@ set number
 set norelativenumber
 set clipboard+=unnamed
 set history=100000
+set scrolloff=5
+
+
+""" Plugins  ------------------------------------------------------------------
+set argtextobj
+let g:argtextobj_pairs="[:],(:),<:>"
+
 set NERDTree
 set easymotion
+" set vim-paragraph-motion
 
+
+""" Idea specific settings ----------------------------------------------------
+set ideajoin
+set ideastatusicon=gray
+"set idearefactormode=keep
+
+
+""" Maps ----------------------------------------------------------------------
 " leader
 let mapleader = " "
-
+map Q gq
 
 
 " ------------------------------------------------------------
 " Buffer / Windows
 " ------------------------------------------------------------
-nnoremap <leader>wv :action SplitVertically<CR>
-nnoremap <leader>ws :action SplitHorizontally<CR>
+map <leader>wv <Action>(SplitVertically)
+map <leader>ws <Action>(SplitHorizontally)
 
-nnoremap <leader>wj <C-W>j
-nnoremap <leader>wh <C-W>h
-nnoremap <leader>wl <C-W>l
-nnoremap <leader>wk <C-W>k
+map <leader>wj <C-W>j
+map <leader>wh <C-W>h
+map <leader>wl <C-W>l
+map <leader>wk <C-W>k
 
-nnoremap <leader>] :action ShowPopupMenu<CR>
-nnoremap <leader>1 :NERDTreeToggle<CR>
+map <leader>] <Action>(ShowPopupMenu)
+map <leader>1 :NERDTreeToggle
 
 
 " ------------------------------------------------------------
 " Content 
 " ------------------------------------------------------------
 
-nnoremap <leader>i :action SaveDocument<CR>
-nnoremap <leader>I :action SaveAll<CR>
-nnoremap <leader>ff :action ReformatCode<CR>
-nnoremap <leader>fi :action OptimizeImports<CR>
+map <leader>i <Action>(SaveDocument)
+map <leader>I <Action>(SaveAll)
+map 'f <Action>(OptimizeImports)<Action>(ReformatCode)
 
-nnoremap <leader>fj ddp
-nnoremap <leader>fk ddkP
+map K <Action>(QuickJavaDoc)
+map gs <Action>(GotoSuperMethod)
+map gi <Action>(GotoImplementation)
+map gd <Action>(GotoDeclaration)
+map gD <Action>(GotoTypeDeclaration)
+map gr <Action>(ShowUsages)
 
-nnoremap K :action QuickJavaDoc<cr>
-nnoremap gs :action GotoSuperMethod<cr>
-nnoremap gi :action GotoImplementation<cr>
-nnoremap gd :action GotoDeclaration<cr>
-nnoremap gD :action GotoTypeDeclaration<cr>
+map <leader>[ <Action>(FileStructurePopup)
+map <leader>q <Action>(CloseContent)
+map <leader>Q <Action>(CloseAllEditors)
+map <leader>r <Action>(RenameElement)
 
-nnoremap <leader>[ :action FileStructurePopup<cr>
-nnoremap <leader>f, :action GotoNextError<cr>
-nnoremap <leader>f. :action GotoPreviousError<cr>
-nnoremap <leader>q :action CloseContent<cr>
-nnoremap <leader>Q :action CloseAllEditors<cr>
-nnoremap <leader>r :action RenameElement<cr>
+map <a-[> <Action>(GotoPreviousError)
+map <a-]> <Action>(GotoNextError)
 
 
 " ------------------------------------------------------------
 " Search
 " ------------------------------------------------------------
-nnoremap <leader>; :action GotoFile<cr>
-noremap <leader>' :action GotoSymbol<cr>
-noremap ; :action RecentFiles<cr>
+map <leader>; <Action>(GotoFile)
+map <leader>' <Action>(GotoSymbol)
+map ; <Action>(RecentFiles)
 
 
 
 " ------------------------------------------------------------
 " Debug / Run
 " ------------------------------------------------------------
-nnoremap <leader>d' :action ChooseDebugConfiguration<cr>
-nnoremap <leader>dd :action Debug<cr>
-nnoremap <leader>d; :action ToggleLineBreakpoint<cr>
-nnoremap <leader>d[ :action ViewBreakpoints<cr>
+map <leader>d' <Action>(ChooseDebugConfiguration)
+map <leader>dd <Action>(Debug)
+map <leader>d; <Action>(ToggleLineBreakpoint)
+map <leader>d[ <Action>(ViewBreakpoints)
 
 " into
-nnoremap <leader>di :action StepInto<cr>
+map <leader>di <Action>(StepInto)
 " next line
-nnoremap <leader>do :action StepOver<cr>
+map <leader>do <Action>(StepOver)
 " to next breakpoint
-nnoremap <leader>dn :action Resume<cr>
+map <leader>dn <Action>(Resume)
 
 
-noremap L $
-noremap H ^
-noremap <Leader>\ :nohlsearch<cr>
+map <leader>\ :nohlsearch<CR>
