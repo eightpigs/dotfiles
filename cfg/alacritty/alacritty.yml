@@ -20,21 +20,19 @@ selection:
 
 font:
   normal:
-    family: "IBM Plex Mono"
-    style: "Regular"
-    # family: "CaskaydiaCove NF"
-    # style: "SemiLight"
+    family: "Fira Code"
+    style: "Light"
   bold:
-    family: "IBM Plex Mono"
-    style: "SemiBold"
+    family: "Fira Code"
+    style: "Medium"
   size: 14
-  use_thin_strokes: true
+  # use_thin_strokes: true
   offset:
     x: 0
-    y: 10
+    y: 8
   glyph_offset:
     x: 0
-    y: 5
+    y: 4
   builtin_box_drawing: true
 draw_bold_text_with_bright_colors: false
 
@@ -46,7 +44,7 @@ bell:
   duration: 0
   color: '0xffffff'
 
-colors:
+colors-light:
   primary:
     background: '0xffffff'
     foreground: '0x373b41'
@@ -80,7 +78,7 @@ colors:
     - { index: 21, color: '0x282a2e' }
 
 
-colors-dark:
+colors:
   primary:
     background: '0x282828'
     foreground: '0xd5c4a1'
