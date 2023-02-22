@@ -67,8 +67,9 @@ change_kitty () {
       ln -s "$light_theme" $current_theme
     fi
     ls /tmp/kitty.socket-* | xargs -I{} \
-      kitty @ --to unix:{} \
-      set_colors --configured $current_theme 2>/dev/null
+      /Applications/kitty.app/Contents/MacOS/kitty \
+      @ --to unix:{} \
+      set-colors --all --configured $current_theme  2>/dev/null
   fi
 }
 
@@ -92,5 +93,4 @@ change () {
   echo $next > $cfg
 }
 
-source ~/.zshrc
 change

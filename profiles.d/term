@@ -1,5 +1,11 @@
+#!/bin/bash
+
 if [[ $TMUX != "" ]] then
   export TERM="tmux-256color"
 else
-  export TERM="xterm-256color"
+  if [[ $KITTY_PID != "" ]] then
+    export TERM="xterm-kitty"
+  else
+    export TERM="xterm-256color"
+  fi
 fi
