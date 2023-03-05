@@ -34,6 +34,7 @@ fi
 # -----------------------------------------------------------------------------
 [ ! -f $HOME/.cargo/env ] && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo install stylua --features lua54
+cargo install tree-sitter-cli
 
 
 
