@@ -66,8 +66,10 @@ change_kitty () {
       rm $current_theme
       ln -s "$light_theme" $current_theme
     fi
+
+    kitty_path=`ps -ef | grep "/kitty$" | grep -v "grep" | awk '{print $8}' | head -n 1`
     ls /tmp/kitty.socket-* | xargs -I{} \
-      /Applications/kitty.app/Contents/MacOS/kitty \
+      $kitty_path \
       @ --to unix:{} \
       set-colors --all --configured $current_theme  2>/dev/null
   fi
@@ -77,9 +79,10 @@ change_nvim () {
   next=$2
   # light / dark -> :Light<CR> / :Dark<CR>
   nvim_cmd=":$(tr '[:lower:]' '[:upper:]' <<< ${next:0:1})${next:1}<CR>"
+  nvim_path=`ps -ef | grep "/bin/nvim" | grep -v "grep" | awk '{print $8}'`
   # https://neovim.io/doc/user/builtin.html#serverlist()
   ls ${XDG_RUNTIME_DIR:-${TMPDIR}nvim.${USER}}/*/nvim.*.0 | xargs -I{} echo {} \
-    | xargs -I{} nvim --server {} --remote-send $nvim_cmd >/dev/null 2>&1
+    | xargs -I{} $nvim_path --server {} --remote-send $nvim_cmd >/dev/null 2>&1
 } 
 
 change () {

@@ -11,3 +11,4 @@ cfg/nvim/plugin
 cfg/nvim/lua
 
 cfg/karabiner/automatic_backups
+cfg/kitty/themes/current-theme.conf
