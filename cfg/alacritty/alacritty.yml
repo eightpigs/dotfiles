@@ -44,7 +44,7 @@ bell:
   duration: 0
   color: '0xffffff'
 
-colors-light:
+colors:
   primary:
     background: '0xffffff'
     foreground: '0x373b41'
@@ -78,7 +78,7 @@ colors-light:
     - { index: 21, color: '0x282a2e' }
 
 
-colors:
+colors-dark:
   primary:
     background: '0x282828'
     foreground: '0xd5c4a1'

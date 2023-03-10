@@ -108,6 +108,21 @@ local color_schemes = {
     brights = { "#4d4d4d", "#ea4a5a", "#56d364", "#e3b341", "#57c0ff", "#db61a2", "#2b7489", "#ffffff" },
     indexed = { [136] = "#af8700" },
     compose_cursor = "#c9d1d9",
+    -- tab_bar = {
+    -- background = "#1f2828",
+    -- active_tab = {
+    -- bg_color = "#444444",
+    -- fg_color = "#FFFFFF",
+    -- intensity = "Bold",
+    -- underline = "None",
+    -- italic = false,
+    -- strikethrough = false,
+    -- },
+    -- inactive_tab = { bg_color = "#f1f1f1", fg_color = "#24292e" },
+    -- inactive_tab_hover = { bg_color = "#f1f1f1", fg_color = "#24292e", intensity = "Bold" },
+    -- new_tab = { bg_color = "#f1f1f1", fg_color = "#24292e" },
+    -- new_tab_hover = { bg_color = "#f1f1f1", fg_color = "#24292e", intensity = "Bold" },
+    -- }
   },
   ["Light"] = {
     foreground = "#24292e",
@@ -159,20 +174,6 @@ local cfg = {
   freetype_load_flags = "NO_HINTING|NO_AUTOHINT",
   freetype_render_target = "HorizontalLcd",
   allow_square_glyphs_to_overflow_width = "Never",
-  -- font_rules = {
-  --   { italic = true, font = wezterm.font_with_fallback(tbl_copy(font_cfg.fonts, { italic = true })) },
-  --   {
-  --     italic = true,
-  --     intensity = "Bold",
-  --     font = wezterm.font_with_fallback(tbl_copy(font_cfg.fonts, { italic = true, weight = "Medium" })) -- DemiBold
-  --   },
-  --   {
-  --     italic = false,
-  --     intensity = "Bold",
-  --     font = wezterm.font_with_fallback(tbl_copy(font_cfg.fonts, { italic = false, weight = "Medium" }))
-  --   }
-  -- },
-
   -- scroll_bar
   scrollback_lines = 99999,
   enable_scroll_bar = false,
@@ -215,22 +216,6 @@ local cfg = {
 
 -- events
 -- ----------------------------------------------------------------------------
-
--- params: indow, pane
--- local function refresh_config(window, _)
--- if cur_os == os_mac then
--- local overrides = window:get_config_overrides() or {}
--- local font_size = wezterm.gui.screens().active.name == "Built-in Retina Display" and 15 or 15
--- if window:effective_config().font_size ~= font_size then
--- overrides.font_size = font_size
--- window:set_config_overrides(overrides)
--- end
--- end
--- end
-
--- wezterm.on("window-config-reloaded", refresh_config)
--- wezterm.on("window-resized", refresh_config)
-
 -- params: tab, tabs, panes, config, hover, max_width
 wezterm.on("format-tab-title", function(tab, tabs, _, _, _, _)
   local idx = tab.tab_index + 1
