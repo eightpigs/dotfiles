@@ -20,12 +20,12 @@ selection:
 
 font:
   normal:
-    family: "Fira Code"
-    style: "Light"
+    family: "IBM Plex Mono"
+    style: "Regular"
   bold:
-    family: "Fira Code"
+    family: "IBM Plex Mono"
     style: "Medium"
-  size: 14
+  size: 15
   # use_thin_strokes: true
   offset:
     x: 0

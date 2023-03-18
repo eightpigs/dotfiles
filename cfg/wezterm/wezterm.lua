@@ -65,11 +65,11 @@ local os_fonts = {
   },
   [os_mac] = {
     fonts = {
+      { family = "IBM Plex Mono",               weight = "Regular", scale = 1.0 },
       { family = "Fira Code",                   weight = "Regular", scale = 1.0 },
       { family = "JetBrains Mono",              weight = "Medium",  scale = 1.0 },
       { family = "CodeNewRoman Nerd Font Mono", weight = "Regular", scale = 1.0 },
       { family = "BlexMono Nerd Font Mono",     weight = "Regular", scale = 1.0 },
-      { family = "IBM Plex Mono",               weight = "Regular", scale = 1.0 },
       { family = "Maple Mono SC NF",            weight = "Regular", scale = 1.0 },
       { family = "Cascadia Mono",               weight = "Regular", scale = 1.0 },
       { family = "LXGW WenKai",                 weight = "Medium",  scale = 1.0 },
