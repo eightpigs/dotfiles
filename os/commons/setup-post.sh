@@ -35,3 +35,8 @@ fi
 
 # fzf-colors
 git clone git@github.com:tinted-theming/base16-fzf.git ~/.fzf.colors
+
+# install Github Copilot CLI
+npm install -g @githubnext/github-copilot-cli
+github-copilot-cli auth
+echo 'eval "$(github-copilot-cli alias -- "$0")"' >> ~/.zshrc
