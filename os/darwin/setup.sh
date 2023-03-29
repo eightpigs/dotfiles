@@ -17,8 +17,14 @@ if [ $? != 0 ]; then
   sudo xcode-select --install &> /dev/null
 fi
 
-if [ $(hostname) != "fighter.local" ]; then
-  sudo scutil --set HostName fighter.local
+custom_hostname="fighter-air.local"
+if [ $(hostname) != $custom_hostname ]; then
+  sudo scutil --set HostName $custom_hostname
+fi
+
+if ! grep -q $custom_hostname /etc/hosts ; then
+  sudo sed -i '' "s/\(^127\.0\.0\.1.*localhost.*$\)/\1     $custom_hostname/g" /etc/hosts
+  sudo sed -i '' "s/\(^::1.*localhost.*$\)/\1     $custom_hostname/g" /etc/hosts
 fi
 
 if [ -f /opt/homebrew/bin/brew ]; then
