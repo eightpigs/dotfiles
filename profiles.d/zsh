@@ -51,7 +51,8 @@ function plugin-load () {
 # load all plugins
 function plugins-load() {
   for repo in $plugins; do
-    plugin-load https://github.com/${repo}.git
+    # plugin-load https://github.com/${repo}.git
+    plugin-load git@github.com:${repo}.git
   done
   unset repo
   unset plugins
