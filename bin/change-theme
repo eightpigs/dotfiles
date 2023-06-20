@@ -67,8 +67,12 @@ change_kitty () {
     fi
 
     KITTY_PATH=`whereis kitty | awk '{print $2}' | head -n 1`
-    if [[ ! -z $KITTY_LISTEN_ON ]] && [[ ! -z $KITTY_PATH ]]; then
-      $KITTY_PATH @ --to $KITTY_LISTEN_ON set-colors --match all --all --configured $current_theme
+    KITTY_PID=`ps -ef | grep kitty | grep -v grep | awk '{print $2}'`
+    if [[ ! -z $KITTY_PID ]] && [[ ! -z $KITTY_PATH ]]; then
+    ls /tmp/kitty.socket-* | xargs -I{} \
+      $KITTY_PATH \
+      @ --to unix:{} \
+      set-colors --match all --all --configured $current_theme  2>/dev/null
     fi
   fi
 }
