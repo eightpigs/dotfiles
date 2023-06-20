@@ -24,7 +24,7 @@ sudo apt install \
   libutf8proc-dev wget curl git make cmake build-essential gettext ncat autojump \
   python3-distutils python-dev python3-dev python3-venv python3-pip zsh tmux htop \
   unzip clang jq fd-find podman buildah skopeo apt-transport-https gnupg2 libreadline-dev \
-  bat fzf unrar vpnc libjansson-dev zsh
+  bat fzf unrar vpnc libjansson-dev zsh ripgrep
 
 # use zsh
 chsh -s /bin/zsh
