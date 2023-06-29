@@ -67,7 +67,15 @@ change_kitty () {
     fi
 
     KITTY_PATH=`whereis kitty | awk '{print $2}' | head -n 1`
+    if [[ -z $KITTY_PATH ]]; then
+      KITTY_PATH=`ps -ef | grep kitty | grep -v grep | awk '{print $8}'`
+    fi
+
     KITTY_PID=`ps -ef | grep kitty | grep -v grep | awk '{print $2}'`
+    if [[ -z $KITTY_PID ]]; then
+      KITTY_PID=`ls /tmp/kitty.socket-* | awk -F '-' '{print $2}' | head -n 1`
+    fi
+
     if [[ ! -z $KITTY_PID ]] && [[ ! -z $KITTY_PATH ]]; then
     ls /tmp/kitty.socket-* | xargs -I{} \
       $KITTY_PATH \
@@ -81,7 +89,8 @@ change_nvim () {
   next=$2
   # light / dark -> :Light<CR> / :Dark<CR>
   nvim_cmd=":$(tr '[:lower:]' '[:upper:]' <<< ${next:0:1})${next:1}<CR>"
-  nvim_path=`ps -ef | grep "/bin/nvim" | grep -v "grep" | awk '{print $8}'`
+  nvim_path=`ps -ef | grep "nvim " | grep -v grep | awk '{print $2}' | head -n 1 \
+    | xargs -I{} lsof -p {} | grep txt | awk '{print $9}' | grep "/nvim$" |head -n 1`
   if [[ ! -z $nvim_path ]]; then
     # https://neovim.io/doc/user/builtin.html#serverlist()
     ls ${XDG_RUNTIME_DIR:-${TMPDIR}nvim.${USER}}/*/nvim.*.0 | xargs -I{} echo {} \
