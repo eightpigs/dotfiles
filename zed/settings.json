@@ -1,0 +1,43 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run the `open default settings` command
+// from the command palette or from `Zed` application menu.
+{
+  // code error when autosave enabled and format_on_save enabled, so disable autosave
+  "autosave": "off",
+  "format_on_save": "on",
+  "remove_trailing_whitespace_on_save": true,
+  "copilot": {
+    "disabled_globs": [
+      ".env"
+    ]
+  },
+  "preferred_line_length": 120,
+  "project_panel": {
+    "dock": "left"
+  },
+  "projects_online_by_default": false,
+  "ensure_final_newline_on_save": false,
+  "theme": "One Light",
+  "vim_mode": true,
+  "buffer_font_size": 15,
+  "buffer_font_family": "IBM Plex Mono",
+  "terminal": {
+    "shell": "system",
+    "font_size": 15,
+    "font_family": "IBM Plex Mono",
+    "blinking": "off",
+    "copy_on_select": true
+  },
+  "experiments": {
+    "experimental_themes": true
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  }
+}
