@@ -56,19 +56,19 @@ fi
 
 # copy cfgs to ~/.config
 if run_confirm "Copy cfgs to ~/.config"; then
-  for cfg in `find cfg/* -maxdepth 1 -type d -not -name '.' -not -name '..'`;
+  for cfg in `ls cfg | awk '{print $1}'`;
   do
     xdg_cfg=$XDG_CONFIG_HOME/$cfg
     rm -rf $xdg_cfg
 
-    cfg_dir=$PWD/$cfg
+    cfg_dir=$PWD/cfg/$cfg
     cfg_init="$cfg_dir/.init.sh"
 
     if [ -f $cfg_init ]; then
       chmod +x $cfg_init
       $cfg_init
     else
-      ln -sfv $cfg_dir $xdg_cfg > /dev/null 2>&1
+      ln -sfv $cfg_dir $xdg_cfg
     fi
   done
 fi
@@ -86,4 +86,8 @@ if [ -f ~/.zshrc ]; then
   append_to_file "source.*fzf.zsh$" "[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh" ~/.zshrc
 else
   echo "~/.zshrc not found."
+fi
+
+if [ -f ~/.zlogin ]; then
+  append_to_file "^source.*profiles.d/main$" "source ~/.config/profiles.d/main" ~/.zlogin
 fi

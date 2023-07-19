@@ -5,6 +5,9 @@
 
 # Base
 # -----------------------------------------------------------------------------
+
+defaults write -g ApplePressAndHoldEnabled -bool false
+
 if [ -d /Applications/Xcode-beta.app ]; then
   sudo xcode-select --switch /Applications/Xcode-beta.app
 else
@@ -47,7 +50,7 @@ if [ $refreshHomebrew == 'y' ]; then
   export HOMEBREW_NO_AUTO_UPDATE=1
   brews=(ninja libtool automake cmake pkg-config boost gettext wget telnet curl \
     fzf fd bat the_silver_searcher mitmproxy tmux autojump unar mycli htop ctags \
-    glow tree luarocks zsh gpg2 jq ripgrep sevenzip sdcv pyenv
+    glow tree luarocks zsh gpg2 jq ripgrep sevenzip sdcv pyenv neovim
   )
   for soft in ${brews[@]}
   do
@@ -107,6 +110,7 @@ if [ $reinstallEmacs == 'y' ]; then
     --with-dbus \
     --with-mailutils \
     --with-native-comp \
+    --with-no-frame-refocus \
     --with-modern-black-dragon-icon
   ln -s /usr/local/opt/emacs-plus@29/Emacs.app /Applications
 fi
