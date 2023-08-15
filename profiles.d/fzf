@@ -1,7 +1,7 @@
 export FZF_DEFAULT_OPTS="--exact --layout=reverse --ansi --bind 'alt-p:toggle-preview' "\
-"--preview-window='right:60%,<100(down,50%,hidden)',hidden "\
-"--preview 'bat --style=numbers --color=always --line-range :500 {}' "\
-"--color='bw,query:regular,fg+:red:regular,hl:green:bold,hl+:green:regular,pointer:red:bold'"
+"--preview-window='right:60%,<80(down,50%,hidden),hidden' "\
+"--preview 'bat --style=numbers,changes --color=always --line-range=:500 {} 2>/dev/null || echo {}' "\
+"--color='bw,query:regular,fg+:red:regular,hl:blue:bold,hl+:blue:regular,pointer:red:bold'"
 
 # colorschemes
 # [ -d ~/.fzf.colors ] && source ~/.fzf.colors/bash/base16-google-light.config

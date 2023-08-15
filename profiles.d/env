@@ -88,7 +88,11 @@ export PATH RUST_HOME
 RUBY_HOME=/opt/homebrew/Cellar/ruby/3.1.2_1
 export GEM_HOME=$HOME/.gem
 export PATH=$GEM_HOME/bin:$RUBY_HOME/bin:$PATH
+export PATH=$GEM_HOME/ruby/2.6.0/bin:$PATH
 
 PY_BIN=$(/usr/bin/python3 -m site --user-base)
 PATH=$PATH:$PY_BIN/bin
 export PATH
+
+BAT_CONFIG_PATH=$HOME/.config/.bat.conf
+export BAT_CONFIG_PATH
