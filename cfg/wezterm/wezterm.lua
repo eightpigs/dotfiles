@@ -24,33 +24,7 @@ local function get_current_os()
   end
 end
 
-local function tbl_copy(original, override)
-  local n = {}
-  for k, v in pairs(original) do
-    n[k] = v
-    if override ~= nil and type(v) == "table" then
-      for sk, sv in pairs(override) do
-        n[k][sk] = sv
-      end
-    end
-  end
-  if override ~= nil then
-    for k, v in pairs(override) do
-      n[k] = v
-    end
-  end
-  return setmetatable(n, getmetatable(original))
-end
-
-function tbllen(T)
-  local count = 0
-  for _ in pairs(T) do
-    count = count + 1
-  end
-  return count
-end
-
-function basename(s)
+local function basename(s)
   return string.gsub(s, "(.*[/\\])(.*)", "%2")
 end
 
@@ -65,15 +39,15 @@ local os_fonts = {
   },
   [os_mac] = {
     fonts = {
-      { family = "IBM Plex Mono",               weight = "Regular", scale = 1.0 },
-      { family = "Fira Code",                   weight = "Regular", scale = 1.0 },
-      { family = "JetBrains Mono",              weight = "Medium",  scale = 1.0 },
-      { family = "CodeNewRoman Nerd Font Mono", weight = "Regular", scale = 1.0 },
-      { family = "BlexMono Nerd Font Mono",     weight = "Regular", scale = 1.0 },
-      { family = "Maple Mono SC NF",            weight = "Regular", scale = 1.0 },
-      { family = "Cascadia Mono",               weight = "Regular", scale = 1.0 },
-      { family = "LXGW WenKai",                 weight = "Medium",  scale = 1.0 },
-      { family = "PingFang SC",                 weight = "Medium",  scale = 1.0 },
+      { family = "JetBrains Mono", weight = "Regular", scale = 1.0 },
+      { family = "IBM Plex Mono",  weight = "Regular", scale = 1.0 },
+      { family = "Fira Code",      weight = "Regular", scale = 1.0 },
+      -- { family = "CodeNewRoman Nerd Font Mono", weight = "Regular", scale = 1.0 },
+      -- { family = "BlexMono Nerd Font Mono", weight = "Regular", scale = 1.0 },
+      -- { family = "Maple Mono SC NF", weight = "Regular", scale = 1.0 },
+      { family = "Cascadia Mono",  weight = "Regular", scale = 1.0 },
+      { family = "LXGW WenKai",    weight = "Bold",    scale = 1.0 },
+      { family = "PingFang SC",    weight = "Medium",  scale = 1.0 },
     },
     size = 15.0,
   },
@@ -160,35 +134,61 @@ local cur_os = get_current_os()
 local font_cfg = os_fonts[cur_os]
 
 local cfg = {
+  webgpu_preferred_adapter = wezterm.gui.enumerate_gpus()[1],
+  front_end = "WebGpu",
+  -- cell_width = 0.90,
+
   default_prog = progs[cur_os],
   automatically_reload_config = true,
-  color_scheme = wezterm.gui.get_appearance():find("Light") ~= nil and "Light" or "Dark",
-  -- color_scheme = "Dark",
+
+  color_scheme = wezterm.gui.get_appearance():find("Light") ~= nil and "Light" or "Material Darker (base16)",
   color_schemes = color_schemes,
   bold_brightens_ansi_colors = true,
+
+  check_for_updates = false,
+
   -- fonts
   font = wezterm.font_with_fallback(font_cfg.fonts),
   font_size = font_cfg.size,
-  line_height = 1.2,
-  freetype_load_target = "HorizontalLcd", -- Light
+  underline_thickness = "120%",
+  underline_position = "-3pt",
+  line_height = 1.1,
+  -- freetype_load_target = "HorizontalLcd", -- Light
+  freetype_load_target = "Light", -- Light
   freetype_load_flags = "NO_HINTING|NO_AUTOHINT",
-  freetype_render_target = "HorizontalLcd",
+  -- freetype_render_target = "HorizontalLcd",
   allow_square_glyphs_to_overflow_width = "Never",
+
   -- scroll_bar
-  scrollback_lines = 99999,
+  scrollback_lines = 9000,
   enable_scroll_bar = false,
+
   -- tab_bar
   enable_tab_bar = true,
   hide_tab_bar_if_only_one_tab = true,
   tab_bar_at_bottom = false,
   use_fancy_tab_bar = false,
   tab_max_width = 100,
+
   -- windows
   -- TITLE | RESIZE
-  window_decorations = "RESIZE",
-  window_padding = { left = "1cell", right = "1cell", top = "0.5cell", bottom = "0.5cell" },
+  window_decorations = "TITLE | RESIZE",
+  window_padding = { left = "1cell", right = "1cell", top = "0.5cell", bottom = "0.2cell" },
+  -- window_padding = { left = 10, right = 10, top = 10, bottom = 10 },
   window_close_confirmation = "NeverPrompt",
+  window_frame = {
+    font = wezterm.font { family = 'JetBrains Mono', weight = 'Regular' },
+  },
+  initial_rows = 30,
+  initial_cols = 140,
+
+  inactive_pane_hsb = {
+    brightness = 0.9,
+    hue = 1.0,
+    saturation = 0.8
+  },
   native_macos_fullscreen_mode = true,
+
   -- keys
   disable_default_key_bindings = false,
   keys = {
@@ -222,7 +222,7 @@ wezterm.on("format-tab-title", function(tab, tabs, _, _, _, _)
 
   local prefix = (idx > 1 and tabs[idx - 1].is_active) and "  " or " "
   local suffix = (tab.is_active or idx == #tabs) and " " or "  "
-  local title = prefix .. idx .. ": " .. basename(tab.active_pane.foreground_process_name) .. suffix
+  local title = prefix .. idx .. ":" .. basename(tab.active_pane.foreground_process_name) .. suffix
 
   if tab.is_active then
     return { { Attribute = { Intensity = "Bold" } }, { Text = title } }
