@@ -1,0 +1,49 @@
+theme = "dark_plus"
+
+[editor]
+line-number = "relative"
+mouse = false
+gutters = ["diagnostics", "spacer", "line-numbers", "spacer", "diff"]
+auto-completion = true
+auto-format = true
+auto-save = true
+idle-timeout = 300
+completion-trigger-len = 2
+completion-replace = false
+auto-info = false
+true-color = true
+bufferline = "always"
+
+[editor.lsp]
+enable = true
+display-messages = false
+auto-signature-help = true
+display-inlay-hints = true
+display-signature-help-docs = false
+snippets = true
+goto-reference-include-declaration = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.whitespace.render]
+space = "all"
+tab = "all"
+newline = "none"
+
+[editor.whitespace.characters]
+space = "·"
+nbsp = "⍽"
+tab = "→"
+newline = "⏎"
+tabpad = "·" # Tabs will look like "→···" (depending on tab width)
+
+[editor.indent-guides]
+render = true
+character = "▏"
+skip-levels = 1
