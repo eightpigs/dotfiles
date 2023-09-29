@@ -6,6 +6,8 @@ source $XDG_CONFIG_HOME/profiles.d/alias
 source $XDG_CONFIG_HOME/profiles.d/zsh
 source $XDG_CONFIG_HOME/profiles.d/fzf
 
+proxylup
+
 work_profile="$XDG_CONFIG_HOME/profiles.d/work"
 if [ -f "$work_profile" ]; then
   source $work_profile
