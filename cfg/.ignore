@@ -28,3 +28,7 @@ Music
 .metadata
 jdt.ls-java-project
 */target/*/*.class
+
+*.class
+
+.dart_tool
