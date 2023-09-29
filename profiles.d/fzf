@@ -1,7 +1,13 @@
-export FZF_DEFAULT_OPTS="--delimiter / --nth -1 --exact --layout=reverse --ansi --bind 'alt-p:toggle-preview' "\
-"--preview-window='right:60%,<80(down,50%,hidden),hidden' "\
-"--preview 'bat --style=numbers,changes --color=always --line-range=:500 {} 2>/dev/null || echo {}' "\
-"--color='bw,fg:-1,bg:-1,bg+:-1,query:regular,fg+:red:regular,hl:blue:regular,hl+:blue:bold,pointer:red:bold,prompt:blue,header:-1'"
+export FZF_DEFAULT_OPTIONS="--exact --layout=reverse --ansi --bind 'alt-p:toggle-preview'"
+export FZF_DEFAULT_OPTIONS_PATH_MATCH="--delimiter / --nth -1"
+export FZF_DEFAULT_PREVIEW_WINDOW='right:60%,<80(down,50%,hidden),hidden'
+export FZF_DEFAULT_PREVIEW_CMD='bat --style=numbers,changes --color=always --line-range=:500 {} 2>/dev/null || echo {}'
+export FZF_DEFAULT_COLOR='bw,fg:-1,bg:-1,bg+:-1,query:regular,fg+:red:regular,hl:blue:regular,hl+:blue:bold,pointer:red:bold,prompt:blue,header:-1'
+
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTIONS "\
+"--preview-window='$FZF_DEFAULT_PREVIEW_WINDOW' "\
+"--preview '$FZF_DEFAULT_PREVIEW_CMD' "\
+"--color='$FZF_DEFAULT_COLOR' "
 
 # colorschemes
 # [ -d ~/.fzf.colors ] && source ~/.fzf.colors/bash/base16-google-light.config
