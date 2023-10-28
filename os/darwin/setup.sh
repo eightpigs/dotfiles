@@ -50,7 +50,7 @@ if [ $refreshHomebrew == 'y' ]; then
   export HOMEBREW_NO_AUTO_UPDATE=1
   brews=(ninja libtool automake cmake pkg-config boost gettext wget telnet curl \
     fzf fd bat the_silver_searcher mitmproxy tmux autojump unar mycli htop ctags \
-    glow tree luarocks zsh gpg2 jq ripgrep sevenzip sdcv pyenv neovim
+    glow tree luarocks zsh gpg2 jq ripgrep sevenzip sdcv pyenv neovim imagemagick
   )
   for soft in ${brews[@]}
   do
