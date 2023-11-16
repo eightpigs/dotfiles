@@ -59,6 +59,17 @@ alias idea="nohup /bin/sh ~/.local/idea/bin/idea.sh >/dev/null 2>&1 &"
 alias remoteAdbDebug='adb shell setprop service.adb.tcp.port 5555'
 
 # Git
+function _git_branch_on_remote() {
+  git fetch
+  git branch -r | grep `git branch --show-current` >/dev/null 2>&1
+}
+
+function _git_show_remotes () {
+  remote=`git remote -vv | fzf --prompt="Choose remote: " --preview="git remote show {}"`
+  remote=`echo $remote | awk '{print $1}'`
+  echo $remote
+}
+
 function _git_current_remote() { git rev-parse --symbolic-full-name --abbrev-ref @{u} | awk -F '/' '{print $1}'; }
 
 alias gst="git status"
@@ -70,6 +81,12 @@ alias gcam="git commit --amend"
 
 alias gbc="git checkout -b "
 alias gbd="git branch -D"
+function gbl() { 
+  branch=`git branch | fzf --prompt="Choose branch: " | xargs echo`
+  if [[ ! -z $branch ]]; then
+    git checkout $branch
+  fi
+}
 function gbdr() { git push $(_git_current_remote) :$1; }
 
 alias glg="git log --stat --graph "
@@ -85,8 +102,23 @@ alias gft="git fetch"
 alias grs="git remote show"
 function grg() { git remote get-url $(_git_current_remote) $1; }
 
-function gpll() { git pull $(_git_current_remote) $1; }
-function gpsh() { git push $(_git_current_remote) $1; }
+function gpll() { 
+  _git_branch_on_remote
+  if [[ $? -eq 0 ]]; then
+    git pull $(_git_current_remote) $1; 
+  else
+    echo "No remote branch found."
+  fi
+}
+function gpsh() { 
+  _git_branch_on_remote
+  if [[ $? -eq 0 ]]; then
+    git push $(_git_current_remote) $1; 
+  else
+    remote=`_git_show_remotes`
+    git push --set-upstream $remote `git branch --show-current` $1; 
+  fi
+}
 
 function use_nvm() {
   export NVM_DIR="$HOME/.config/nvm"
