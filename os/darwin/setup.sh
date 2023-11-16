@@ -50,7 +50,7 @@ if [ $refreshHomebrew == 'y' ]; then
   export HOMEBREW_NO_AUTO_UPDATE=1
   brews=(ninja libtool automake cmake pkg-config boost gettext wget telnet curl \
     fzf fd bat the_silver_searcher mitmproxy tmux autojump unar mycli htop ctags \
-    glow tree luarocks zsh gpg2 jq ripgrep sevenzip sdcv pyenv neovim imagemagick
+    glow tree luarocks zsh gpg2 jq ripgrep sevenzip sdcv pyenv neovim imagemagick cocoapods litecli
   )
   for soft in ${brews[@]}
   do
@@ -80,15 +80,6 @@ fi
 # https://github.com/htop-dev/htop/issues/251
 # https://github.com/mikepqr/dotfiles/commit/12f8446ceeb3124ea6078e4f69b3008d3809d87e
 curl -O https://gist.githubusercontent.com/nicm/ea9cf3c93f22e0246ec858122d9abea1/raw/37ae29fc86e88b48dbc8a674478ad3e7a009f357/tmux-256color /usr/bin/tic -x tmux-256color
-
-
-
-# cocoapods
-gem install cocoapods --user-install
-gem which cocoapods
-source ~/.zshrc
-pod install
-
 
 
 

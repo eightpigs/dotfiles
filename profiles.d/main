@@ -1,6 +1,7 @@
+export MAIN_PROFILE_LOADED=1
 export XDG_CONFIG_HOME="$HOME/.config"
 
-source $XDG_CONFIG_HOME/profiles.d/term
+# source $XDG_CONFIG_HOME/profiles.d/term
 source $XDG_CONFIG_HOME/profiles.d/env
 source $XDG_CONFIG_HOME/profiles.d/alias
 source $XDG_CONFIG_HOME/profiles.d/zsh
@@ -15,4 +16,6 @@ fi
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 [ -f /usr/share/autojump/autojump.sh ] && . /usr/share/autojump/autojump.sh
+[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
