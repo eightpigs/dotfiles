@@ -69,13 +69,16 @@ change_kitty () {
 
     KITTY_PATH=`whereis kitty | awk '{print $2}' | head -n 1`
     if [[ -z $KITTY_PATH ]]; then
-      KITTY_PATH=`ps -ef | grep kitty | grep -v grep | awk '{print $8}'`
+      KITTY_PATH=`ps -ef | grep kitty | grep -v grep | head -n 1 | awk '{print $8}'`
     fi
 
-    KITTY_PID=`ps -ef | grep kitty | grep -v grep | awk '{print $2}'`
+    KITTY_PID=`ps -ef | grep kitty | grep -v grep | head -n 1 | awk '{print $2}'`
     if [[ -z $KITTY_PID ]]; then
       KITTY_PID=`ls /tmp/kitty.socket-* | awk -F '-' '{print $2}' | head -n 1`
     fi
+
+    echo "path: $KITTY_PATH" >> ~/Downloads/log
+    echo "pid: $KITTY_PID" >> ~/Downloads/log
 
     if [[ ! -z $KITTY_PID ]] && [[ ! -z $KITTY_PATH ]]; then
     ls /tmp/kitty.socket-* | xargs -I{} \
