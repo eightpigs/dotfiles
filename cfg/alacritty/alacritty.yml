@@ -26,13 +26,12 @@ font:
     family: "IBM Plex Mono"
     style: "Medium"
   size: 15
-  # use_thin_strokes: true
   offset:
     x: 0
     y: 8
   glyph_offset:
     x: 0
-    y: 4
+    y: 6
   builtin_box_drawing: true
 draw_bold_text_with_bright_colors: false
 
@@ -44,9 +43,9 @@ bell:
   duration: 0
   color: '0xffffff'
 
-colors:
+colors-light:
   primary:
-    background: '0xffffff'
+    background: '0xf5f5f5'
     foreground: '0x373b41'
   cursor:
     text: '0xffffff'
@@ -78,7 +77,7 @@ colors:
     - { index: 21, color: '0x282a2e' }
 
 
-colors-dark:
+colors:
   primary:
     background: '0x282828'
     foreground: '0xd5c4a1'
