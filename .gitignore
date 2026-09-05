@@ -12,7 +12,6 @@ profiles.d/work
 profiles.d/local
 os/**/local.sh
 cfg/wezterm/local.lua
-cfg/aria2/aria2.local.conf
 
 # Keys / crypto (never commit)
 *.pem
@@ -51,7 +50,7 @@ cfg/emacs/#*#
 cfg/emacs/**/#*#
 cfg/emacs/modus-themes/
 
-# Neovim (lua lives in a separate repo)
+# Neovim runtime (not part of this repo)
 cfg/nvim/plugin/
 cfg/nvim/lua/
 **/.netrwhist

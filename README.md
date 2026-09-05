@@ -1,41 +1,76 @@
 # dotfiles
 
-Portable configs and bootstrap scripts. Copy the `*.example` files for
-machine-specific values. Do not commit secrets, hostnames, or local paths.
+Configs for zsh, terminal emulators, tmux, and editors, plus an interactive
+installer. macOS and Linux files live in the same tree; skip what you do not
+use.
+
+## Layout
 
 ```
-.
- bin           # extra commands linked into ~/.local/bin
- cfg           # application configs (symlinked into $XDG_CONFIG_HOME)
- os            # OS bootstrap
- profiles.d    # shell env, aliases, prompt
- install.sh    # interactive installer
- README.md
+bin/          extra commands (symlinked to ~/.local/bin)
+cfg/          app configs (usually symlinked to ~/.config/<name>)
+os/           OS bootstrap (common, darwin, linux)
+profiles.d/   zsh env, aliases, completion, prompt
+install.sh    installer
 ```
 
-## Usage
+`cfg/<app>/.init.sh`, when present, runs instead of a plain symlink.
 
-1. Back up `$XDG_CONFIG_HOME` (usually `~/.config`).
-2. Read `install.sh` and `os/**/setup.sh` before running anything.
-3. Copy local templates (see below) and edit them.
-4. Run `./install.sh` and confirm each step.
+## Install
 
-The installer asks before it writes. It still replaces matching names under
-`~/.config`, so read it first.
+You need `git` and `zsh`. Read `install.sh` and `os/**/setup.sh` first.
 
-## Local files (gitignored)
+```sh
+./install.sh
+```
 
-| Path | Purpose |
+Each step asks before it runs. If you accept "Copy cfgs to ~/.config", the
+installer **replaces** `~/.config/<name>` for every entry in `cfg/`. It copies
+the previous `~/.config` tree (except `nvm`) to `~/.config.bak-<timestamp>`
+first.
+
+It then appends this to `~/.zshrc` and `~/.zlogin` when those files exist:
+
+```sh
+source ~/.config/profiles.d/main
+```
+
+## Local overrides
+
+Machine-specific values stay out of git. Copy the example, drop the `.example`
+suffix, and edit. The copies are gitignored.
+
+| File | Used by |
 | --- | --- |
-| `profiles.d/local` | extra env, aliases, optional proxy |
-| `profiles.d/work` | work-only shell snippets |
-| `os/darwin/local.sh` | extra Homebrew casks, optional hostname |
-| `cfg/wezterm/local.lua` | WezTerm SSH domains and other overrides |
-| `cfg/aria2/aria2.local.conf` | download dir, RPC secret |
+| `profiles.d/local` | sourced from `profiles.d/main` after aliases |
+| `profiles.d/work` | same, if the file exists |
+| `os/darwin/local.sh` | sourced from `os/darwin/setup.sh` |
+| `cfg/wezterm/local.lua` | merged into WezTerm config |
 
-Start from the matching `*.example` file.
+`profiles.d/local` is the place for extra `PATH` entries, proxies, and
+`NVIM_CONFIG_REPO`. `os/darwin/local.sh` can set `extra_casks`,
+`HAMMERSPOON_REPO`, and `CUSTOM_HOSTNAME`.
 
-## Notes
+## Neovim
 
-- Neovim: set `NVIM_CONFIG_REPO` to clone an external config, or use `cfg/nvim`.
-- Timezone, geo mirrors, and input-method packages stay in local files, not here.
+`cfg/nvim` is a small fallback. To use another repo:
+
+```sh
+export NVIM_CONFIG_REPO=https://github.com/example/nvim-config.git
+# optional: export NVIM_CONFIG_DIR=$HOME/.local/share/nvim-config
+```
+
+Set that in `profiles.d/local` **before** running the installer (or re-run the
+config step). `cfg/nvim/.init.sh` clones the repo and points `~/.config/nvim`
+at it.
+
+## tmux
+
+Prefix is `Alt-b`. Plugin manager is [TPM](https://github.com/tmux-plugins/tpm);
+after the first install, open tmux and press `prefix` + `I`. See
+`cfg/tmux/README.md` for bindings.
+
+## Shell
+
+`profiles.d/main` loads `env`, `alias`, `zsh`, `fzf`, then `work` and `local`
+if they exist. `profiles.d/term` is not sourced by default.

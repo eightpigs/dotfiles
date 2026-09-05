@@ -1,3 +1,5 @@
-# Copy to `local` (gitignored) for machine-specific environment.
+# Copy to `local` (gitignored). Sourced from profiles.d/main.
+
+# export NVIM_CONFIG_REPO=https://github.com/example/nvim-config.git
 # export KUBECONFIG=$HOME/.kube/config
 # proxylup
