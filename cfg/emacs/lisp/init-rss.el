@@ -1,4 +1,4 @@
-;; newsticker 
+;; newsticker
 
 (use-package newsticker
   :defer t
@@ -7,13 +7,13 @@
     (add-to-list 'evil-emacs-state-modes 'newsticker-treeview-mode)
     (add-to-list 'evil-emacs-state-modes 'newsticker-treeview-list-mode)
     (setq
-     newsticker-url-list-defaults nil   ;;
-     newsticker-retrieval-interval 0   ;don't fetch when I'm not reading RSS
+     newsticker-url-list-defaults nil
+     newsticker-retrieval-interval 0
      newsticker-automatically-mark-items-as-old nil
 
      newsticker-url-list
      '(
-       ("" "https://manateelazycat.github.io/feed.xml")
+       ("manateelazycat" "https://manateelazycat.github.io/feed.xml")
        ("zmonster" "http://www.zmonster.me/atom.xml")
        ))
 

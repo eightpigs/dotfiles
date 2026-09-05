@@ -57,10 +57,7 @@
 ;; --------------- Build-in Config ----------------
 
 ;; calendar [built-in]
-(setq calendar-location-name "")
-(setq calendar-chinese-all-holidays-flag t)
 (setq mark-diary-entries-in-calendar t)
-(setq mark-holidays-in-calendar t)
 
 
 ;; display-line-numbers [built-in]
@@ -89,7 +86,6 @@
 (recentf-mode 1)
 (setq recentf-max-menu-item 20)
 
-;; 
 (show-paren-mode 1)
 
 
@@ -105,7 +101,7 @@
 ;; highlight current line
 (global-hl-line-mode 0)
 
-(setq-default indent-tabs-mode nil) ; tab 
+(setq-default indent-tabs-mode nil)
 (setq go-offset 2)
 (setq c-default-style "linux")
 
@@ -133,7 +129,6 @@
     (k-time (garbage-collect))))))
 
 
-;; 
 (define-advice show-paren-function (:around (fn) fix-show-paren-function)
   "Highlight enclosing parens."
   (cond ((looking-at-p "\\s(") (funcall fn))

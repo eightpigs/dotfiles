@@ -9,10 +9,7 @@
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
-;;  org-indent mode
 (setq org-startup-indented nil)
-
-;;  bullet list
 (setq org-bullets-bullet-list '( "" ""))
 
 (setq org-tag-alist '(
@@ -30,10 +27,7 @@
 
 (setq org-tags-column 2)
 
-;; 
 (setq org-cycle-separator-lines 1)
-
-;; 
 (setq org-enforce-todo-dependencies t)
 
 (setq org-todo-keywords
@@ -58,8 +52,7 @@
 ;; auto highlight
 (setq org-src-fontify-natively t)
 
-;; org-mode 
-(dolist (face '(org-level-1
+(dolist (face '(org-level-1)
                 org-level-2 org-level-3
                 org-level-4 org-level-5
                 org-level-6 org-level-7
@@ -74,8 +67,6 @@
 ;; agenda
 ;; ------------------------------------------
 
-;;agenda viewj/k/ïn/pï
-
 (define-key org-agenda-mode-map "j" 'org-agenda-next-line)
 (define-key org-agenda-mode-map "k" 'org-agenda-previous-line)
 (define-key org-agenda-mode-map "n" 'org-agenda-goto-date)
@@ -84,8 +75,7 @@
 (setq org-agenda-align-tags-to-column -80)
 
 
-;; agenda 
-;; From: https://example.invalid/t/org-agenda/8679/3
+;; Optional agenda time-grid coloring (disabled).
 ;; (defun ljg/org-agenda-time-grid-spacing ()
 ;;   "Set different line spacing w.r.t. time duration."
 ;;   (save-excursion
@@ -130,6 +120,7 @@
       ;; other commands go here
        ))
 
-(setq org-agenda-files '("~/OneDrive/docs/org-mode/"))
+;; Set this on the machine, e.g. in custom.el.
+;; (setq org-agenda-files '("~/org/"))
 
 (provide 'init-org-mode)

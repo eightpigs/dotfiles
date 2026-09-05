@@ -45,7 +45,7 @@ map <leader>wl <C-W>l
 map <leader>wk <C-W>k
 
 map <leader>] <Action>(ShowPopupMenu)
-map <leader>1 :NERDTreeToggle
+map <leader>1 :NERDTreeToggle<CR>
 
 
 " ------------------------------------------------------------
@@ -76,7 +76,7 @@ map <a-]> <Action>(GotoNextError)
 " Search
 " ------------------------------------------------------------
 map <leader>; <Action>(GotoFile)
-map <leader>' <Action>(GotoSymbol)
+map <leader>' <Action>(SearchEverywhere)
 map ; <Action>(RecentFiles)
 
 
@@ -85,6 +85,7 @@ map ; <Action>(RecentFiles)
 " Debug / Run
 " ------------------------------------------------------------
 map <leader>d' <Action>(ChooseDebugConfiguration)
+map <F5> <Action>(ChooseDebugConfiguration)
 map <leader>dd <Action>(Debug)
 map <leader>d; <Action>(ToggleLineBreakpoint)
 map <leader>d[ <Action>(ViewBreakpoints)
@@ -98,3 +99,5 @@ map <leader>dn <Action>(Resume)
 
 
 map <leader>\ :nohlsearch<CR>
+map \\ :nohlsearch<CR>
+map ,q :q!<CR>

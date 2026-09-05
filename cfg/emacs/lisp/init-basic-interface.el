@@ -7,7 +7,6 @@
 ;;  (set-face-attribute 'default nil :font "Menlo-13"))
 
 ;; (require 'cnfonts)
-;;  cnfonts  Emacs 
 ;; (cnfonts-enable)
 ;; (setq cnfonts-use-face-font-rescale t)
 

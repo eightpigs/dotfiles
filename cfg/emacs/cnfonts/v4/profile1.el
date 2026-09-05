@@ -1,17 +1,11 @@
-;;; `cnfonts--custom-set-fontsnames' 3ï1ï2ï
-;;; 3ïï** ** 
-;;; ï `C-c C-c' ï
-;;; `cnfonts-insert-fontname  ** ï
+;;; cnfonts font profile. Names are Latin-script only.
 (setq cnfonts--custom-set-fontnames
       '(
-        ("Monaco" "Source Code Pro" "Liberation Mono" "Free Mono" "Consolas" "DejaVu Sans Mono" "Droid Sans Mono" "PragmataPro" "Courier" "Courier New" "Ubuntu Mono" "MonacoB" "MonacoB2" "MonacoBSemi" "Droid Sans Mono Pro" "Inconsolata" "Lucida Console" "Envy Code R" "Andale Mono" "Lucida Sans Typewriter" "monoOne" "Lucida Typewriter" "Panic Sans" "Hack" "Bitstream Vera Sans Mono" "HyperFont" "PT Mono" "Ti92Pluspc" "Excalibur Monospace" "Menlof" "Cousine" "Fira Mono" "Lekton" "M+ 1mn" "BPmono" "Anonymous Pro" "ProFont" "ProFontWindows" "Latin Modern Mono" "Code 2002" "ProggyCleanTT" "ProggyTinyTT" "Iosevka Term" "Inconsolata-dz" "American Typewriter" "Menlo" "Anka/Coder Condensed" "Fantasque Sans Mono" "M+ 1m" "CamingoCode" "Office Code Pro" "Roboto Mono" "Input Mono" "Courier Prime Code" "NanumGothicCoding" "Monoid" "Edlo" "Iosevka" "Mononoki" "Robot Mono" "Fantasque" "Fira Code" "Go Mono" "Noto Sans Mono CJK" "InputMonoCompressed" "Hasklig" "Terminus" "FantasqueSansMono" "AnonymousPro" "3270" "Arimo" "D2Coding" "Inconsolata-g" "ProFont for Powerline" "Meslo" "Meslo Dotted" "Noto Mono" "Symbol Neu" "Tinos" "Space Mono" "SFMono Nerd Font")
-        ("" " CN Normal" " CN" " CN Medium" " CN Medium" "" "Noto Sans S Chinese Regular" "Microsoft Yahei" "Microsoft_Yahei" "Ubuntu Mono" "" "" "Source Han Sans SC" "Source Han Serif SC" " CN Regular" " CN SemiBold" "Hiragino Sans GB" "" "" "SimHei" "SimSun" "NSimSun" "FangSong" "KaiTi" "FangSong_GB2312" "KaiTi_GB2312" "LiSu" "YouYuan" "" "" "_GB2312" "_GB2312" "" "" "STXihei" "STKaiti" "STSong" "STZhongsong" "STFangsong" "FZShuTi" "FZYaoti" "STCaiyun" "STHupo" "STLiti" "STXingkai" "STXinwei" "" "" "_GBK" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "__GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "_GBK" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "Microsoft YaHei Mono")
-        ("HanaMinB" "SimSun-ExtB" "MingLiU-ExtB" "PMingLiU-ExtB" "MingLiU_HKSCS-ExtB" "Hanazono Mincho" "Hanazono Mincho A" "Hanazono Mincho B" "Hanazono Mincho C" "Hanazono Mincho Ex" "Hanazono Mincho Ex A1" "Hanazono Mincho Ex A2" "Hanazono Mincho Ex B" "Hanazono Mincho Ex C" "Hanazono Mincho I")
+        ("Monaco" "Source Code Pro" "Menlo" "Consolas" "DejaVu Sans Mono" "Fira Code" "Iosevka" "Hack" "JetBrains Mono" "SFMono Nerd Font")
+        ("Source Han Sans SC" "Noto Sans CJK SC" "Noto Sans Mono CJK" "Hiragino Sans GB" "Microsoft Yahei" "WenQuanYi Micro Hei Mono")
+        ("HanaMinB" "Hanazono Mincho" "SimSun-ExtB" "MingLiU-ExtB")
         ))
 
-;;; `cnfonts--custom-set-fontsizes' ïï(  EXT-B)
-;;; ï C-c C-c 
-;;;  C-<up> ï C-<down> 
 (setq cnfonts--custom-set-fontsizes
       '(
         (9    10.5 12.0)

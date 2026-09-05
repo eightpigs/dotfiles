@@ -1,4 +1,3 @@
-
 (use-package git-gutter
   :ensure t
   :defer 5

@@ -7,37 +7,138 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  // code error when autosave enabled and format_on_save enabled, so disable autosave
-  "autosave": "off",
-  "format_on_save": "on",
-  "remove_trailing_whitespace_on_save": true,
-  "copilot": {
-    "disabled_globs": [
-      ".env"
-    ]
-  },
-  "preferred_line_length": 120,
-  "project_panel": {
+  "collaboration_panel": {
     "dock": "left"
   },
-  "projects_online_by_default": false,
+  "git_panel": {
+    "dock": "left"
+  },
+  "disable_ai": true,
+  "icon_theme": "Material Icon Theme",
+  "agent": {
+    "dock": "right",
+    "enable_feedback": false,
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-3-5-sonnet-latest",
+    },
+  },
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 1000,
+    },
+  },
+  "wrap_guides": [80, 120],
+  "soft_wrap": "preferred_line_length",
+  "format_on_save": "on",
+  "remove_trailing_whitespace_on_save": true,
+  "preferred_line_length": 120,
+  "project_panel": {
+    "hide_gitignore": true,
+    "dock": "left",
+    "indent_size": 22,
+    "auto_fold_dirs": true,
+    "scrollbar": {
+      "show": "never",
+    },
+  },
   "ensure_final_newline_on_save": false,
-  "theme": "One Light",
-  "vim_mode": true,
-  "buffer_font_size": 15,
-  "buffer_font_family": "IBM Plex Mono",
+  "theme": "GitHub Light",
+  "vim_mode": false,
+  "ui_font_family": "Monaspace Xenon",
+  // "ui_font_family": "IBM Plex Mono",
+  "ui_font_fallbacks": ["LXGW WenKai Mono"],
+  "ui_font_size": 15,
+  "buffer_font_size": 14,
+  "buffer_font_family": "Monaspace Xenon",
+  // "buffer_font_family": "IBM Plex Mono",
+  "buffer_font_fallbacks": ["LXGW WenKai Mono"],
+  "buffer_font_features": {
+    "liga": false,
+    "dlig": true,
+    "ss01": true,
+    "ss02": true,
+    "ss03": true,
+    "ss06": true,
+    "ss07": true,
+    "ss08": true,
+  },
+  "buffer_line_height": { "custom": 1.5 },
   "terminal": {
     "shell": "system",
-    "font_size": 15,
-    "font_family": "IBM Plex Mono",
+    "font_size": 13,
+    "font_family": "Monaspace Xenon",
+    "font_fallbacks": ["LXGW WenKai Mono"],
     "blinking": "off",
-    "copy_on_select": true
-  },
-  "experiments": {
-    "experimental_themes": true
+    "copy_on_select": true,
+    "option_as_meta": true,
+    "working_directory": "current_project_directory",
   },
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
-  }
+    "metrics": false,
+  },
+  "git": {
+    "inline_blame": {
+      "enabled": false,
+    },
+  },
+  "centered_layout": {
+    "left_padding": 0.1,
+    "right_padding": 0.1,
+  },
+  "tab_bar": {
+    "show": true,
+    "show_nav_history_buttons": true,
+  },
+  "outline_panel": {
+    "dock": "left",
+    "git_status": true,
+    "indent_size": 16,
+  },
+  "toolbar": {
+    "breadcrumbs": true,
+    "quick_actions": false,
+    "selections_menu": false,
+  },
+  "scrollbar": {
+    "show": "never",
+  },
+  "cursor_blink": false,
+  "languages": {
+    "Markdown": {
+      "preferred_line_length": 120,
+      "soft_wrap": "preferred_line_length",
+    },
+    "HTML": {
+      "tab_size": 2,
+    },
+  },
+  "bottom_dock_layout": "full",
+  "auto_install_extensions": {
+    "html": true,
+    "markdown": true,
+    "github-theme": true,
+    "jetbrains-new-ui-icons": true,
+    "material-icon-theme": true,
+  },
+  "base_keymap": "VSCode",
+  "edit_predictions_disabled_in": ["comment"],
+  "current_line_highlight": "gutter",
+  "minimap": {
+    "show": null,
+  },
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/.jj",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/.classpath",
+    "**/.settings",
+    "**/.idea",
+    "**/.vscode",
+  ],
 }

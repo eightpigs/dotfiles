@@ -2,11 +2,6 @@
 
 (setq package-enable-at-startup nil)
 
-;; (setq package-archives '(("gnu"           . "http://elpa.example.invalid/gnu/")
-;;                          ("melpa"         . "http://elpa.example.invalid/melpa/")
-;;                          ("stable-melpa"  . "http://elpa.example.invalid/stable-melpa/")
-;;                          ("org"           . "http://elpa.example.invalid/org/")))
-
 (setq package-archives '(("melpa" . "https://raw.githubusercontent.com/d12frosted/elpa-mirror/master/melpa/")
                          ("org"   . "https://raw.githubusercontent.com/d12frosted/elpa-mirror/master/org/")
                          ("gnu"   . "https://raw.githubusercontent.com/d12frosted/elpa-mirror/master/gnu/")))

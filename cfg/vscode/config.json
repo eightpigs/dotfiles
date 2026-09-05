@@ -197,9 +197,7 @@
             ]
         }
     ],
-    "remote.SSH.remotePlatform": {
-        "example.test": "linux"
-    },
+    "remote.SSH.remotePlatform": {},
     "dart.devToolsTheme": "light",
     "dart.lineLength": 120,
     "[dart]": {
