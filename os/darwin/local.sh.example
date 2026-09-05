@@ -1,0 +1,5 @@
+# Copy to `local.sh` (gitignored).
+# extra_casks is appended to the public Homebrew cask list.
+# extra_casks=()
+# HAMMERSPOON_REPO="https://github.com/example/hammerspoon-config.git"
+# CUSTOM_HOSTNAME="my-machine.local"

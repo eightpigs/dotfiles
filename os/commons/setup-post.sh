@@ -1,43 +1,30 @@
 #!/bin/bash
 
-# neovim
+# Neovim from source (optional)
 # -----------------------------------------------------------------------------
-reinstallNeovim='y'
-if command -v nvim -version &> /dev/null
-then
-  read -p "Reinstall Neovim? (y/n): " reinstallNeovim
+reinstallNeovim='n'
+if command -v nvim >/dev/null 2>&1; then
+  read -r -p "Rebuild Neovim from source? (y/n): " reinstallNeovim
+else
+  read -r -p "Build Neovim from source? (y/n): " reinstallNeovim
 fi
 
-if [ $reinstallNeovim == 'y' ]; then
-  if [ ! -d ~/Workspace/git/neovim ]; then
-    mkdir -p ~/Workspace/git/neovim
-  fi
-  cd ~/Workspace/git/neovim
-  set -x
-  if [ ! -d ~/Workspace/git/neovim/.git ]; then
-    git clone git@github.com:neovim/neovim .
+if [ "$reinstallNeovim" = 'y' ] || [ "$reinstallNeovim" = 'Y' ]; then
+  mkdir -p "$HOME/Workspace/git/neovim"
+  cd "$HOME/Workspace/git/neovim" || exit 1
+  if [ ! -d .git ]; then
+    git clone https://github.com/neovim/neovim.git .
   else
-    git fetch && git pull origin
+    git fetch && git pull --ff-only
   fi
-  if [ $? == 0 ]; then
-    # sed -i "s/CMAKE_BUILD_TYPE ?= .*/CMAKE_BUILD_TYPE ?= Release/g" Makefile
-    make clean distclean
-    if [ `uname -s` == "Darwin" ]; then
-      proxyrup && CMAKE_BUILD_TYPE=Release make -j $(sysctl -n hw.physicalcpu) && proxydown
-    else
-      proxyrup && CMAKE_BUILD_TYPE=Releas emake -j $(nproc) && proxydown
-    fi
-    make CMAKE_INSTALL_PREFIX=$HOME/.local/nvim install
+  make clean distclean
+  if [ "$(uname -s)" = "Darwin" ]; then
+    CMAKE_BUILD_TYPE=Release make -j "$(sysctl -n hw.physicalcpu)"
+  else
+    CMAKE_BUILD_TYPE=Release make -j "$(nproc)"
   fi
+  make CMAKE_INSTALL_PREFIX="$HOME/.local/nvim" install
 fi
 
-# tmux
-[ ! -d ~/.tmux/plugins ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-# fzf-colors
-# git clone git@github.com:tinted-theming/base16-fzf.git ~/.fzf.colors
-
-# install Github Copilot CLI
-# npm install -g @githubnext/github-copilot-cli
-# github-copilot-cli auth
-# echo 'eval "$(github-copilot-cli alias -- "$0")"' >> ~/.zshrc
+# tmux plugin manager
+[ ! -d "$HOME/.tmux/plugins/tpm" ] && git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"

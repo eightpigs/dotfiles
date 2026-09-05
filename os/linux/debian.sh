@@ -1,38 +1,20 @@
 #!/bin/bash
 
-
-
-
-# Base
-# -----------------------------------------------------------------------------
-tz=`sudo timedatectl show -p Timezone | awk -F "=" '{print $2}'`
-if [ $tz != "UTC" ]; then
-  sudo timedatectl set-timezone UTC
-fi
-if [ `sudo sysctl -n kernel.unprivileged_userns_clone` != "1" ]; then
-  sudo sysctl -w kernel.unprivileged_userns_clone=1
-fi
-
-
-
-
-# Softwares
+# Packages
 # -----------------------------------------------------------------------------
 sudo apt install \
   gperf luajit luarocks libuv1-dev silversearcher-ag exuberant-ctags dnsutils \
   libluajit-5.1-dev libunibilium-dev libmsgpack-dev libtermkey-dev libvterm-dev \
   libutf8proc-dev wget curl git make cmake build-essential gettext ncat autojump \
-  python3-distutils python-dev python3-dev python3-venv python3-pip python3-neovim zsh tmux htop \
+  python3-dev python3-venv python3-pip python3-neovim zsh tmux htop \
   unzip clang jq fd-find podman buildah skopeo apt-transport-https gnupg2 libreadline-dev \
-  bat fzf unrar vpnc libjansson-dev zsh ripgrep imagemagick
+  bat fzf unrar vpnc libjansson-dev ripgrep imagemagick
 
-# use zsh
-chsh -s /bin/zsh
+if [ "$SHELL" != "$(which zsh)" ]; then
+  chsh -s "$(which zsh)"
+fi
 
-# fdfind to fd
-ln -s $(which fdfind) ~/.local/bin/fd
-
-# TODO check to sid.
-
-pip3 install mycli
-
+mkdir -p "$HOME/.local/bin"
+if command -v fdfind >/dev/null 2>&1 && [ ! -e "$HOME/.local/bin/fd" ]; then
+  ln -s "$(which fdfind)" "$HOME/.local/bin/fd"
+fi

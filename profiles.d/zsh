@@ -106,8 +106,9 @@ setopt AUTO_MENU
 # setopt MENU_COMPLETE
 
 # history
-HISTSIZE=99999
-SAVEHIST=99999
+HISTSIZE=99999999
+HISTFILESIZE=99999999
+SAVEHIST=99999999
 HISTFILE=~/.zsh_history
 setopt APPEND_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST
@@ -115,10 +116,12 @@ setopt HIST_FCNTL_LOCK
 setopt SHARE_HISTORY
 setopt INC_APPEND_HISTORY
 setopt HIST_FIND_NO_DUPS
+setopt HIST_REDUCE_BLANKS  # remove unnecessary blanks
 
 # history unique
-# setopt HIST_IGNORE_ALL_DUPS
-# setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_DUPS
+setopt HIST_SAVE_NO_DUPS  # do not save duplicated command
 
 autoload -U compinit && compinit
 autoload -U promptinit && promptinit

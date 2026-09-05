@@ -36,7 +36,8 @@ _sed() {
 }
 
 change_alacritty () {
-  alacritty_cfg=~/.config/alacritty/alacritty.yml
+  alacritty_cfg=~/.config/alacritty/alacritty.toml
+  [ -f "$alacritty_cfg" ] || alacritty_cfg=~/.config/alacritty/alacritty.yml
   if test -f "$alacritty_cfg"; then
     cur=$1
     next=$2
@@ -76,9 +77,6 @@ change_kitty () {
     if [[ -z $KITTY_PID ]]; then
       KITTY_PID=`ls /tmp/kitty.socket-* | awk -F '-' '{print $2}' | head -n 1`
     fi
-
-    echo "path: $KITTY_PATH" >> ~/Downloads/log
-    echo "pid: $KITTY_PID" >> ~/Downloads/log
 
     if [[ ! -z $KITTY_PID ]] && [[ ! -z $KITTY_PATH ]]; then
     ls /tmp/kitty.socket-* | xargs -I{} \

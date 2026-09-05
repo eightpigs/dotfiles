@@ -5,25 +5,16 @@ HOMEBREW_HOME=/opt/homebrew/
 PATH=$PATH:$HOMEBREW_HOME/bin
 export HOMEBREW_HOME PATH
 
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
 export EDITOR=nvim
 
 export NO_PROXY='::1,127.0.0.1,localhost'
 export GO111MODULE=on
-export GOPROXY=https://proxy.golang.org
-export KUBECONFIG=~/.kube/k3s.yaml
 
 BIN_HOME=~/.local/bin
 PATH=$PATH:$BIN_HOME
-export BIN_HOME PATYH
+export BIN_HOME PATH
 
-# ibus / ibus-rime
-export GTK_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
-export QT_IM_MODULE=ibus
-
-GRADLE_HOME=$SOFTWARE_PATH/gradle
+GRADLE_HOME=$SOFTWARE_PATH/gradle/9.0.0
 PATH=$PATH:$GRADLE_HOME/bin
 export GRADLE_HOME PATH 
 
@@ -31,7 +22,7 @@ M2_HOME=$SOFTWARE_PATH/maven
 PATH=$PATH:$M2_HOME/bin
 export M2_HOME PATH 
 
-JAVA_HOME=$SOFTWARE_PATH/java/zulu/17
+JAVA_HOME=$SOFTWARE_PATH/java/zulu/23
 JRE_HOME=$JAVA_HOME/jre
 PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib
@@ -48,9 +39,6 @@ export GOROOT PATH
 FLUTTER_HOME=$SOFTWARE_PATH/flutter
 PATH=$PATH:$FLUTTER_HOME/bin
 export FLUTTER_HOME PATH
-# export FLUTTER_STORAGE_BASE_URL=https://example.invalid/flutter
-# export PUB_HOSTED_URL=https://example.invalid/dart-pub
-
 ANDROID_HOME=$SOFTWARE_PATH/android
 ANDROID_PALT_HOME=$ANDROID_HOME/platform-tools
 ANDROID_CMD_HOME=$ANDROID_HOME/cmdline-tools
@@ -62,7 +50,7 @@ BUN_BIN=~/.bun/bin
 PATH=$PATH:$BUN_BIN
 export BUN_BIN PATH
 
-NODE_JS_HOME=$SOFTWARE_PATH/node/18
+NODE_JS_HOME=$SOFTWARE_PATH/node/22
 PATH=$PATH:$NODE_JS_HOME/bin
 export NODE_JS_HOME PATH
 
@@ -93,10 +81,18 @@ RUST_HOME=~/.cargo
 PATH=$PATH:$RUST_HOME/bin
 export PATH RUST_HOME
 
-RUBY_HOME=/opt/homebrew/Cellar/ruby/3.1.2_1
+ZIG_HOME=$SOFTWARE_PATH/zig/0.13
+PATH=$PATH:$ZIG_HOME
+export ZIG_HOME PATH
+
 export GEM_HOME=$HOME/.gem
-export PATH=$GEM_HOME/bin:$RUBY_HOME/bin:$PATH
-export PATH=$GEM_HOME/ruby/2.6.0/bin:$PATH
+export PATH=$GEM_HOME/bin:$PATH
+if command -v brew >/dev/null 2>&1; then
+  RUBY_PREFIX="$(brew --prefix ruby 2>/dev/null || true)"
+  if [ -n "$RUBY_PREFIX" ]; then
+    export PATH="$RUBY_PREFIX/bin:$PATH"
+  fi
+fi
 
 PY_BIN=$(/usr/bin/python3 -m site --user-base)
 PATH=$PATH:$PY_BIN/bin

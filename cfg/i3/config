@@ -219,14 +219,8 @@ title_align center
 exec_always xset r rate 320 30
 exec_always xmodmap ~/.config/xmodmap/.config 
 
-exec_always ibus-daemon -r -x -d 
-
 # polybar
 exec_always $HOME/.config/polybar/launch.sh
-exec_always feh r -z --bg-fill ~/.config/wallpapers
-
-
-# tools
+exec_always feh --randomize --bg-fill ~/.config/wallpapers
 
 bindsym $mod+Print exec scrot '%Y-%m-%d_%H:%M:%S_$wx$h_scrot.png' -e 'mv $f ~/Images/Screenshots/'
-exec_always --no-startup-id claws-mail

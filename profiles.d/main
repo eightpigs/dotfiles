@@ -7,11 +7,14 @@ source $XDG_CONFIG_HOME/profiles.d/alias
 source $XDG_CONFIG_HOME/profiles.d/zsh
 source $XDG_CONFIG_HOME/profiles.d/fzf
 
-proxylup
-
 work_profile="$XDG_CONFIG_HOME/profiles.d/work"
 if [ -f "$work_profile" ]; then
   source $work_profile
+fi
+
+local_profile="$XDG_CONFIG_HOME/profiles.d/local"
+if [ -f "$local_profile" ]; then
+  source $local_profile
 fi
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh

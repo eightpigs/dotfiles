@@ -15,8 +15,8 @@ run_confirm() {
 }
 
 append_to_file() {
-  if ! grep -q $1 $3 ; then
-    echo $2 >> $3
+  if ! grep -q "$1" "$3" ; then
+    echo "$2" >> "$3"
   fi
 }
 
@@ -32,9 +32,9 @@ fi
 # -----------------------------------------------------------------------------
 if run_confirm "Copy customized bins to ~/.local/bin"; then
   [ ! -d ~/.local/bin ] && mkdir ~/.local/bin
-  for f in `ls -a $PWD/bin/`;
-  do
-    ln -s $PWD/bin/$f ~/.local/bin/$f > /dev/null 2>&1
+  for f in "$PWD"/bin/*; do
+    [ -f "$f" ] || continue
+    ln -sfn "$f" "$HOME/.local/bin/$(basename "$f")"
   done
 fi
 
@@ -45,12 +45,12 @@ fi
 # backup
 backup_file=$HOME/.config.bak-$(date '+%Y-%m-%d_%H:%M:%S')
 if [ -d $XDG_CONFIG_HOME ]; then
-  echo $section_prefix"Backuping..."
+  echo $section_prefix"Backing up..."
   find ~/.config -maxdepth 1 \
     -not -name 'nvm' \
     | grep -Ev "$HOME/.config$" \
     | xargs -I{} cp -r {} $backup_file/
-  echo "   Backuped, dir: $backup_file"
+  echo "   Backup written to: $backup_file"
   echo ""
 fi
 

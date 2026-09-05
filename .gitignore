@@ -1,14 +1,71 @@
+# OS
 .DS_Store
+Thumbs.db
 
+# Secrets, credentials, machine-local overlays
+*.local
+*.local.*
+*.secret
+.env
+.env.*
 profiles.d/work
+profiles.d/local
+os/**/local.sh
+cfg/wezterm/local.lua
+cfg/aria2/aria2.local.conf
 
-cfg/emacs/auto-save-list
-cfg/emacs/elpa
+# Keys / crypto (never commit)
+*.pem
+*.key
+*.p12
+*.pfx
+*.kdbx
+id_rsa*
+id_dsa*
+id_ecdsa*
+id_ed25519*
+!*.pub
+**/gnupg/
+*.gpg
+*.kbx
+
+# Editor / tool runtime
+*~
+\#*\#
+*.swp
+*.swo
+*.bak
+*.old
+*_bak.*
+*_backup.*
+*.tmp
+
+# Emacs
+cfg/emacs/auto-save-list/
+cfg/emacs/elpa/
 cfg/emacs/ido.last
 cfg/emacs/recentf
-cfg/emacs/eln-cache
-cfg/nvim/plugin
-cfg/nvim/lua
+cfg/emacs/eln-cache/
+cfg/emacs/transient/
+cfg/emacs/#*#
+cfg/emacs/**/#*#
+cfg/emacs/modus-themes/
 
-cfg/karabiner/automatic_backups
+# Neovim (lua lives in a separate repo)
+cfg/nvim/plugin/
+cfg/nvim/lua/
+**/.netrwhist
+
+# Zed runtime / indexes / conversations
+cfg/zed/.*
+cfg/zed/embeddings/
+cfg/zed/prompts/
+cfg/zed/conversations/
+
+# Karabiner / Kitty generated
+cfg/karabiner/automatic_backups/
 cfg/kitty/themes/current-theme.conf
+
+# Binaries / cleaner tools
+*.jar
+bfg-*.jar
