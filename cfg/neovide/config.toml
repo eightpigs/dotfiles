@@ -1,7 +1,53 @@
+# neovim-bin = "~/.local/nvim/bin/nvim"
 wsl = false
 no-multigrid = false
 vsync = true
 maximized = false
 srgb = false
 idle = true
-frame = "Full"
+frame = "buttonless"
+tabs = true
+theme = "auto"
+title-hidden = true
+
+
+[font]
+size = 15
+hinting = "full"
+edging = "antialias"
+
+[[font.normal]]
+family = "Monaspace Xenon"
+style = "Light"
+
+# [[font.normal]]
+# family = "Monaspace Argon"
+# style = "Regular"
+
+# [[font.normal]]
+# family = "Symbols Nerd Font Mono" 
+# style = "Regular"
+
+# [[font.normal]]
+# family = "LXGW WenKai Mono" 
+# style = "Normal"
+
+# [[font.bold]]
+# family = "Monaspace Xenon"
+# style = "Bold"
+
+[[font.bold]]
+family = "Monaspace Xenon"
+style = "Bold"
+
+# [[font.bold]]
+# family = "Symbols Nerd Font Mono" 
+# style = "Regular"
+
+[[font.bold]]
+family = "LXGW WenKai" 
+style = "Bold"
+
+[font.features]
+"Monaspace Xenon" = [ "+calt", "-ss01", "-ss02", "-ss03", "-ss04", "-ss05", "-ss06","-ss07", "-ss08", "-ss09", "-liga"]
+"Monaspace Argon" = [ "+calt", "-ss01", "-ss02", "-ss03", "-ss04", "-ss05", "-ss06","-ss07", "-ss08", "-ss09", "-liga"]

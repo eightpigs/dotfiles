@@ -1,0 +1,157 @@
+[general]
+live_config_reload = true
+
+[bell]
+animation = "EaseOutExpo"
+color = "0xffffff"
+duration = 0
+
+[colors]
+draw_bold_text_with_bright_colors = false
+
+[[colors.indexed_colors]]
+color = "0xf96a38"
+index = 16
+
+[[colors.indexed_colors]]
+color = "0x3971ed"
+index = 17
+
+[[colors.indexed_colors]]
+color = "0xe0e0e0"
+index = 18
+
+[[colors.indexed_colors]]
+color = "0xc5c8c6"
+index = 19
+
+[[colors.indexed_colors]]
+color = "0x969896"
+index = 20
+
+[[colors.indexed_colors]]
+color = "0x282a2e"
+index = 21
+
+[colors.bright]
+black = "0xb4b7b4"
+blue = "0x3971ed"
+cyan = "0x3971ed"
+green = "0x198844"
+magenta = "0xa36ac7"
+red = "0xcc342b"
+white = "0x1d1f21"
+yellow = "0xfba922"
+
+[colors.cursor]
+cursor = "0x373b41"
+text = "0xffffff"
+
+[colors.normal]
+black = "0xffffff"
+blue = "0x3971ed"
+cyan = "0x3971ed"
+green = "0x198844"
+magenta = "0xa36ac7"
+red = "0xcc342b"
+white = "0x373b41"
+yellow = "0xfba922"
+
+[colors.primary]
+background = "0xf5f5f5"
+foreground = "0x373b41"
+
+# [[colors-dark.indexed_colors]]
+# color = "0xfe8019"
+# index = 16
+# 
+# [[colors-dark.indexed_colors]]
+# color = "0xd65d0e"
+# index = 17
+# 
+# [[colors-dark.indexed_colors]]
+# color = "0x3c3836"
+# index = 18
+# 
+# [[colors-dark.indexed_colors]]
+# color = "0x504945"
+# index = 19
+# 
+# [[colors-dark.indexed_colors]]
+# color = "0xbdae93"
+# index = 20
+# 
+# [[colors-dark.indexed_colors]]
+# color = "0xebdbb2"
+# index = 21
+# 
+# [colors-dark.bright]
+# black = "0x665c54"
+# blue = "0x83a598"
+# cyan = "0x8ec07c"
+# green = "0xb8bb26"
+# magenta = "0xd3869b"
+# red = "0xfb4934"
+# white = "0xfbf1c7"
+# yellow = "0xfabd2f"
+# 
+# [colors-dark.cursor]
+# cursor = "0xd5c4a1"
+# text = "0x282828"
+# 
+# [colors-dark.normal]
+# black = "0x282828"
+# blue = "0x83a598"
+# cyan = "0x8ec07c"
+# green = "0xb8bb26"
+# magenta = "0xd3869b"
+# red = "0xfb4934"
+# white = "0xd5c4a1"
+# yellow = "0xfabd2f"
+# 
+# [colors-dark.primary]
+# background = "0x282828"
+# foreground = "0xd5c4a1"
+
+[debug]
+log_level = "Error"
+
+[font]
+builtin_box_drawing = true
+size = 15
+
+[font.normal]
+family = "Monaspace Xenon"
+style = "Light"
+
+[font.bold]
+family = "Monaspace Xenon"
+style = "Bold"
+
+[font.glyph_offset]
+x = 0
+y = 6
+
+[font.offset]
+x = 0
+y = 8
+
+[scrolling]
+history = 10000
+
+[selection]
+save_to_clipboard = true
+
+[window]
+decorations = "buttonless"
+dynamic_padding = true
+dynamic_title = true
+opacity = 1.0
+
+[window.class]
+general = "Alacritty"
+instance = "Alacritty"
+
+[window.padding]
+x = 8
+y = 8

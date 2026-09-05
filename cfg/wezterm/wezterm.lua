@@ -25,14 +25,6 @@ local function get_current_os()
   end
 end
 
-local function str_split(s, delimiter)
-  local result = {}
-  for match in (s .. delimiter):gmatch("(.-)" .. delimiter) do
-    table.insert(result, match)
-  end
-  return result
-end
-
 local function basename(s)
   return string.gsub(s, "(.*[/\\])(.*)", "%2")
 end
@@ -40,6 +32,17 @@ end
 local function color()
   return wezterm.gui.get_appearance():find("Light") and "Light" or "Dark"
 end
+
+local display_cwd_in_title_process = {
+  ["î"] = true,
+  ["î"] = true,
+  ["dir"] = true,
+  ["zsh"] = true,
+  ["vi"] = true,
+  ["vim"] = true,
+  ["nvim"] = true,
+  ["hx"] = true,
+}
 
 local os_fonts = {
   [os_win] = {
@@ -52,17 +55,38 @@ local os_fonts = {
   },
   [os_mac] = {
     fonts = {
-      -- { family = "IBM Plex Mono", weight = "Regular", scale = 1.0 },
-      -- { family = "Monaspace Argon Var", stretch = "Condensed", scale = 1.0 },
-      { family = "Cascadia Mono", weight = "Book",   scale = 1.0 },
-      -- { family = "Monaspace Xenon Var", weight = "Medium",   stretch = "Condensed", scale = 1.2 },
-      -- { family = "Iosevka",             weight = "Regular",  stretch = "Expanded",  scale = 1.2 },
-      -- { family = "Fira Code",           weight = "Regular",  scale = 1.2 },
-      -- { family = "JetBrains Mono",      weight = "Regular",  scale = 1.2 },
-      { family = "LXGW WenKai",   weight = "Bold",   scale = 1.0 },
-      { family = "PingFang SC",   weight = "Medium", scale = 1.0 },
+      -- { family = "IBM Plex Mono",          weight = "Regular" },
+      -- { family = "JetBrains Mono",        weight = "Regular", scale = 1.0 },
+      -- { family = "Cascadia Mono",         weight = "Regular", scale = 1.0 },
+
+      -- { family = "Iosevka",   weight = "Regular", stretch = "Expanded", scale = 1.05 },
+      -- { family = "Fira Code", weight = "Regular", scale = 1 },
+      {
+        -- family = "Monaspace Argon",
+        -- family = "Monaspace Neon",
+        family = "Monaspace Xenon",
+        weight = "Medium",
+        scale = 1.0,
+        harfbuzz_features = {
+          -- 'calt',
+          'liga',
+          -- 'dlig',
+          'ss01',
+          'ss02',
+          'ss03',
+          'ss06',
+          -- 'ss07',
+          'ss08'
+        },
+      },
+
+      -- override the default symbols font and size
+      { family = "Symbols Nerd Font Mono", scale = 0.7 },
+
+      { family = "LXGW WenKai",            weight = "Bold",   scale = 1.0 },
+      { family = "PingFang SC",            weight = "Medium", scale = 1.0 },
     },
-    size = 16.0,
+    size = 14,
   },
   [os_linux] = {
     fonts = {
@@ -82,7 +106,7 @@ local progs = {
 
 local color_schemes = {
   ["Dark"] = {
-    foreground = "#dcdfe4",
+    foreground = "#c9d1d9",
     background = "#2b2b2b",
     cursor_bg = "#c9d1d9",
     cursor_border = "#c9d1d9",
@@ -91,8 +115,8 @@ local color_schemes = {
     selection_fg = "#ffffff",
     scrollbar_thumb = "#222222",
     split = "#444444",
-    ansi = { "#000000", "#cc7832", "#56d364", "#e3b341", "#82aaff", "#db61a2", "#2b7489", "#ffffff" },
-    brights = { "#4d4d4d", "#cc7832", "#56d364", "#e3b341", "#82aaff", "#db61a2", "#2b7489", "#ffffff" },
+    ansi = { "#000000", "#FF7B72", "#6ab873", "#e3b341", "#82aaff", "#db61a2", "#2b7489", "#ffffff" },
+    brights = { "#4d4d4d", "#ff6541", "#56d364", "#e3b341", "#82aaff", "#db61a2", "#2b7489", "#ffffff" },
     indexed = { [136] = "#af8700" },
     compose_cursor = "#c9d1d9",
     tab_bar = {
@@ -118,24 +142,26 @@ local color_schemes = {
     selection_bg = "#768db0",
     selection_fg = "#ffffff",
     scrollbar_thumb = "#222222",
-    split = "#444444",
-    ansi = { "#ffffff", "#cc342b", "#198844", "#e89409", "#3971ed", "#a36ac7", "#3971ed", "#373b41" },
-    brights = { "#b4b7b4", "#cc342b", "#198844", "#e89409", "#3971ed", "#a36ac7", "#3971ed", "#1d1f21" },
+    split = "#f5f5f5",
+
+    --        'black',   'maroon', 'green',    'olive',    'navy',  'purple',  'teal',    'silver',
+    ansi = { "#ffffff", "#BF0021", "#067D17", "#D57506", "#3971ed", "#871094", "#465AA4", "#373b41" },
+    brights = { "#b4b7b4", "#BF0021", "#198844", "#e89409", "#2A65D2", "#a36ac7", "#88C0D0", "#1d1f21" },
     indexed = { [136] = "#ff4722" },
     compose_cursor = "#373b41",
     tab_bar = {
-      background = "#E0E0E0",
+      background = "#EAEAEA",
       active_tab = {
         bg_color = "#f5f5f5",
-        fg_color = "#cc342b",
+        fg_color = "#BF0021",
         intensity = "Normal",
         underline = "None",
         italic = false,
         strikethrough = false,
       },
-      inactive_tab = { bg_color = "#E0E0E0", fg_color = "#24292e", intensity = "Normal", },
-      inactive_tab_hover = { bg_color = "#E0E0E0", fg_color = "#24292e", intensity = "Bold" },
-      new_tab = { bg_color = "#E0E0E0", fg_color = "#24292e" },
+      inactive_tab = { bg_color = "#EAEAEA", fg_color = "#24292e", intensity = "Normal", },
+      inactive_tab_hover = { bg_color = "#EAEAEA", fg_color = "#24292e", underline = "Single" },
+      new_tab = { bg_color = "#EAEAEA", fg_color = "#24292e" },
       new_tab_hover = { bg_color = "#f1f1f1", fg_color = "#24292e", intensity = "Bold" },
     },
   },
@@ -145,8 +171,9 @@ local cur_os = get_current_os()
 local font_cfg = os_fonts[cur_os]
 
 local cfg = {
-  front_end = "OpenGL",
-  -- cell_width = 0.94,
+  -- front_end = "OpenGL",
+  front_end = "WebGpu",
+  -- cell_width = 0.95,
 
   default_prog = progs[cur_os],
   automatically_reload_config = true,
@@ -161,16 +188,16 @@ local cfg = {
   font = wezterm.font_with_fallback(font_cfg.fonts),
   font_size = font_cfg.size,
   adjust_window_size_when_changing_font_size = false,
-  harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
   warn_about_missing_glyphs = false,
-  underline_thickness = "160%",
+  underline_thickness = "240%",
   underline_position = "-4pt",
-  line_height = 1.2,
+  line_height = 1.15,
   freetype_load_target = 'Light',
-  freetype_render_target = 'HorizontalLcd',
-  freetype_load_flags = 'FORCE_AUTOHINT|MONOCHROME',
-  freetype_interpreter_version = 40,
+  freetype_render_target = 'Light',
+  freetype_load_flags = 'NO_HINTING',
   allow_square_glyphs_to_overflow_width = "Always",
+  custom_block_glyphs = true,
+  anti_alias_custom_block_glyphs = true,
 
   -- scroll_bar
   scrollback_lines = 9000,
@@ -183,13 +210,32 @@ local cfg = {
   use_fancy_tab_bar = false,
   tab_max_width = 100,
 
+  -- panes
+  inactive_pane_hsb = {
+    saturation = 1,
+    brightness = 0.92,
+  },
+
   -- windows
   -- TITLE | RESIZE
   window_decorations = "RESIZE",
-  window_padding = { left = "1cell", right = "1cell", top = "0.5cell", bottom = "0" },
-  window_close_confirmation = "NeverPrompt",
+  window_padding = { left = "1cell", right = "1cell", top = "0cell", bottom = "0cell" },
+  -- window_padding = { left = "0", right = "0", top = "0", bottom = "0" },
+  window_close_confirmation = "AlwaysPrompt", -- NeverPrompt
+  skip_close_confirmation_for_processes_named = {
+    'bash',
+    'sh',
+    'zsh',
+    'fish',
+    'tmux',
+    'nu',
+    'cmd.exe',
+    'pwsh.exe',
+    'powershell.exe',
+  },
   window_frame = {
-    font = wezterm.font { family = 'JetBrains Mono', weight = 'Regular' },
+    font = wezterm.font { family = 'JetBrains Mono', weight = 'Light' },
+    font_size = 12.0,
   },
   initial_rows = 30,
   initial_cols = 120,
@@ -202,8 +248,13 @@ local cfg = {
 
   -- keys
   disable_default_key_bindings = false,
-  leader = { key = "`", mods = "CTRL|ALT", timeout_milliseconds = 1000 },
+  leader = { key = "`", mods = "ALT", timeout_milliseconds = 1000 },
   keys = {
+    {
+      key = 'w',
+      mods = 'CMD',
+      action = wezterm.action.CloseCurrentTab { confirm = false },
+    },
 
     -- from: https://github.com/wez/wezterm/discussions/2329
     -- Window management
@@ -238,7 +289,8 @@ local cfg = {
       mods = 'LEADER',
       action = act.PromptInputLine {
         description = 'Enter new name for tab',
-        action = wezterm.action_callback(function(window, pane, line)
+        -- window, pane, line
+        action = wezterm.action_callback(function(window, _, line)
           -- line will be `nil` if they hit escape without entering anything
           -- An empty string if they just hit enter
           -- Or the actual line of text they wrote
@@ -254,7 +306,7 @@ local cfg = {
     -- Paste from Copy Mode
     { key = "]", mods = "LEADER", action = act.PasteFrom("PrimarySelection") },
 
-    { key = "q", mods = "CMD",    action = "QuitApplication" },
+    -- { key = "q", mods = "CMD",    action = "QuitApplication" },
   },
 
   key_tables = {
@@ -350,7 +402,7 @@ local cfg = {
       { key = "u",      mods = "CTRL", action = act.CopyMode("ClearPattern") },
     },
   },
-  ssh_domains = { { name = "dev", remote_address = "example.test" } },
+  ssh_domains = {},
 }
 
 -- events
@@ -358,46 +410,77 @@ local cfg = {
 -- params: tab, tabs, panes, config, hover, max_width
 wezterm.on("format-tab-title", function(tab, _, _, _, _, _)
   local idx = tab.tab_index + 1
-  -- return { { Text = " " .. idx .. ": " .. tab.get_title() .. " " } }
   local process = basename(tab.active_pane.foreground_process_name)
   local title = ""
   if process ~= "" and #process > 0 then
-    process = process == "zsh" and "DIR" or process
-    local dir = basename(tab.active_pane.current_working_dir)
-    title = " " .. idx .. ":" .. process .. " (" .. dir .. ")" .. " "
+    process = process == "zsh" and "dir" or process
+    if display_cwd_in_title_process[process] then
+      local dir = basename(tab.active_pane.current_working_dir.file_path)
+      if dir == os.getenv("USER") then
+        dir = "~"
+      end
+      if process == "dir" then
+        title = " " .. idx .. ": " .. dir .. " "
+      else
+        title = " " .. idx .. ": " .. process .. " (" .. dir .. ")" .. " "
+      end
+    else
+      title = " " .. idx .. ": " .. process .. " "
+    end
   else
-    title = " " .. idx .. ": " .. tab.active_pane.title .. " "
+    title = " " .. idx .. " "
   end
   if tab.is_active then
     return { { Attribute = { Intensity = "Normal" } }, { Text = title } }
   end
-  return { { Text = title } }
+  return { { Attribute = { Intensity = "Normal" } }, { Text = title } }
 end)
 
 
 --- params: window, pane
 local function refresh_config(window, _)
-  if cur_os == os_mac then
-    local overrides = window:get_config_overrides() or {}
-    local macDisplay = wezterm.gui.screens().active.name == "Built-in Retina Display"
-    local font_size = macDisplay and 16 or 15
-    if window:effective_config().font_size ~= font_size then
-      overrides.font_size = font_size
-      window:set_config_overrides(overrides)
-    end
+  local overrides = window:get_config_overrides() or {}
+
+  local window_dims = window:get_dimensions()
+  if window_dims.is_full_screen then
+    overrides.window_padding = { left = "1cell", right = "1cell", top = "0", bottom = "0" }
+  else
+    -- overrides.window_padding = { left = "1cell", right = "1cell", top = "1cell", bottom = "0" }
+    overrides.window_padding = { left = "1cell", right = "0", top = "0", bottom = "0" }
   end
+
+  -- if cur_os == os_mac then
+  --   local macDisplay = wezterm.gui.screens().active.name == "Built-in Retina Display"
+  --   local font_size = macDisplay and 16 or 14
+  --   if window:effective_config().font_size ~= font_size then
+  --     overrides.font_size = font_size
+  --   end
+  -- end
+
+  window:set_config_overrides(overrides)
 end
---
-wezterm.on("window-config-reloaded", refresh_config)
+
+-- wezterm.on("window-config-reloaded", refresh_config)
+-- wezterm.on("user-var-changed", refresh_config)
 wezterm.on("window-resized", refresh_config)
 
-wezterm.on('update-status', function(window, _)
-  local output = os.exec("uptime | /opt/homebrew/bin/rg '^.*?(load av.+:)(.*)' -r '$2'")
-  local text = output:gsub("%s+", " ")
-  window:set_right_status(wezterm.format {
-    { Foreground = { Color = color_schemes[color()].foreground } },
-    { Text = text },
-  })
-end)
+-- wezterm.on('update-status', function(window, _)
+--   local output = os.exec("uptime | /opt/homebrew/bin/rg '^.*?(load av.+:)(.*)' -r '$2'")
+--   local text = output:gsub("%s+", " ")
+--   -- local date = os.date('%H:%M')
+--   -- text = text .. "| " .. os.date('%H:%M') .. " "
+--   window:set_right_status(wezterm.format {
+--     { Foreground = { Color = color_schemes[color()].foreground } },
+--     { Text = text },
+--   })
+-- end)
+
+local local_cfg_path = (os.getenv("XDG_CONFIG_HOME") or ((os.getenv("HOME") or "") .. "/.config")) .. "/wezterm/local.lua"
+local local_ok, local_cfg = pcall(dofile, local_cfg_path)
+if local_ok and type(local_cfg) == "table" then
+  for k, v in pairs(local_cfg) do
+    cfg[k] = v
+  end
+end
 
 return cfg

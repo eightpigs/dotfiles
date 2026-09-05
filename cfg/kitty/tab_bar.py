@@ -1,111 +1,129 @@
-# from datetime import datetime
+import os
+import unicodedata
+
 from kitty.boss import get_boss
-from kitty.fast_data_types import Screen, get_options
-from kitty.utils import color_as_int
-from kitty.tab_bar import (
-    DrawData,
-    ExtraData,
-    Formatter,
-    TabBarData,
-    as_rgb,
-    draw_attributed_string,
-    draw_title,
-)
+from kitty.fast_data_types import Screen
+from kitty.tab_bar import DrawData, ExtraData, TabBarData
 
-opts = get_options()
-icon_fg = as_rgb(color_as_int(opts.background))
-icon_bg = as_rgb(color_as_int(opts.color1))
-
-date_fgcolor = as_rgb(color_as_int(opts.background))
-date_bgcolor = as_rgb(color_as_int(opts.color9))
-
-# separator_fg = as_rgb(color_as_int(opts.color9))
-
-bat_text_color = as_rgb(color_as_int(opts.color15))
-SEPARATOR_SYMBOL, SOFT_SEPARATOR_SYMBOL = ("î", "î")
-RIGHT_MARGIN = 0
-ICON = " ï  "
+DEFAULT_MAX_TITLE_WIDTH = 30
 
 
-def _draw_icon(screen: Screen, index: int) -> int:
-    if index != 1:
+def _color_to_rgb(c) -> int:
+    """Convert Color object or int to screen cursor RGB format."""
+    try:
+        return (1 << 24) | (c[0] << 16) | (c[1] << 8) | c[2]
+    except (TypeError, IndexError):
+        return (1 << 24) | (int(c) & 0xffffff)
+
+
+def _cell_width(char: str) -> int:
+    if unicodedata.combining(char):
         return 0
-    fg, bg = screen.cursor.fg, screen.cursor.bg
-    screen.cursor.fg = icon_fg
-    screen.cursor.bg = icon_bg
-    screen.draw(ICON)
-    screen.cursor.fg, screen.cursor.bg = fg, bg
-    screen.cursor.x = len(ICON)
-    return screen.cursor.x
-
-
-def _draw_left_status(
-    draw_data: DrawData,
-    screen: Screen,
-    tab: TabBarData,
-    before: int,
-    max_title_length: int,
-    index: int,
-    is_last: bool,
-    extra_data: ExtraData,
-) -> int:
-    if screen.cursor.x >= screen.columns - right_status_length:
-        return screen.cursor.x
-    tab_bg = screen.cursor.bg
-    tab_fg = screen.cursor.fg
-    default_bg = as_rgb(int(draw_data.default_bg))
-    if extra_data.next_tab:
-        next_tab_bg = as_rgb(draw_data.tab_bg(extra_data.next_tab))
-        needs_soft_separator = next_tab_bg == tab_bg
-    else:
-        next_tab_bg = default_bg
-        needs_soft_separator = False
-    if screen.cursor.x <= len(ICON):
-        screen.cursor.x = len(ICON)
-    screen.draw(" ")
-    screen.cursor.bg = tab_bg
-    draw_title(draw_data, screen, tab, index)
-    if not needs_soft_separator:
-        screen.draw(" ")
-        screen.cursor.fg = tab_bg
-        screen.cursor.bg = next_tab_bg
-        screen.draw(SEPARATOR_SYMBOL)
-    else:
-        prev_fg = screen.cursor.fg
-        if tab_bg == tab_fg:
-            screen.cursor.fg = default_bg
-        elif tab_bg != default_bg:
-            c1 = draw_data.inactive_bg.contrast(draw_data.default_bg)
-            c2 = draw_data.inactive_bg.contrast(draw_data.inactive_fg)
-            if c1 < c2:
-                screen.cursor.fg = default_bg
-        screen.cursor.fg = prev_fg
-        screen.draw(" " + SOFT_SEPARATOR_SYMBOL)
-    end = screen.cursor.x
-    return end
-
-
-def _draw_right_status(screen: Screen, is_last: bool, cells: list) -> int:
-    if not is_last:
+    if unicodedata.category(char) in {'Cc', 'Cf'}:
         return 0
-    draw_attributed_string(Formatter.reset, screen)
-    screen.cursor.x = screen.columns - right_status_length
-    screen.cursor.fg = 0
-    for bgColor, fgColor, status in cells:
-        screen.cursor.fg = fgColor
-        screen.cursor.bg = bgColor
-        screen.draw(status)
-    screen.cursor.bg = 0
-    return screen.cursor.x
+    return 2 if unicodedata.east_asian_width(char) in {'F', 'W'} else 1
 
 
-def _redraw_tab_bar(_):
-    tm = get_boss().active_tab_manager
-    if tm is not None:
-        tm.mark_tab_bar_dirty()
+def _display_width(text: str) -> int:
+    return sum(_cell_width(char) for char in text)
 
 
-right_status_length = -1
+def _truncate_to_width(text: str, max_width: int) -> str:
+    if max_width <= 0:
+        return ''
+    if _display_width(text) <= max_width:
+        return text
+
+    marker = ''
+    marker_width = _display_width(marker)
+    if max_width <= marker_width:
+        return marker
+
+    target = max_width - marker_width
+    width = 0
+    out = []
+    for char in text:
+        char_width = _cell_width(char)
+        if width + char_width > target:
+            break
+        out.append(char)
+        width += char_width
+    return ''.join(out) + marker
+
+
+def _draw_clipped(screen: Screen, text: str, max_width: int) -> int:
+    text = _truncate_to_width(text, max_width)
+    screen.draw(text)
+    return _display_width(text)
+
+
+SHELLS = frozenset({
+    'zsh', 'bash', 'fish', 'sh', 'dash',
+    'nu', 'elvish', 'tcsh', 'csh', 'ksh',
+})
+
+# Interactive / long-running processes worth showing in the tab title.
+NOTABLE_CMDS = frozenset({
+    # editors
+    'nvim', 'vim', 'vi', 'emacs', 'nano', 'helix', 'hx', 'code',
+    # remote
+    'ssh', 'mosh', 'telnet',
+    # repls
+    'python', 'python3', 'ipython', 'node', 'ruby', 'irb', 'lua',
+    'ghci', 'erl', 'iex', 'scala', 'clj', 'r',
+    # system
+    'top', 'htop', 'btop', 'glances', 'watch',
+    'less', 'more', 'man',
+    # development
+    'docker', 'kubectl', 'lazygit', 'lazydocker', 'tig',
+    'gdb', 'lldb', 'nix',
+    # multiplexers
+    'tmux', 'screen', 'zellij',
+    # agents
+    'claude', 'codex', 'gemini',
+    # other
+    'mysql', 'psql', 'redis-cli', 'mongosh', 'sqlite3',
+    'fzf', 'nnn', 'ranger', 'yazi', 'mc',
+})
+
+
+def _get_tab_parts(tab: TabBarData, index: int) -> tuple:
+    """Returns (exe_name, dir_name). exe_name is empty for shell processes."""
+    boss = get_boss()
+    if boss is None:
+        return ('', tab.title)
+    for tm in boss.os_window_map.values():
+        for t in tm.tabs:
+            if t.id == tab.tab_id:
+                w = t.active_window
+                if w is None:
+                    break
+                try:
+                    fp = w.child.foreground_processes
+                except Exception:
+                    fp = []
+                cwd = ''
+                if fp:
+                    cwd = fp[-1].get('cwd', '')
+                if not cwd:
+                    try:
+                        cwd = w.child.current_cwd or w.child.cwd or ''
+                    except Exception:
+                        cwd = ''
+                home = os.path.expanduser('~')
+                dir_name = '~' if cwd == home else (os.path.basename(cwd) or cwd)
+                if fp:
+                    cmdline = fp[-1].get('cmdline', [])
+                    if cmdline:
+                        exe = os.path.basename(cmdline[0])
+                        name = exe.lower().lstrip('-')
+                        if name not in SHELLS and name in NOTABLE_CMDS:
+                            return (exe, dir_name)
+                return ('', dir_name)
+    return ('', tab.title)
+
+
+_cached_active_bg = 0
 
 
 def draw_tab(
@@ -118,28 +136,59 @@ def draw_tab(
     is_last: bool,
     extra_data: ExtraData,
 ) -> int:
-    # global right_status_length
-    # date = datetime.now().strftime(" %d.%m.%Y ")
-    # cells = [(date_bgcolor, date_fgcolor, date)]
-    # right_status_length = RIGHT_MARGIN
-    # for cell in cells:
-        # right_status_length += len(str(cell[2]))
+    global _cached_active_bg
+    if tab.is_active:
+        _cached_active_bg = screen.cursor.bg
 
-    _draw_icon(screen, index)
-    _draw_left_status(
-        draw_data,
-        screen,
-        tab,
-        before,
-        max_title_length,
-        index,
-        is_last,
-        extra_data,
-    )
-    # _draw_right_status(
-        # screen,
-        # is_last,
-        # cells,
-    # )
-    return screen.cursor.x
+    prev_tab = getattr(extra_data, 'prev_tab', None)
+    prev_active = prev_tab.is_active if prev_tab is not None else False
+    if index > 1:
+        if prev_active and _cached_active_bg:
+            orig_bg = screen.cursor.bg
+            screen.cursor.bg = _cached_active_bg
+            screen.draw(' ')
+            screen.cursor.bg = orig_bg
+        elif tab.is_active:
+            screen.draw(' ')
+        else:
+            screen.draw('')
 
+    exe, dir_name = _get_tab_parts(tab, index)
+    max_len = max(1, max_title_length or DEFAULT_MAX_TITLE_WIDTH)
+    if exe:
+        prefix = f" {index}: "
+        prefix_width = _display_width(prefix)
+        if prefix_width >= max_len:
+            _draw_clipped(screen, prefix, max_len)
+        else:
+            screen.draw(prefix)
+            remaining = max_len - prefix_width
+            exe_width = _display_width(exe)
+            suffix = f" {dir_name} "
+            suffix_width = _display_width(suffix)
+
+            screen.cursor.bold = True
+            if exe_width >= remaining:
+                _draw_clipped(screen, exe, remaining)
+                screen.cursor.bold = False
+            else:
+                screen.draw(exe)
+                screen.cursor.bold = False
+                remaining -= exe_width
+                if suffix_width <= remaining:
+                    screen.draw(suffix)
+                elif remaining >= 3:
+                    screen.draw(f" {_truncate_to_width(dir_name, remaining - 2)} ")
+    else:
+        title = f" {index}: {dir_name} "
+        _draw_clipped(screen, title, max_len)
+    end = screen.cursor.x
+    if is_last and not getattr(extra_data, 'for_layout', False):
+        try:
+            screen.cursor.bold = False
+            bg = getattr(draw_data, 'tab_bar_background', None) or draw_data.default_bg
+            screen.cursor.bg = _color_to_rgb(bg)
+            screen.draw(' ' * max(0, screen.columns - end))
+        except Exception:
+            pass
+    return end

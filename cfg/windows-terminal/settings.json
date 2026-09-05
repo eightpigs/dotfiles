@@ -50,7 +50,7 @@
         "antialiasingMode": "grayscale",
         "closeOnExit": "graceful",
         "colorScheme": "Gruvbox dark, medium",
-        "commandline": "ssh eightpigs@example.test",
+        "commandline": "ssh",
         "experimental.retroTerminalEffect": false,
         "font": {
           "face": "CodeNewRoman NF",
@@ -62,11 +62,11 @@
         "historySize": 9001,
         "icon": "ms-appx:///ProfileIcons/{61c54bbd-c2c6-5271-96e7-009a87ff44bf}.png",
         "intenseTextStyle": "all",
-        "name": "SSH Dev",
+        "name": "SSH",
         "padding": "8",
         "snapOnInput": true,
         "startingDirectory": "%USERPROFILE%",
-        "tabTitle": "dev",
+        "tabTitle": "ssh",
         "useAcrylic": false
       },
       {

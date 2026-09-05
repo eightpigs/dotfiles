@@ -1,0 +1,31 @@
+simplified_ui true
+
+pane_frames false
+theme "light"
+themes {
+  light {
+    fg "#24292e"
+    bg "#f5f5f5"
+    black "#ffffff"
+    red "#BF0021"
+    green "#067D17"
+    yellow "#D57506"
+    blue "#3971ed"
+    magenta "#871094"
+    cyan "#465AA4"
+    white "#373b41"
+    orange "#ff4722"
+  }
+}
+
+default_layout "compact"
+
+ui {
+  pane_frames {
+    rounded_corners true
+    hide_session_name true
+  }
+}
+
+
+scrollback_editor "nvim"

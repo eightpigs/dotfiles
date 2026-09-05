@@ -1,0 +1,4 @@
+-- Copy to `local.lua` (gitignored) for SSH domains and other machine-local WezTerm settings.
+return {
+  -- ssh_domains = { { name = "dev", remote_address = "host.example" } },
+}

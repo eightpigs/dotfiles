@@ -1,0 +1,108 @@
+theme = dark:dark,light:light
+window-colorspace = srgb
+alpha-blending = native
+
+font-family = ""
+font-family-bold = ""
+font-family-italic = ""
+font-family-bold-italic = ""
+# Monaspace Xenon, IBM Plex Mono
+font-family = Monaspace Xenon
+font-family = LXGW WenKai Medium
+font-family = Symbols Nerd Font Mono
+font-style = Regular
+font-style-bold = Medium
+font-style-italic = Italic
+font-style-bold-italic = SemiBold Italic
+
+font-size = 14
+# calt = Monaspace texture healing; kitty leaves it on.
+font-feature = calt,liga,-dlig
+font-thicken = true
+font-thicken-strength = 180
+
+adjust-cell-height = 10
+adjust-cursor-height = 10
+adjust-cursor-thickness = 2
+# +1 made box-drawing / rules heavier than kitty. 0 is Ghostty default;
+# use -1 if tmux/vim split lines are still thick.
+adjust-box-thickness = 1
+
+cursor-style = bar
+cursor-style-blink = false
+shell-integration = zsh
+shell-integration-features = no-cursor
+
+copy-on-select = false
+scrollbar = never
+bell-features = no-system,no-audio,no-attention,no-title,no-border
+confirm-close-surface = false
+quit-after-last-window-closed = true
+
+window-save-state = always
+working-directory = home
+window-inherit-working-directory = true
+tab-inherit-working-directory = true
+split-inherit-working-directory = true
+window-padding-x = 10,4
+window-padding-y = 4,10
+window-padding-balance = false
+window-inherit-font-size = false
+window-step-resize = false
+window-padding-color = extend
+resize-overlay = never
+unfocused-split-opacity = 0.9
+
+macos-option-as-alt = true
+window-title-font-family = Monaspace Xenon Medium
+macos-titlebar-style = hidden
+window-new-tab-position = current
+macos-non-native-fullscreen = false
+macos-icon = blueprint
+auto-update = off
+
+quick-terminal-position = top
+quick-terminal-screen = main
+quick-terminal-animation-duration = 0
+quick-terminal-autohide = false
+
+# keybinds
+# prefix for tmux is M-b (see cfg/tmux). Hidden titlebar has no native tabs,
+# so kitty's tab / launch maps go to tmux windows instead.
+# keybind = ctrl+h=goto_split:left
+# keybind = ctrl+j=goto_split:bottom
+# keybind = ctrl+k=goto_split:top
+# keybind = ctrl+l=goto_split:right
+
+# Keep Shift+Enter protocol-free: tmux receives one LF byte instead of a
+# CSI-u sequence that unsupported or temporarily nested programs may print.
+keybind = shift+enter=text:\x0a
+keybind = cmd+enter=new_split:right
+keybind = cmd+shift+enter=toggle_split_zoom
+keybind = cmd+d=new_split:right
+keybind = cmd+shift+d=new_split:down
+keybind = cmd+w=close_surface
+keybind = cmd+0=reset_font_size
+# tmux prefix is M-b. Send it as one write so tmux cannot split ESC and b.
+keybind = alt+b=text:\x1bb
+keybind = cmd+.=text:\x1bb,
+keybind = cmd+t=text:\x1bbc
+
+# Override Ghostty's physical Cmd+digit tab bindings. Physical triggers take
+# priority over codepoint triggers such as cmd+1, regardless of config order.
+keybind = cmd+digit_1=text:\x1bb1
+keybind = cmd+digit_2=text:\x1bb2
+keybind = cmd+digit_3=text:\x1bb3
+keybind = cmd+digit_4=text:\x1bb4
+keybind = cmd+digit_5=text:\x1bb5
+keybind = cmd+digit_6=text:\x1bb6
+keybind = cmd+digit_7=text:\x1bb7
+keybind = cmd+digit_8=text:\x1bb8
+keybind = cmd+digit_9=text:\x1bb9
+
+keybind = ctrl+alt+digit_1=text:\x1bb:new-window -c "#{pane_current_path}" nvim\r
+keybind = ctrl+alt+digit_2=text:\x1bb:new-window -c "#{pane_current_path}" "git diff -p; read -n 1 -s"\r
+keybind = ctrl+alt+digit_3=text:\x1bb:new-window -c "#{pane_current_path}" "zsh -c 'source ~/.zshrc && fglog'"\r
+keybind = ctrl+alt+digit_0=text:\x1bb:new-window -c "#{pane_current_path}" "ssh dev"\r
+
+keybind = global:cmd+quote=toggle_quick_terminal

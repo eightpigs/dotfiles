@@ -1,0 +1,59 @@
+#!/bin/sh
+
+set -eu
+
+pane_tty=$1
+pane_path=$2
+home_path=$3
+pane_command=$4
+command_whitelist=$5
+
+if [ "$pane_path" = "$home_path" ]; then
+    directory_label='~'
+else
+    path_without_trailing_slash=${pane_path%/}
+    directory_label=${path_without_trailing_slash##*/}
+    [ -n "$directory_label" ] || directory_label=/
+fi
+
+case " $command_whitelist " in
+    *" $pane_command "*) ;;
+    *)
+        printf '%s\n' "$directory_label"
+        exit 0
+        ;;
+esac
+
+tty_name=${pane_tty#/dev/}
+foreground_command=$(
+    ps -ww -t "$tty_name" -o pgid= -o tpgid= -o command= 2>/dev/null |
+        awk -v expected="$pane_command" '
+            $1 == $2 {
+                $1 = $2 = ""
+                sub(/^[[:space:]]+/, "")
+                command = $0
+                executable = command
+                sub(/[[:space:]].*$/, "", executable)
+                sub(/^.*\//, "", executable)
+                sub(/^-/, "", executable)
+                if (executable == expected) {
+                    print command
+                    exit
+                }
+            }
+        '
+)
+
+if [ -n "$foreground_command" ]; then
+    executable=${foreground_command%% *}
+    arguments=${foreground_command#"$executable"}
+    foreground_command="${executable##*/}$arguments"
+else
+    foreground_command=$pane_command
+fi
+
+if [ "$pane_path" = "$home_path" ]; then
+    printf '%s\n' "$foreground_command"
+else
+    printf '%s - %s\n' "$directory_label" "$foreground_command"
+fi

@@ -1,0 +1,39 @@
+#!/bin/sh
+# Copy prefix binding X to M-X when M-X is not already bound.
+# Holding Option through prefix+key sends M-c / M-| /  instead of c / |.
+# Existing Meta binds (layouts M-1..M-7, send-prefix, ) are left alone.
+set -eu
+
+prefix=$(tmux show -gv prefix)
+tmp=$(mktemp "${TMPDIR:-/tmp}/tmux-mirror-prefix.XXXXXX")
+trap 'rm -f "$tmp"' EXIT
+
+existing=$(mktemp "${TMPDIR:-/tmp}/tmux-mirror-prefix-keys.XXXXXX")
+trap 'rm -f "$tmp" "$existing"' EXIT
+tmux list-keys -T prefix -F '#{key_string}' >"$existing"
+
+tmux list-keys -T prefix | awk -v prefix="$prefix" -v existing="$existing" '
+	BEGIN {
+		needle = "-T prefix "
+		while ((getline k < existing) > 0) have[k] = 1
+		close(existing)
+	}
+	{
+		idx = index($0, needle)
+		if (idx == 0) next
+		after = substr($0, idx + length(needle))
+		if (!match(after, /^[^ ]+/)) next
+		key = substr(after, 1, RLENGTH)
+		rest = substr(after, RLENGTH + 1)
+		if (key ~ /^M-/) next
+		if (key ~ /Mouse|Wheel/) next
+		meta = "M-" key
+		if (meta == prefix) next
+		if (meta in have) next
+		print substr($0, 1, idx + length(needle) - 1) meta rest
+	}
+' >"$tmp"
+
+if [ -s "$tmp" ]; then
+	tmux source-file "$tmp"
+fi
