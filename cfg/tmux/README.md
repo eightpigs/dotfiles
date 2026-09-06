@@ -32,6 +32,11 @@ Copy mode uses vi keys. `v` starts selection, `y` copies.
 | `Alt-1` … `Alt-9` | select window |
 | `Alt-h` `j` `k` `l` | pane movement (passed through in Vim) |
 
+## Clipboard
+
+Copy mode `y` and Codex `/copy` go through `clip` (`pbcopy`). Restart the tmux
+server after changing `Ms` / `terminal-features` (`tmux kill-server`).
+
 ## Plugins
 
 Installed via TPM (`~/.tmux/plugins/tpm`). Press `prefix` + `I` once.

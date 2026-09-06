@@ -1,0 +1,4 @@
+#!/bin/sh
+# Copy stdin to the macOS pasteboard. Close stdout so tmux does not wait
+# on pbcopy (it can keep the pipe open).
+exec pbcopy >/dev/null 2>&1
