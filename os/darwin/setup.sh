@@ -97,6 +97,14 @@ if [ -f "$terminfo_src" ]; then
   /usr/bin/tic -x "$terminfo_src"
 fi
 
+# tmux server independent of terminal applications (optional)
+# -----------------------------------------------------------------------------
+installTmuxLaunchAgent='n'
+read -r -p "Install and start the default tmux server with launchd at login? [y/N]: " installTmuxLaunchAgent
+if [ "$installTmuxLaunchAgent" = 'y' ] || [ "$installTmuxLaunchAgent" = 'Y' ]; then
+  bash "$(dirname "$0")/setup-tmux.sh"
+fi
+
 
 
 # Emacs

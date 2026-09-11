@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>local.tmux.default</string>
+    <!-- setup-tmux.sh fills these paths; launchd does not expand variables. -->
+    <key>Program</key>
+    <string>__TMUX_BINARY__</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>tmux</string>
+        <!-- Stay in the foreground so launchd owns the actual server. -->
+        <string>-D</string>
+        <string>-L</string>
+        <string>default</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>ProcessType</key>
+    <string>Interactive</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>HOME</key>
+        <string>__HOME__</string>
+        <key>PATH</key>
+        <string>__PATH__</string>
+        <key>SHELL</key>
+        <string>/bin/zsh</string>
+        <key>LANG</key>
+        <string>en_US.UTF-8</string>
+        <key>TMUX_TMPDIR</key>
+        <string>__TMUX_TMPDIR__</string>
+    </dict>
+    <key>WorkingDirectory</key>
+    <string>__HOME__</string>
+    <key>StandardErrorPath</key>
+    <string>__STDERR_PATH__</string>
+</dict>
+</plist>

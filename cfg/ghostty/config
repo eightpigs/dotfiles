@@ -37,7 +37,9 @@ copy-on-select = false
 scrollbar = never
 bell-features = no-system,no-audio,no-attention,no-title,no-border
 confirm-close-surface = false
-quit-after-last-window-closed = true
+# Keep Cmd+W on the last window from quitting Ghostty. macOS may also
+# terminate daemonized tmux servers associated with the exiting app.
+quit-after-last-window-closed = false
 
 window-save-state = always
 working-directory = home
