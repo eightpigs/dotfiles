@@ -81,9 +81,10 @@ if run_confirm "Update profiles.d"; then
 fi
 
 
+# ~/.zshrc: interactive. ~/.zlogin: login shells that skip ~/.zshrc (e.g. ssh host cmd).
+# profiles.d/main is idempotent if both run.
 if [ -f ~/.zshrc ]; then
   append_to_file "^source.*profiles.d/main$" "source ~/.config/profiles.d/main" ~/.zshrc
-  append_to_file "source.*fzf.zsh$" "[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh" ~/.zshrc
 else
   echo "~/.zshrc not found."
 fi

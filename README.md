@@ -35,6 +35,10 @@ It then appends this to `~/.zshrc` and `~/.zlogin` when those files exist:
 source ~/.config/profiles.d/main
 ```
 
+`.zshrc` covers interactive shells. `.zlogin` covers login shells that skip
+`.zshrc` (for example `ssh host cmd`). `profiles.d/main` loads only once if
+both files run.
+
 ## Local overrides
 
 Machine-specific values stay out of git. Copy the example, drop the `.example`
@@ -42,7 +46,7 @@ suffix, and edit. The copies are gitignored.
 
 | File | Used by |
 | --- | --- |
-| `profiles.d/local` | sourced from `profiles.d/main` after aliases |
+| `profiles.d/local` | sourced last from `profiles.d/main` |
 | `profiles.d/work` | same, if the file exists |
 | `os/darwin/local.sh` | sourced from `os/darwin/setup.sh` |
 | `cfg/wezterm/local.lua` | merged into WezTerm config |
@@ -72,5 +76,6 @@ after the first install, open tmux and press `prefix` + `I`. See
 
 ## Shell
 
-`profiles.d/main` loads `env`, `alias`, `zsh`, `fzf`, then `work` and `local`
-if they exist. `profiles.d/term` is not sourced by default.
+`profiles.d/main` always loads `env` and `alias`, then `zsh` and `fzf` only
+when the shell is interactive, then `work` and `local` if they exist.
+`profiles.d/term` is not sourced by default.
