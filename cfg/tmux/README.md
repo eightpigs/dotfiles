@@ -1,7 +1,28 @@
 # tmux
 
-Prefix: `Alt-b` (`M-b`). Config: `.tmux.conf`. Helpers: `pane-status-label`,
+Prefix: `Alt-b` (`M-b`). Config: `.tmux.conf`. Helpers: `clip`,
 `mirror-prefix-meta`.
+
+Window labels show the current directory (`~` at home), adding ` - ssh` or
+` - mosh` for those foreground programs. Labels refresh every 5 seconds using
+tmux formats. Use `prefix` + `,` to give a window a persistent name, such as a
+remote host.
+
+## Mosh disconnect cleanup
+
+New Mosh connections default to a 7-day network timeout via
+`MOSH_SERVER_NETWORK_TMOUT=604800` in `profiles.d/zshenv`. The file is sourced
+from `~/.zshenv`, before SSH starts `mosh-server`.
+
+When that connection receives no client network updates for 7 days,
+Mosh exits and closes its terminal, which also ends that login's `tmux a`.
+The tmux server, pane programs, and other attached clients keep running.
+An idle keyboard does not count as a network disconnect. Commands running
+directly in the Mosh terminal should be moved into tmux if they must survive.
+
+The setting applies to newly started Mosh servers; existing connections keep
+their original timeout. Changing the variable inside an already running Mosh
+shell is too late. Continue using `tmux a` without `-d` to preserve other clients.
 
 ## macOS LaunchAgent
 
@@ -70,8 +91,9 @@ Copy mode uses vi keys. `v` starts selection, `y` copies.
 
 ## Clipboard
 
-Copy mode `y` and Codex `/copy` go through `clip` (`pbcopy`). Restart the tmux
-server after changing `Ms` / `terminal-features` (`tmux kill-server`).
+Copy mode `y` runs `clip` (`pbcopy`) to copy to the local macOS pasteboard.
+`tmux load-buffer -w` uses OSC 52 to copy through the attached terminal; it does
+not use `copy-command`.
 
 ## Plugins
 

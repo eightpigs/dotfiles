@@ -16,7 +16,8 @@ run_confirm() {
 
 append_to_file() {
   if ! grep -q "$1" "$3" ; then
-    echo "$2" >> "$3"
+    # Start a new line even if the existing file has no trailing newline.
+    printf '\n%s\n' "$2" >> "$3"
   fi
 }
 
@@ -81,7 +82,13 @@ if run_confirm "Update profiles.d"; then
 fi
 
 
-# ~/.zshrc: interactive. ~/.zlogin: login shells that skip ~/.zshrc (e.g. ssh host cmd).
+# ~/.zshenv also covers non-interactive SSH commands such as mosh-server.
+if [ -f "$XDG_CONFIG_HOME/profiles.d/zshenv" ]; then
+  touch ~/.zshenv
+  append_to_file "^source.*profiles.d/zshenv$" "source ~/.config/profiles.d/zshenv" ~/.zshenv
+fi
+
+# ~/.zshrc: interactive. ~/.zlogin: login shells.
 # profiles.d/main is idempotent if both run.
 if [ -f ~/.zshrc ]; then
   append_to_file "^source.*profiles.d/main$" "source ~/.config/profiles.d/main" ~/.zshrc

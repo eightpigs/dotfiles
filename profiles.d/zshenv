@@ -1,0 +1,3 @@
+# Loaded before non-interactive SSH commands start mosh-server.
+# Expire this Mosh connection after 7 days without client network updates.
+export MOSH_SERVER_NETWORK_TMOUT="${MOSH_SERVER_NETWORK_TMOUT:-604800}"

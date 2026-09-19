@@ -68,7 +68,7 @@ if [ $refreshHomebrew == 'y' ]; then
     brew list $soft > /dev/null 2>&1 || brew install $soft
   done
 
-  casks=(hammerspoon alacritty neovide wez/wezterm/wezterm eloston-chromium firefox@developer-edition zed visual-studio-code ollama)
+  casks=(hammerspoon alacritty neovide wez/wezterm/wezterm eloston-chromium firefox@developer-edition zed)
   if [ -n "${extra_casks:-}" ]; then
     casks+=("${extra_casks[@]}")
   fi

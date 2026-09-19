@@ -35,9 +35,12 @@ It then appends this to `~/.zshrc` and `~/.zlogin` when those files exist:
 source ~/.config/profiles.d/main
 ```
 
-`.zshrc` covers interactive shells. `.zlogin` covers login shells that skip
-`.zshrc` (for example `ssh host cmd`). `profiles.d/main` loads only once if
-both files run.
+`.zshrc` covers interactive shells. `.zlogin` covers login shells.
+`profiles.d/main` loads only once if both files run.
+
+When `profiles.d/zshenv` is installed, the installer also adds
+`source ~/.config/profiles.d/zshenv` to `~/.zshenv`. This small environment file
+is read before non-interactive SSH commands, including `mosh-server`.
 
 ## Local overrides
 
@@ -79,3 +82,6 @@ after the first install, open tmux and press `prefix` + `I`. See
 `profiles.d/main` always loads `env` and `alias`, then `zsh` and `fzf` only
 when the shell is interactive, then `work` and `local` if they exist.
 `profiles.d/term` is not sourced by default.
+
+`profiles.d/zshenv` sets the Mosh network timeout independently of the
+interactive shell setup. See `cfg/tmux/README.md` for its disconnect behavior.
